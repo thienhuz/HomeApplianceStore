@@ -1,0 +1,15 @@
+D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.Application\bin\Debug\net9.0\HomeApplianceStore.Application.deps.json
+D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.Application\bin\Debug\net9.0\HomeApplianceStore.Application.dll
+D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.Application\bin\Debug\net9.0\HomeApplianceStore.Application.pdb
+D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.Application\bin\Debug\net9.0\HomeApplianceStore.Domain.dll
+D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.Application\bin\Debug\net9.0\HomeApplianceStore.Domain.pdb
+D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.Application\obj\Debug\net9.0\HomeApplianceStore.Application.csproj.AssemblyReference.cache
+D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.Application\obj\Debug\net9.0\HomeApplianceStore.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.Application\obj\Debug\net9.0\HomeApplianceStore.Application.AssemblyInfoInputs.cache
+D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.Application\obj\Debug\net9.0\HomeApplianceStore.Application.AssemblyInfo.cs
+D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.Application\obj\Debug\net9.0\HomeApplianceStore.Application.csproj.CoreCompileInputs.cache
+D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.Application\obj\Debug\net9.0\HomeAppl.8233E258.Up2Date
+D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.Application\obj\Debug\net9.0\HomeApplianceStore.Application.dll
+D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.Application\obj\Debug\net9.0\refint\HomeApplianceStore.Application.dll
+D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.Application\obj\Debug\net9.0\HomeApplianceStore.Application.pdb
+D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.Application\obj\Debug\net9.0\ref\HomeApplianceStore.Application.dll
