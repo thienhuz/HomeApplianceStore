@@ -85,3 +85,4 @@ D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.WebApi\obj\Debug\net
 D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.WebApi\obj\Debug\net8.0\HomeApplianceStore.WebApi.pdb
 D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.WebApi\obj\Debug\net8.0\HomeApplianceStore.WebApi.genruntimeconfig.cache
 D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.WebApi\obj\Debug\net8.0\ref\HomeApplianceStore.WebApi.dll
+D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.WebApi\obj\Debug\net8.0\HomeApplianceStore.WebApi.sourcelink.json

@@ -3,6 +3,9 @@ using HomeApplianceStore.Application.Features.Customers.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
+using HomeApplianceStore.Application.Common.Models;
+using HomeApplianceStore.Application.DTOs;
+
 namespace HomeApplianceStore.WebApi.Controllers;
 
 [ApiController]
@@ -20,6 +23,6 @@ public class CustomersController : ControllerBase
     public async Task<IActionResult> GetCustomers()
     {
         var customers = await _sender.Send(new GetCustomersQuery());
-        return Ok(customers);
+        return Ok(ApiResponse<IEnumerable<CustomerDto>>.Success(customers));
     }
 }

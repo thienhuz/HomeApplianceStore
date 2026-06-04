@@ -9,3 +9,4 @@ D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.Domain\obj\Debug\net
 D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.Domain\obj\Debug\net8.0\refint\HomeApplianceStore.Domain.dll
 D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.Domain\obj\Debug\net8.0\HomeApplianceStore.Domain.pdb
 D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.Domain\obj\Debug\net8.0\ref\HomeApplianceStore.Domain.dll
+D:\DuAnCaNhan\HomeApplianceStore\Backend\HomeApplianceStore.Domain\obj\Debug\net8.0\HomeApplianceStore.Domain.sourcelink.json

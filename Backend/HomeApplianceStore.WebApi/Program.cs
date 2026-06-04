@@ -1,5 +1,6 @@
 using HomeApplianceStore.Application;
 using HomeApplianceStore.Infrastructure;
+using HomeApplianceStore.WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.MapControllers();
 

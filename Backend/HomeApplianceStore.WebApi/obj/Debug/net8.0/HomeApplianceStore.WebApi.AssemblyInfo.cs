@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HomeApplianceStore.WebApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+72d033fd19dabceef4dcddd5567c4d2db83f8c37")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0392b3eff094bf8f49caa3989db38764577ab7e6")]
 [assembly: System.Reflection.AssemblyProductAttribute("HomeApplianceStore.WebApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HomeApplianceStore.WebApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
