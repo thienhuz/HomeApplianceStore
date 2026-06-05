@@ -42,3 +42,6 @@ Desktop.ini
 *.user
 *.userosscache
 *.sln.docstates
+
+# Ignore sensitive config files
+appsettings*.json

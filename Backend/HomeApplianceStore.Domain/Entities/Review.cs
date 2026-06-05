@@ -1,5 +1,3 @@
-using System;
-
 namespace HomeApplianceStore.Domain.Entities;
 
 public class Review
