@@ -29,7 +29,7 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, int>
 
         var user = new User
         {
-            RoleId = 2, // 2 = Customer (Default)
+            RoleId = 2,
             FullName = request.Data.FullName,
             Email = request.Data.Email,
             PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Data.Password),

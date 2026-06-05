@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tủ Lạnh - HomeApplianceStore</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#121c2a",
+                        "inverse-surface": "#2e3132",
+                        "on-primary-fixed": "#390c00",
+                        "background": "#f8f9fa",
+                        "tertiary": "#00677e",
+                        "primary-fixed": "#ffdbd0",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#5f1900",
+                        "on-surface": "#191c1d",
+                        "secondary-container": "#d6e0f3",
+                        "primary-container": "#ff6b35",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-container": "#edeeef",
+                        "on-surface-variant": "#594139",
+                        "outline-variant": "#e1bfb5",
+                        "on-primary-fixed-variant": "#832600",
+                        "surface-container-low": "#f3f4f5",
+                        "primary": "#ab3500",
+                        "surface-variant": "#e1e3e4",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#ffb59d",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#003744",
+                        "surface-tint": "#ab3500",
+                        "outline": "#8d7168",
+                        "primary-fixed-dim": "#ffb59d",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#59d5fb",
+                        "on-tertiary-fixed": "#001f28",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#d9e3f6",
+                        "surface-bright": "#f8f9fa",
+                        "tertiary-fixed": "#b5ebff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-background": "#191c1d",
+                        "surface": "#f8f9fa",
+                        "on-secondary-container": "#596373",
+                        "on-secondary-fixed-variant": "#3d4756",
+                        "surface-dim": "#d9dadb",
+                        "tertiary-container": "#00a7cb",
+                        "secondary": "#555f6f",
+                        "on-tertiary-fixed-variant": "#004e60"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "stack-sm": "4px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "margin-desktop": "64px",
+                        "stack-lg": "32px",
+                        "stack-md": "16px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filter-checkbox:checked {
+            background-color: #ab3500;
+            border-color: #ab3500;
+        }
+        .product-card-shadow {
+            box-shadow: 0 4px 20px 0 rgba(31, 41, 55, 0.04);
+        }
+        .product-card-shadow:hover {
+            box-shadow: 0 12px 30px 0 rgba(31, 41, 55, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-surface-variant/20 shadow-sm">
+<div class="flex items-center justify-between px-margin-desktop h-20 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary">HomeApplianceStore</div>
+<div class="hidden md:flex items-center gap-stack-lg">
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1" href="#">Refrigerators</a>
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-colors" href="#">Cooking</a>
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-colors" href="#">Laundry</a>
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-colors" href="#">Small Appliances</a>
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-colors" href="#">Dishwashers</a>
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-colors" href="#">Deals</a>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">shopping_cart</span>
+</button>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-24 max-w-container-max mx-auto px-margin-desktop min-h-screen">
+<!-- Breadcrumb -->
+<nav class="flex items-center gap-2 mb-stack-lg text-secondary font-body-sm text-body-sm">
+<a class="hover:text-primary transition-colors" href="#">Trang chủ</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-on-surface font-medium">Tủ Lạnh</span>
+</nav>
+<div class="flex flex-col md:flex-row gap-gutter">
+<!-- Sidebar Filters -->
+<aside class="w-full md:w-1/4 space-y-stack-lg">
+<h1 class="font-headline-lg text-headline-lg mb-stack-md">Tủ Lạnh</h1>
+<!-- Category Section -->
+<div class="space-y-stack-md border-b border-surface-container-highest pb-stack-lg">
+<h3 class="font-label-md text-label-md uppercase tracking-wider text-secondary">Danh mục</h3>
+<ul class="space-y-2">
+<li><a class="font-body-md text-body-md text-primary font-medium" href="#">Tất cả tủ lạnh</a></li>
+<li><a class="font-body-md text-body-md text-on-surface hover:text-primary transition-colors" href="#">Tủ lạnh Side by Side</a></li>
+<li><a class="font-body-md text-body-md text-on-surface hover:text-primary transition-colors" href="#">Tủ lạnh Multi Door</a></li>
+<li><a class="font-body-md text-body-md text-on-surface hover:text-primary transition-colors" href="#">Tủ lạnh Ngăn đá trên</a></li>
+<li><a class="font-body-md text-body-md text-on-surface hover:text-primary transition-colors" href="#">Tủ lạnh Ngăn đá dưới</a></li>
+</ul>
+</div>
+<!-- Brand Filter -->
+<div class="space-y-stack-md border-b border-surface-container-highest pb-stack-lg">
+<h3 class="font-label-md text-label-md uppercase tracking-wider text-secondary">Thương hiệu</h3>
+<div class="space-y-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 rounded border-outline text-primary focus:ring-primary filter-checkbox" type="checkbox"/>
+<span class="font-body-md text-body-md group-hover:text-primary transition-colors">Samsung</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline text-primary focus:ring-primary filter-checkbox" type="checkbox"/>
+<span class="font-body-md text-body-md group-hover:text-primary transition-colors">LG</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline text-primary focus:ring-primary filter-checkbox" type="checkbox"/>
+<span class="font-body-md text-body-md group-hover:text-primary transition-colors">Panasonic</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline text-primary focus:ring-primary filter-checkbox" type="checkbox"/>
+<span class="font-body-md text-body-md group-hover:text-primary transition-colors">Toshiba</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline text-primary focus:ring-primary filter-checkbox" type="checkbox"/>
+<span class="font-body-md text-body-md group-hover:text-primary transition-colors">Sharp</span>
+</label>
+</div>
+</div>
+<!-- Price Filter -->
+<div class="space-y-stack-md border-b border-surface-container-highest pb-stack-lg">
+<h3 class="font-label-md text-label-md uppercase tracking-wider text-secondary">Khoảng giá</h3>
+<div class="space-y-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline text-primary focus:ring-primary filter-checkbox" type="checkbox"/>
+<span class="font-body-md text-body-md group-hover:text-primary transition-colors">Dưới 2 triệu</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline text-primary focus:ring-primary filter-checkbox" type="checkbox"/>
+<span class="font-body-md text-body-md group-hover:text-primary transition-colors">2 triệu - 5 triệu</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline text-primary focus:ring-primary filter-checkbox" type="checkbox"/>
+<span class="font-body-md text-body-md group-hover:text-primary transition-colors">5 triệu - 10 triệu</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline text-primary focus:ring-primary filter-checkbox" type="checkbox"/>
+<span class="font-body-md text-body-md group-hover:text-primary transition-colors">Trên 10 triệu</span>
+</label>
+</div>
+</div>
+<!-- Rating Filter -->
+<div class="space-y-stack-md">
+<h3 class="font-label-md text-label-md uppercase tracking-wider text-secondary">Đánh giá</h3>
+<div class="space-y-2">
+<button class="flex items-center gap-2 hover:text-primary transition-colors text-secondary">
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="font-body-sm text-body-sm">(Từ 5 sao)</span>
+</button>
+<button class="flex items-center gap-2 hover:text-primary transition-colors text-secondary">
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+</div>
+<span class="font-body-sm text-body-sm">(Từ 4 sao)</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<div class="flex-1">
+<!-- Sort Bar -->
+<div class="flex flex-col md:flex-row justify-between items-center mb-gutter bg-surface-container-lowest p-stack-md rounded-lg shadow-sm">
+<span class="font-body-md text-body-md text-secondary mb-2 md:mb-0">Hiển thị 12 trên 48 sản phẩm</span>
+<div class="flex items-center gap-4">
+<span class="font-label-md text-label-md text-on-surface">Sắp xếp:</span>
+<select class="bg-transparent border-none focus:ring-0 font-body-md text-body-md text-primary font-semibold cursor-pointer">
+<option>Mới nhất</option>
+<option>Giá thấp đến cao</option>
+<option>Giá cao đến thấp</option>
+<option>Bán chạy nhất</option>
+</select>
+</div>
+</div>
+<!-- Product Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Product Card 1 -->
+<div class="bg-white rounded-xl product-card-shadow transition-all duration-300 group overflow-hidden border border-surface-variant/10">
+<div class="relative aspect-square bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A sleek, modern stainless steel French door refrigerator standing in a bright, minimalist high-end kitchen. Soft natural daylight illuminates the clean metallic surfaces, creating a premium and professional aesthetic. The environment is uncluttered with white marble countertops and light gray cabinetry, emphasizing high-fidelity product photography. The mood is sophisticated, domestic, and aspirational." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC91hCMDGP7ZPCxk3wk0WbpVTl7CGnytRZMuj5U6FIroBxj0Da4oJV4AzaYcw60jYfiFUJ83EnuWbFIAfglFbzkYOyci5GeSRQd6U4JYf7eRzXp_v6wCPsefkBClKa-7pvTF50nGNlU6_XVE1yjoIS5uHW0Fd-qr37hfTspYcL1Pdf0yLf1LKp1uTTO5L-LWU4Hj65Kx1_FVNg5zxGKmMSrKGTp8lnaS8F2Qn_MlVwqhkysxWUSdCGvGtNzcpHm-wacj05HTzylwA"/>
+<div class="absolute top-3 left-3 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded">GIẢM 15%</div>
+</div>
+<div class="p-stack-md space-y-2">
+<span class="text-secondary font-label-sm text-label-sm uppercase">Samsung</span>
+<h3 class="font-headline-md text-[18px] text-on-surface line-clamp-2 leading-snug group-hover:text-primary transition-colors">Tủ lạnh Inverter Samsung 382 Lít RT38K5982BS</h3>
+<div class="flex items-baseline gap-2">
+<span class="text-primary font-bold text-headline-md">12.490.000đ</span>
+<span class="text-secondary line-through text-body-sm">14.690.000đ</span>
+</div>
+<button class="w-full py-3 bg-primary text-white font-label-md rounded-lg flex items-center justify-center gap-2 hover:bg-primary-container active:scale-[0.98] transition-all mt-4">
+<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+                                Thêm vào giỏ
+                            </button>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-white rounded-xl product-card-shadow transition-all duration-300 group overflow-hidden border border-surface-variant/10">
+<div class="relative aspect-square bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A professional side-by-side refrigerator in a matte black finish, positioned in a dark-themed luxury kitchen with subtle under-cabinet lighting. The lighting is focused and dramatic, highlighting the sleek texture of the appliance. The surrounding decor features charcoal tones and wood accents, creating a modern, minimalist atmosphere of domestic excellence and reliability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4iXzAerBlJrCLofJJ6mBmcM4P_xByBBBU8XQU_7AO8Fgb4Jt1NUJgz8UTfmeeK52V2j6VyvZzV6qcVz7kjJrpB_73Kupv13ql-QNtH9BiweGP0RfV8z3DFzL3LYkiTS4GgJCngCmfyF32zeFNtHx1AlwMvEZBG0dZrXL6TVGuvhPWAl-2YtfHvkdK3_rq4EOOyTja4Cld5hlh1DN-INMCxfPxAndOq2Q_q6n00Wajfp87v3Wc6FHvSG0zuyBI50zzWwnXSlcyFg"/>
+</div>
+<div class="p-stack-md space-y-2">
+<span class="text-secondary font-label-sm text-label-sm uppercase">LG</span>
+<h3 class="font-headline-md text-[18px] text-on-surface line-clamp-2 leading-snug group-hover:text-primary transition-colors">Tủ lạnh LG Inverter 613 Lít GR-B247JS</h3>
+<div class="flex items-baseline gap-2">
+<span class="text-primary font-bold text-headline-md">16.990.000đ</span>
+<span class="text-secondary line-through text-body-sm">19.500.000đ</span>
+</div>
+<button class="w-full py-3 bg-primary text-white font-label-md rounded-lg flex items-center justify-center gap-2 hover:bg-primary-container active:scale-[0.98] transition-all mt-4">
+<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+                                Thêm vào giỏ
+                            </button>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="bg-white rounded-xl product-card-shadow transition-all duration-300 group overflow-hidden border border-surface-variant/10">
+<div class="relative aspect-square bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An elegant white multi-door refrigerator showcased in a bright, airy Scandinavian-style kitchen. The lighting is soft and even, highlighting the minimalist white-on-white design. The composition is clean, with light wood flooring and subtle green plant accents in the background to provide a sense of freshness and quality of living. High-resolution product shot with soft ambient depth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGQLGX4gViGI2jYpqljlvmL-__VqSBc9Z2vhxk3LOhsUUmKP9HJSLxRv33q81QYIPwnIW04ZiCAKhM8TfBVxcCWrbEQLru2qGLW-FrRdUIzHTWYgd84K_267M6IBJdht6DMKrpnnYCft2PcyewBUZ0m2ZPbxqS2GKlT9d4apwSICb_nKQBBwfV4yP1QmiIbV4NTogNEAir18Ppss-cJq3HTJtC0_CSC2a8RqaTDWnggYd2ceTF1iZvNtJmmTJRoZsrg2-hrlG6Qg"/>
+<div class="absolute top-3 left-3 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded">HOT</div>
+</div>
+<div class="p-stack-md space-y-2">
+<span class="text-secondary font-label-sm text-label-sm uppercase">Panasonic</span>
+<h3 class="font-headline-md text-[18px] text-on-surface line-clamp-2 leading-snug group-hover:text-primary transition-colors">Tủ lạnh Panasonic Inverter 420 Lít NR-BX471GPKV</h3>
+<div class="flex items-baseline gap-2">
+<span class="text-primary font-bold text-headline-md">14.150.000đ</span>
+<span class="text-secondary line-through text-body-sm">16.200.000đ</span>
+</div>
+<button class="w-full py-3 bg-primary text-white font-label-md rounded-lg flex items-center justify-center gap-2 hover:bg-primary-container active:scale-[0.98] transition-all mt-4">
+<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+                                Thêm vào giỏ
+                            </button>
+</div>
+</div>
+<!-- Repeat Products for Grid Feel -->
+<!-- Product Card 4 -->
+<div class="bg-white rounded-xl product-card-shadow transition-all duration-300 group overflow-hidden border border-surface-variant/10">
+<div class="relative aspect-square bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A high-tech smart refrigerator with an integrated screen display, shown in a contemporary smart home setting. The room features architectural lighting that casts a sophisticated glow on the appliance's dark graphite finish. The aesthetic is ultra-modern and professional, emphasizing technological integration and premium household features. Crisp details and a refined, minimal palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMSN_-ufHlz4_fG_OViW-0ryE51ggvsnWSm_dEZeljyz13LWyvnjm1is6ZulwwKZpSOhtSII0dhjgGZjaMo5g2JkKk2qqPXgeVGIWT81od0OfH90maz1JmkkP9KP-cPJuid5fIOXHZz2q3ZAdKbM4Ka0UAKe06O_2U2NYV6zGjeI7eqXCsAyqa5X47oesXAxkAeo_IsX_26UjE1vAdweWpPlJFn_sTw_Y4fthdgZouMDiQv0SMTS8EBPdiP5R5bew_p_3Mypo7Lw"/>
+</div>
+<div class="p-stack-md space-y-2">
+<span class="text-secondary font-label-sm text-label-sm uppercase">Samsung</span>
+<h3 class="font-headline-md text-[18px] text-on-surface line-clamp-2 leading-snug group-hover:text-primary transition-colors">Tủ lạnh Samsung RS64R5301B4 Side By Side</h3>
+<div class="flex items-baseline gap-2">
+<span class="text-primary font-bold text-headline-md">28.900.000đ</span>
+<span class="text-secondary line-through text-body-sm">32.500.000đ</span>
+</div>
+<button class="w-full py-3 bg-primary text-white font-label-md rounded-lg flex items-center justify-center gap-2 hover:bg-primary-container active:scale-[0.98] transition-all mt-4">
+<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+                                Thêm vào giỏ
+                            </button>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="bg-white rounded-xl product-card-shadow transition-all duration-300 group overflow-hidden border border-surface-variant/10">
+<div class="relative aspect-square bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A compact and efficient top-freezer refrigerator in a classic silver finish, presented in a clean and organized modern apartment kitchen. The lighting is warm and welcoming, creating an atmosphere of comfort and everyday reliability. The design focuses on the appliance's ergonomic features and clean lines, set against a backdrop of light gray tiles and wooden textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOfRMNsLDW0DwZBhTqzTa7IQqmuAg0jYNhOP9MN7LCoe2B5i_Uix3np_vWzq86L0mmyIdhsbYd01ZgoD2mYB80mLmERuBDbYA1nVSyJlVMC9PGLBjpvh_5aIaEBXPFyxWlFdjsAOD7RrWK3k-SjSz1ccQqAf7Q4Mu9SBWRxL85CWImuBDBlRDf7Ge6i9C-wIM92asn64q_qLwanA0wRgAgmW8lOphobmXyKq6JrR1PsAkQkdsRUFoFnBJfT1RcisM-4SBifM2EoQ"/>
+</div>
+<div class="p-stack-md space-y-2">
+<span class="text-secondary font-label-sm text-label-sm uppercase">Toshiba</span>
+<h3 class="font-headline-md text-[18px] text-on-surface line-clamp-2 leading-snug group-hover:text-primary transition-colors">Tủ lạnh Toshiba Inverter 253 Lít GR-B31VU(SK)</h3>
+<div class="flex items-baseline gap-2">
+<span class="text-primary font-bold text-headline-md">6.790.000đ</span>
+<span class="text-secondary line-through text-body-sm">7.990.000đ</span>
+</div>
+<button class="w-full py-3 bg-primary text-white font-label-md rounded-lg flex items-center justify-center gap-2 hover:bg-primary-container active:scale-[0.98] transition-all mt-4">
+<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+                                Thêm vào giỏ
+                            </button>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="bg-white rounded-xl product-card-shadow transition-all duration-300 group overflow-hidden border border-surface-variant/10">
+<div class="relative aspect-square bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An expansive multi-door refrigerator in dark stainless steel, reflecting a high-end editorial kitchen style. The environment features dark oak textures and integrated architectural lighting that emphasizes the sleek, vertical silhouette of the product. The mood is powerful and technologically advanced, with deep shadows and highlighted metallic edges providing a premium feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZ7IWxhgVMbEnff-tIw1P0HygaogNyUKtAB2TIR_v0n4vmlzFgz8GYuSQowrazBHbDuEkkBky_0WnIQCyIMxF0oxgPUPf8Nui0Dxy63ZEr0SiyKwY_IhRaXDKvSw2j6uYK9_XOml1TbmQ4GYhJq4w0IyZCGgyIs8qByJGwhdM1bZfuKIwgUukfpOGrpc_XecL9VEMZRzx0RDdn4TVYbCmDliPuIM9q9vGjrRkCxoBp57F3bgn91-NS3jXbt41ukXWUB4zAXcaOtQ"/>
+</div>
+<div class="p-stack-md space-y-2">
+<span class="text-secondary font-label-sm text-label-sm uppercase">Sharp</span>
+<h3 class="font-headline-md text-[18px] text-on-surface line-clamp-2 leading-snug group-hover:text-primary transition-colors">Tủ lạnh Sharp Inverter 401 Lít SJ-FX631V-SL</h3>
+<div class="flex items-baseline gap-2">
+<span class="text-primary font-bold text-headline-md">13.800.000đ</span>
+<span class="text-secondary line-through text-body-sm">15.500.000đ</span>
+</div>
+<button class="w-full py-3 bg-primary text-white font-label-md rounded-lg flex items-center justify-center gap-2 hover:bg-primary-container active:scale-[0.98] transition-all mt-4">
+<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+                                Thêm vào giỏ
+                            </button>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-stack-lg flex items-center justify-center gap-2 py-10">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-surface-container-highest hover:bg-surface-container hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-white font-bold">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-surface-container-highest hover:bg-surface-container hover:text-primary transition-colors">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-surface-container-highest hover:bg-surface-container hover:text-primary transition-colors">3</button>
+<span class="px-2">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-surface-container-highest hover:bg-surface-container hover:text-primary transition-colors">8</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-surface-container-highest hover:bg-surface-container hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Section -->
+<footer class="w-full mt-stack-lg bg-surface-container-lowest border-t border-surface-container">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div class="space-y-4">
+<div class="font-headline-md text-headline-md font-bold text-on-surface">HomeApplianceStore</div>
+<p class="font-body-sm text-body-sm text-secondary">Chuyên cung cấp các thiết bị gia dụng cao cấp, chính hãng với dịch vụ bảo hành tốt nhất.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-secondary hover:text-primary cursor-pointer">face_nod</span>
+<span class="material-symbols-outlined text-secondary hover:text-primary cursor-pointer">shopping_bag</span>
+<span class="material-symbols-outlined text-secondary hover:text-primary cursor-pointer">language</span>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md font-bold uppercase text-on-surface">Hỗ trợ khách hàng</h4>
+<ul class="space-y-2 font-body-sm text-body-sm text-on-secondary-container">
+<li><a class="hover:text-primary transition-colors underline" href="#">Liên hệ</a></li>
+<li><a class="hover:text-primary transition-colors underline" href="#">Chính sách vận chuyển</a></li>
+<li><a class="hover:text-primary transition-colors underline" href="#">Chính sách đổi trả</a></li>
+<li><a class="hover:text-primary transition-colors underline" href="#">Trung tâm bảo hành</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md font-bold uppercase text-on-surface">Về chúng tôi</h4>
+<ul class="space-y-2 font-body-sm text-body-sm text-on-secondary-container">
+<li><a class="hover:text-primary transition-colors underline" href="#">Giới thiệu</a></li>
+<li><a class="hover:text-primary transition-colors underline" href="#">Tuyển dụng</a></li>
+<li><a class="hover:text-primary transition-colors underline" href="#">Chính sách bảo mật</a></li>
+<li><a class="hover:text-primary transition-colors underline" href="#">Điều khoản dịch vụ</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md font-bold uppercase text-on-surface">Đăng ký nhận tin</h4>
+<div class="flex gap-2">
+<input class="flex-1 bg-surface-container-low border-none rounded-lg px-4 py-2 focus:ring-1 focus:ring-primary text-body-sm" placeholder="Email của bạn" type="email"/>
+<button class="bg-primary text-white p-2 rounded-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-secondary">© 2024 HomeApplianceStore. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<script>
+        // Simple interaction for checkboxes
+        document.querySelectorAll('.filter-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                if(this.checked) {
+                    console.log('Filter applied: ' + this.nextElementSibling.innerText);
+                }
+            });
+        });
+
+        // Search Bar Focus Effect
+        const searchInput = document.querySelector('input[type="email"]');
+        if(searchInput) {
+            searchInput.addEventListener('focus', () => {
+                searchInput.parentElement.classList.add('shadow-md');
+            });
+            searchInput.addEventListener('blur', () => {
+                searchInput.parentElement.classList.remove('shadow-md');
+            });
+        }
+    </script>
+</body></html>

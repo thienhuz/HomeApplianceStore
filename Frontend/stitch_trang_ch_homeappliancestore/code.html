@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HomeApplianceStore - Trang Chủ</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#596373",
+                        "surface-container-high": "#e7e8e9",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "tertiary-container": "#00a7cb",
+                        "inverse-primary": "#ffb59d",
+                        "outline-variant": "#e1bfb5",
+                        "on-background": "#191c1d",
+                        "on-error": "#ffffff",
+                        "secondary": "#555f6f",
+                        "primary-container": "#ff6b35",
+                        "tertiary-fixed": "#b5ebff",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#832600",
+                        "on-secondary-fixed": "#121c2a",
+                        "tertiary": "#00677e",
+                        "background": "#f8f9fa",
+                        "on-surface-variant": "#594139",
+                        "surface-tint": "#ab3500",
+                        "error-container": "#ffdad6",
+                        "primary": "#ab3500",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#edeeef",
+                        "on-primary": "#ffffff",
+                        "outline": "#8d7168",
+                        "secondary-fixed": "#d9e3f6",
+                        "surface-variant": "#e1e3e4",
+                        "secondary-container": "#d6e0f3",
+                        "on-secondary-fixed-variant": "#3d4756",
+                        "primary-fixed-dim": "#ffb59d",
+                        "surface-container-low": "#f3f4f5",
+                        "primary-fixed": "#ffdbd0",
+                        "on-tertiary-fixed-variant": "#004e60",
+                        "surface-dim": "#d9dadb",
+                        "surface": "#f8f9fa",
+                        "surface-bright": "#f8f9fa",
+                        "on-tertiary-container": "#003744",
+                        "on-primary-container": "#5f1900",
+                        "on-tertiary-fixed": "#001f28",
+                        "tertiary-fixed-dim": "#59d5fb",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#191c1d",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#390c00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "base": "8px",
+                        "margin-desktop": "64px",
+                        "stack-sm": "4px",
+                        "container-max": "1280px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Subtle Shadows */
+        .shadow-level-1 {
+            box-shadow: 0px 4px 20px rgba(31, 41, 55, 0.04);
+        }
+        .shadow-level-2 {
+            box-shadow: 0px 12px 30px rgba(31, 41, 55, 0.08);
+        }
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0px 12px 30px rgba(31, 41, 55, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+<!-- TopNavBar -->
+<nav class="bg-surface/80 dark:bg-surface/80 backdrop-blur-md text-primary dark:text-primary-fixed-dim font-label-md text-label-md fixed top-0 w-full z-50 border-b border-surface-variant/20 dark:border-outline-variant/10 shadow-sm flex items-center justify-between px-margin-desktop md:px-margin-desktop px-margin-mobile h-20 max-w-container-max mx-auto">
+<div class="flex items-center gap-stack-lg w-full">
+<!-- Brand -->
+<a class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim whitespace-nowrap" href="#">HomeApplianceStore</a>
+<!-- Search Bar -->
+<div class="hidden md:flex flex-1 max-w-md mx-stack-lg relative shadow-level-1 rounded-lg">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary" data-icon="search">search</span>
+<input class="w-full bg-surface-bright border border-surface-variant rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors text-on-surface font-body-sm text-body-sm" placeholder="Tìm kiếm sản phẩm..." type="text"/>
+</div>
+<!-- Navigation Links -->
+<div class="hidden md:flex items-center gap-gutter ml-auto">
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all active:scale-95 duration-200 transition-transform" href="#">Refrigerators</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all active:scale-95 duration-200 transition-transform" href="#">Cooking</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all active:scale-95 duration-200 transition-transform" href="#">Laundry</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all active:scale-95 duration-200 transition-transform" href="#">Small Appliances</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all active:scale-95 duration-200 transition-transform" href="#">Dishwashers</a>
+<a class="text-primary border-b-2 border-primary pb-1 hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all active:scale-95 duration-200 transition-transform" href="#">Deals</a>
+</div>
+<!-- Trailing Icons -->
+<div class="flex items-center gap-stack-md ml-auto md:ml-0">
+<button class="relative p-2 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-primary-container rounded-full"></span>
+</button>
+<button class="p-2 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Padding -->
+<main class="pt-28 pb-16 min-h-screen">
+<!-- Hero Banner -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-stack-lg">
+<div class="relative w-full h-[400px] md:h-[600px] rounded-xl overflow-hidden shadow-level-1">
+<img class="w-full h-full object-cover" data-alt="A modern, high-end kitchen interior showcasing sleek stainless steel appliances. The lighting is soft and natural, emphasizing the clean lines and minimalist aesthetic. The color palette revolves around cool whites, sophisticated grays, and polished metal finishes, exuding a premium, modern domestic feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeRNbCTAx1Qmh2cEBP1sDBqHVuAd3kbGxDxoXWaM0QLlvHpcV5y8qBkAxnrZA3PwpnJ_nOJMAWWoDoeDx7X4B_ccKIMn8LUPFDXiAQG_zGaAqzFtNryW3OmzffYkCGgvFvQPymWdyXvbC_lrYsE1jlaKoYo6ZYgBHc9wR2MtJTyVcsMt_NP-5SbWUMQYhy3KVu-LUMj0B7FVAu2j6LI-kxKrfhkGWQpfqDMj2k6CMR3aELGLA_NbeY8ngYxD_57_lE3uWfphQb-A"/>
+<!-- Overlay -->
+<div class="absolute inset-0 bg-gradient-to-r from-on-surface/80 to-transparent flex items-center p-8 md:p-16">
+<div class="max-w-xl text-surface-container-lowest">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-stack-md">Không Gian Sống Hoàn Mỹ</h1>
+<p class="font-body-lg text-body-lg mb-stack-lg opacity-90">Nâng tầm tiện nghi gia đình với bộ sưu tập thiết bị điện máy cao cấp thế hệ mới.</p>
+<button class="bg-primary-container text-on-primary font-label-md text-label-md px-8 py-3 rounded-lg hover:bg-surface-tint transition-colors shadow-level-1">Mua Ngay</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Categories -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-stack-lg">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-stack-md text-center">Danh Mục Nổi Bật</h2>
+<div class="grid grid-cols-2 md:grid-cols-5 gap-stack-md">
+<!-- Category Item -->
+<a class="flex flex-col items-center p-stack-md bg-surface-container-lowest rounded-lg shadow-level-1 hover-lift group" href="#">
+<div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center mb-stack-sm group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary transition-colors text-3xl" data-icon="kitchen">kitchen</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Tủ Lạnh</span>
+</a>
+<a class="flex flex-col items-center p-stack-md bg-surface-container-lowest rounded-lg shadow-level-1 hover-lift group" href="#">
+<div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center mb-stack-sm group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary transition-colors text-3xl" data-icon="local_laundry_service">local_laundry_service</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Máy Giặt</span>
+</a>
+<a class="flex flex-col items-center p-stack-md bg-surface-container-lowest rounded-lg shadow-level-1 hover-lift group" href="#">
+<div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center mb-stack-sm group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary transition-colors text-3xl" data-icon="cooking">cooking</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Bếp Điện</span>
+</a>
+<a class="flex flex-col items-center p-stack-md bg-surface-container-lowest rounded-lg shadow-level-1 hover-lift group" href="#">
+<div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center mb-stack-sm group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary transition-colors text-3xl" data-icon="blender">blender</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Gia Dụng Nhỏ</span>
+</a>
+<a class="flex flex-col items-center p-stack-md bg-surface-container-lowest rounded-lg shadow-level-1 hover-lift group" href="#">
+<div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center mb-stack-sm group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary transition-colors text-3xl" data-icon="ac_unit">ac_unit</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Điều Hòa</span>
+</a>
+</div>
+</section>
+<!-- Featured Products -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-stack-lg">
+<div class="flex justify-between items-end mb-stack-md">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg">Sản Phẩm Nổi Bật</h2>
+<a class="font-label-md text-label-md text-primary hover:underline" href="#">Xem tất cả</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- Product Card -->
+<div class="bg-surface-container-lowest rounded-lg shadow-level-1 p-stack-md flex flex-col hover-lift relative group">
+<div class="absolute top-4 left-4 bg-error text-on-error font-label-sm text-label-sm px-2 py-1 rounded z-10">Hot</div>
+<div class="aspect-square bg-surface-container-lowest rounded-md mb-stack-sm overflow-hidden flex items-center justify-center relative">
+<img class="object-contain h-full w-full" data-alt="A pristine white smart refrigerator standing against a subtle light gray background. The appliance features clean, minimalist lines and modern stainless steel handles. The lighting highlights its premium matte finish, perfectly fitting a modern e-commerce product display." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoflkasPZln4RNjz4oQgomLU51EKqqUlqeeDZBnWn_AJxswYwxWAerYuaSNbw7HeYpvxfNVzsDV6D7iMXUr9YWU2UL6QfXDkDY4apw9hRzQXhP8HoKaWYxE0bEOIOfrXKwH1eSG9EZfE0m99mlulpS6ToNF3cP2EdKbasJevC-6NHIQsMk7ZdKzIOrU6FEacj32S1TrwpcyUdM7DGRawR8m2Yb3fEf_ai0x6AIS2x8qCLBtLAMhdRMbYH-U8XGj4SUw_-yN6QtTw"/>
+<!-- Quick Actions -->
+<div class="absolute inset-0 bg-surface/40 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="bg-surface-container-lowest text-primary p-2 rounded-full shadow-sm hover:bg-primary-container hover:text-on-primary transition-colors mx-1">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+</div>
+</div>
+<div class="flex-1 flex flex-col">
+<h3 class="font-body-lg text-body-lg text-on-surface mb-1 line-clamp-2">Tủ Lạnh Smart Inverter 500L</h3>
+<div class="mt-auto">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-primary">15.290.000 ₫</span>
+<span class="font-body-sm text-body-sm text-on-secondary-container line-through">18.000.000 ₫</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Card -->
+<div class="bg-surface-container-lowest rounded-lg shadow-level-1 p-stack-md flex flex-col hover-lift relative group">
+<div class="absolute top-4 left-4 bg-error text-on-error font-label-sm text-label-sm px-2 py-1 rounded z-10">Hot</div>
+<div class="aspect-square bg-surface-container-lowest rounded-md mb-stack-sm overflow-hidden flex items-center justify-center relative">
+<img class="object-contain h-full w-full" data-alt="A modern front-loading washing machine in a sleek dark gray finish, set against a neutral studio background. The product shot is clean and well-lit, emphasizing the high-tech digital control panel and the polished glass door. The overall aesthetic is professional and minimalist." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmYCVgGk5wn9fyQ3xvnroyXxrAEO5IwgxKXYvfvzvV6RSZwhqaXnSNeCoxbOKEAdLnLvYG_v3-GbEGuCgIk8_00fE0WWryqbQwNBYFbtA5kX3IwLKStCCg-1-nba4o80Cz13FKH3RlZvEGtUa6pQrzePI-Rn0Q2MUYWIBaZFTrGp1mzYMKVy8-x5q3oiGidICW2CueMAZr_9ShckoIBAA537YbmbWb7WDIyzsSJcvnwo2stbB1OQJsbsFWBVbYuEca3zbdK6sZwA"/>
+<div class="absolute inset-0 bg-surface/40 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="bg-surface-container-lowest text-primary p-2 rounded-full shadow-sm hover:bg-primary-container hover:text-on-primary transition-colors mx-1">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+</div>
+</div>
+<div class="flex-1 flex flex-col">
+<h3 class="font-body-lg text-body-lg text-on-surface mb-1 line-clamp-2">Máy Giặt Lồng Ngang AI 10kg</h3>
+<div class="mt-auto">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-primary">9.590.000 ₫</span>
+<span class="font-body-sm text-body-sm text-on-secondary-container line-through">12.000.000 ₫</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Card -->
+<div class="bg-surface-container-lowest rounded-lg shadow-level-1 p-stack-md flex flex-col hover-lift relative group">
+<div class="aspect-square bg-surface-container-lowest rounded-md mb-stack-sm overflow-hidden flex items-center justify-center relative">
+<img class="object-contain h-full w-full" data-alt="A high-end electric espresso machine presented on a clean white surface. The machine features polished stainless steel accents and a matte black body. Soft studio lighting creates a sophisticated, premium feel, highlighting the appliance's build quality in a minimalist setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA81JbyquGjPBXYTrtgygX1HuKmMefHkfIJ-ITfjG9ekzv5Z8SqtEwhLC6VS1jKJftk_atWW697tiptHAKfCqQouEicAhN5NLDfhRgEXw9lO7HlYXk6Lx0uwOQGSSfJS9FTrtEVMEBDPbCi8KA8ErTTHAfEzN93vr_cRa6zHTbAxRj89jsWvpiob-wSvbJ3Mg8aENwwjxRFrcXHq3I8NnfvhYInDFSQwknOOVlU3mcQIxqpF97i9KVO7w5qgLCdkdVjnTe8lOkHMw"/>
+<div class="absolute inset-0 bg-surface/40 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="bg-surface-container-lowest text-primary p-2 rounded-full shadow-sm hover:bg-primary-container hover:text-on-primary transition-colors mx-1">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+</div>
+</div>
+<div class="flex-1 flex flex-col">
+<h3 class="font-body-lg text-body-lg text-on-surface mb-1 line-clamp-2">Máy Pha Cà Phê Chuyên Nghiệp</h3>
+<div class="mt-auto">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-primary">4.290.000 ₫</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Card -->
+<div class="bg-surface-container-lowest rounded-lg shadow-level-1 p-stack-md flex flex-col hover-lift relative group">
+<div class="absolute top-4 left-4 bg-error text-on-error font-label-sm text-label-sm px-2 py-1 rounded z-10">Sale</div>
+<div class="aspect-square bg-surface-container-lowest rounded-md mb-stack-sm overflow-hidden flex items-center justify-center relative">
+<img class="object-contain h-full w-full" data-alt="A sleek, modern robot vacuum cleaner resting on a light hardwood floor detail, isolated against a soft gray backdrop. The device is round, with a glossy black finish and subtle blue LED indicators. The image exudes a sense of smart home efficiency and minimalist design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrWk1h8PDe4ftABlHnUL0WmohG6irYZOqPqRiqvIe31mygJfQ0QEaGlXbG0_jxGsrlswYjtQ9y1Ueb90ju6RrLkoAh2Deu2XYyJTM2Z9Y0hHrgz5vobY6ZAEWYdm_5ulxZZLEsPJJAT8JLinyCImd3RbCgRV8nZY1nulZiHCRNywpPfr8kkrsd7iIRX37mo5tXHV3A0naI7bRSI5d1Ue5ZZRd1s9UTK0mV2ncS7XZmkkb5z7kfY0eCSl-MmvHd2S8ApUKk5jmquQ"/>
+<div class="absolute inset-0 bg-surface/40 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="bg-surface-container-lowest text-primary p-2 rounded-full shadow-sm hover:bg-primary-container hover:text-on-primary transition-colors mx-1">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+</div>
+</div>
+<div class="flex-1 flex flex-col">
+<h3 class="font-body-lg text-body-lg text-on-surface mb-1 line-clamp-2">Robot Hút Bụi Lau Nhà Thông Minh</h3>
+<div class="mt-auto">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-primary">6.890.000 ₫</span>
+<span class="font-body-sm text-body-sm text-on-secondary-container line-through">8.500.000 ₫</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Promotional Banner -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-stack-lg">
+<div class="w-full bg-tertiary-container text-on-tertiary-container rounded-xl overflow-hidden shadow-level-1 flex flex-col md:flex-row">
+<div class="p-8 md:p-12 flex flex-col justify-center flex-1">
+<span class="font-label-sm text-label-sm uppercase tracking-widest mb-2 opacity-80">Ưu Đãi Đặc Biệt</span>
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-4">Mùa Hè Sôi Động</h2>
+<p class="font-body-lg text-body-lg mb-6 opacity-90">Giảm giá lên đến 40% cho các thiết bị làm mát và tủ lạnh. Nâng cấp ngay không gian sống của bạn.</p>
+<button class="self-start bg-on-tertiary-container text-tertiary-container font-label-md text-label-md px-6 py-2 rounded-lg hover:bg-surface-container-lowest transition-colors">Khám Phá Ngay</button>
+</div>
+<div class="flex-1 bg-surface-container-low min-h-[300px] relative">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A brightly lit, modern kitchen interior bathed in warm summer sunlight. The scene features sleek white cabinetry and high-end stainless steel appliances seamlessly integrated. The atmosphere is inviting and fresh, perfectly illustrating a premium home upgrade for the summer season." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7hvvai2Klil7yyMHeuiTVgfUpKcyBvx0XbDp8ft3L901wv4FnoSBoCrUFp2Rf4EPzr6skyV7w5nz47qeyXxBco5VlbOXsmBC6W_DNpPbF6yGrxyDOZPJ3NNn_E779uDu1DWiX6Lu3UDXXwFMA150YKKDgxayr86LHxvFE-G2zz5ywWqTYU6s23oMkk-TIxrEv01a0JmhmvJuOgmF5j76AiHdEQm7R1oB6oF5wu1NJBXrdDAZGFPi5YDhHKz3ltWY7lmisg_2-xg"/>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-dim text-primary dark:text-primary-fixed-dim font-body-sm text-body-sm w-full mt-stack-lg bg-surface-container-low dark:bg-surface-container-high grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-surface-variant mb-stack-sm">HomeApplianceStore</div>
+<p class="text-on-secondary-container dark:text-secondary-fixed-dim mt-2">Mang đến sự tiện nghi và hiện đại cho ngôi nhà của bạn bằng những sản phẩm điện máy chất lượng cao.</p>
+</div>
+<div class="col-span-1 flex flex-col gap-2">
+<span class="font-label-md text-label-md text-on-surface font-bold mb-2">Chính Sách</span>
+<a class="text-on-secondary-container dark:text-secondary-fixed-dim hover:text-primary transition-colors underline cursor-pointer" href="#">Shipping Policy</a>
+<a class="text-on-secondary-container dark:text-secondary-fixed-dim hover:text-primary transition-colors underline cursor-pointer" href="#">Returns</a>
+<a class="text-on-secondary-container dark:text-secondary-fixed-dim hover:text-primary transition-colors underline cursor-pointer" href="#">Privacy Policy</a>
+<a class="text-on-secondary-container dark:text-secondary-fixed-dim hover:text-primary transition-colors underline cursor-pointer" href="#">Terms of Service</a>
+</div>
+<div class="col-span-1 flex flex-col gap-2">
+<span class="font-label-md text-label-md text-on-surface font-bold mb-2">Thông Tin</span>
+<a class="text-on-secondary-container dark:text-secondary-fixed-dim hover:text-primary transition-colors underline cursor-pointer" href="#">About Us</a>
+<a class="text-on-secondary-container dark:text-secondary-fixed-dim hover:text-primary transition-colors underline cursor-pointer" href="#">Contact</a>
+</div>
+<div class="col-span-1 flex flex-col gap-2">
+<span class="font-label-md text-label-md text-on-surface font-bold mb-2">Liên Hệ</span>
+<div class="flex items-center gap-2 text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+<span>123 Đường Nguyễn Văn Linh, Quận 7, TP.HCM</span>
+</div>
+<div class="flex items-center gap-2 text-on-secondary-container mt-2">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+<span>1900 1234</span>
+</div>
+</div>
+<div class="col-span-1 md:col-span-4 border-t border-surface-variant/20 mt-stack-md pt-stack-md text-center text-on-secondary-container">
+            © 2024 HomeApplianceStore. All rights reserved.
+        </div>
+</footer>
+</body></html>
