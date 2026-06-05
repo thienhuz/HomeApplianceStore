@@ -8,6 +8,7 @@ public class Product
     public int? CategoryId { get; set; }
     public int? BrandId { get; set; }
     public string ProductName { get; set; } = null!;
+    public string Slug { get; set; } = null!;
     public string? Description { get; set; }
     public decimal Price { get; set; }
     public decimal? DiscountPrice { get; set; }

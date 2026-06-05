@@ -8,11 +8,14 @@ public class Order
     public int? UserId { get; set; }
     public int? VoucherId { get; set; }
     public DateTime? OrderDate { get; set; }
-    public string ShippingAddress { get; set; } = null!;
+    public string ShippingName { get; set; } = null!;
     public string ShippingPhone { get; set; } = null!;
+    public string ShippingAddress { get; set; } = null!;
     public decimal TotalAmount { get; set; }
     public decimal? DiscountAmount { get; set; }
     public decimal FinalAmount { get; set; }
-    public string PaymentMethod { get; set; } = null!;
-    public string? OrderStatus { get; set; }
+    public byte PaymentMethod { get; set; }
+    public byte PaymentStatus { get; set; }
+    public byte OrderStatus { get; set; }
+    public string? Note { get; set; }
 }
