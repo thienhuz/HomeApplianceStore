@@ -21,7 +21,7 @@ public class CustomerRepository : GenericRepository<User>, ICustomerRepository
 
     public async Task<IEnumerable<CustomerDto>> GetCustomersAsync()
     {
-        var sql = "SELECT UserId AS Id, FullName, Email, Phone, Address, IsActive, CreatedAt FROM [dbo].[Users] WHERE RoleId = 2";
+        var sql = "SELECT UserId AS Id, FullName, Email, Phone, Address, ImageUrl, IsActive, CreatedAt FROM [dbo].[Users] WHERE RoleId = 2";
         return await _connection.QueryAsync<CustomerDto>(sql, transaction: _transaction);
     }
 }
