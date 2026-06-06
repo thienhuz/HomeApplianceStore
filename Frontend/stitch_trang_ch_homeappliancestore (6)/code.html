@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tài khoản - LUXE Appliances</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-variant": "#e1e3e4",
+                      "primary-container": "#ff6b35",
+                      "on-primary-container": "#5f1900",
+                      "inverse-primary": "#ffb59d",
+                      "tertiary": "#00677e",
+                      "on-tertiary-fixed-variant": "#004e60",
+                      "primary-fixed-dim": "#ffb59d",
+                      "outline": "#8d7168",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed": "#d9e3f6",
+                      "surface-container-highest": "#e1e3e4",
+                      "secondary": "#555f6f",
+                      "error-container": "#ffdad6",
+                      "on-error-container": "#93000a",
+                      "surface-dim": "#d9dadb",
+                      "secondary-fixed-dim": "#bdc7d9",
+                      "on-background": "#191c1d",
+                      "primary-fixed": "#ffdbd0",
+                      "on-error": "#ffffff",
+                      "background": "#f8f9fa",
+                      "tertiary-fixed-dim": "#59d5fb",
+                      "inverse-on-surface": "#f0f1f2",
+                      "error": "#ba1a1a",
+                      "tertiary-container": "#00a7cb",
+                      "surface-bright": "#f8f9fa",
+                      "surface-container": "#edeeef",
+                      "on-secondary-fixed": "#121c2a",
+                      "secondary-container": "#d6e0f3",
+                      "inverse-surface": "#2e3132",
+                      "outline-variant": "#e1bfb5",
+                      "on-primary-fixed": "#390c00",
+                      "on-secondary-fixed-variant": "#3d4756",
+                      "on-primary-fixed-variant": "#832600",
+                      "surface-container-low": "#f3f4f5",
+                      "on-surface-variant": "#594139",
+                      "on-surface": "#191c1d",
+                      "on-secondary-container": "#596373",
+                      "surface-tint": "#ab3500",
+                      "tertiary-fixed": "#b5ebff",
+                      "on-tertiary-fixed": "#001f28",
+                      "surface-container-high": "#e7e8e9",
+                      "surface": "#f8f9fa",
+                      "on-primary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "primary": "#ab3500",
+                      "on-tertiary-container": "#003744"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "stack-md": "16px",
+                      "gutter": "24px",
+                      "container-max": "1280px",
+                      "margin-desktop": "64px",
+                      "stack-sm": "4px",
+                      "stack-lg": "32px",
+                      "margin-mobile": "20px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "display-lg-mobile": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .sidebar-item-active {
+            color: #ab3500;
+            background-color: #ffdbd0;
+            border-right: 3px solid #ab3500;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Top Navigation Bar (Shared Component Logic) -->
+<header class="w-full sticky top-0 z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md shadow-sm">
+<div class="flex justify-between items-center px-gutter py-base max-w-container-max mx-auto h-20">
+<div class="font-headline-md text-headline-md font-bold text-primary">LUXE Appliances</div>
+<nav class="hidden md:flex items-center gap-stack-lg">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Kitchen</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Laundry</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Smart Home</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Sale</a>
+</nav>
+<div class="flex items-center gap-stack-md">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+<button class="p-2 text-primary border-b-2 border-primary pb-1 transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="account_circle" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-gutter py-margin-desktop min-h-screen">
+<div class="flex flex-col md:flex-row gap-gutter">
+<!-- Sidebar Navigation -->
+<aside class="w-full md:w-80 flex-shrink-0">
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(31,41,55,0.04)] overflow-hidden border border-outline-variant/10">
+<div class="p-stack-lg border-b border-surface-variant flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-secondary-container">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="A professional close-up headshot of a sophisticated modern homeowner in a bright, minimalist setting. The person exhibits a friendly and confident expression, illuminated by soft, natural morning light. The background is a clean, out-of-focus high-end kitchen with stainless steel appliances, maintaining the brand's premium minimalist aesthetic with warm neutral tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVCGwFgMwASXHAsRWG7TjiSpE-H10WMqwnCLtxtuViFzaFEZ-EYPhBeH_rpJZco3v5A5xwASoAQlPVehHZyT-zxiE9s4PDlL1fzCVL3-b13odyxM6TLV0GHayYht_njeG-iO95sSfiDVONFOlk0z7jrC2kG2L1Wh9jQU6HIpIJl37QHEuNZkh7IX03DrnzYHPn9VdKogu1K0fiKSwtHrbXdPuvXc9f1miDQm3R6ONvhwM67428D8HLfPCdWYz5I1Ccq5r5eqlr5Q"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Nguyễn Văn A</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Thành viên Vàng</p>
+</div>
+</div>
+<nav class="flex flex-col py-stack-md">
+<button class="tab-trigger sidebar-item-active flex items-center gap-stack-md px-stack-lg py-stack-md text-left transition-all hover:bg-surface-container" data-tab="personal-info" onclick="switchTab('personal-info')">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-body-md text-body-md">Thông tin cá nhân</span>
+</button>
+<button class="tab-trigger flex items-center gap-stack-md px-stack-lg py-stack-md text-left transition-all hover:bg-surface-container text-on-surface-variant" data-tab="addresses" onclick="switchTab('addresses')">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+<span class="font-body-md text-body-md">Quản lý địa chỉ</span>
+</button>
+<button class="tab-trigger flex items-center gap-stack-md px-stack-lg py-stack-md text-left transition-all hover:bg-surface-container text-on-surface-variant" data-tab="password" onclick="switchTab('password')">
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+<span class="font-body-md text-body-md">Đổi mật khẩu</span>
+</button>
+<button class="flex items-center gap-stack-md px-stack-lg py-stack-md text-left transition-all hover:bg-surface-container text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-body-md text-body-md">Đơn hàng của tôi</span>
+</button>
+<hr class="my-stack-sm border-surface-variant"/>
+<button class="flex items-center gap-stack-md px-stack-lg py-stack-md text-left transition-all hover:bg-error/10 text-error">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-md text-body-md">Đăng xuất</span>
+</button>
+</nav>
+</div>
+</aside>
+<!-- Main Content Area -->
+<section class="flex-grow">
+<!-- Section 1: Personal Information -->
+<div class="tab-content active bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(31,41,55,0.04)] p-stack-lg md:p-margin-mobile border border-outline-variant/10" id="personal-info">
+<div class="flex justify-between items-center mb-stack-lg">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Thông tin cá nhân</h2>
+<button class="flex items-center gap-base px-gutter py-base rounded-lg border border-primary text-primary font-label-md text-label-md hover:bg-primary-fixed transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span>
+                            Chỉnh sửa
+                        </button>
+</div>
+<div class="flex flex-col md:flex-row items-center gap-stack-lg mb-stack-lg">
+<div class="relative group">
+<div class="w-32 h-32 rounded-full overflow-hidden border-4 border-surface-container ring-1 ring-primary/20">
+<img alt="Large User avatar" class="w-full h-full object-cover" data-alt="A detailed, crisp portrait of a modern Vietnamese man in his early 30s, featuring high-fidelity skin textures and a pleasant smile. The lighting is soft and flattering, typical of a professional studio setup. The background is a soft-focus, minimalist luxury living space with warm ambient lighting and contemporary furniture, reflecting the Luxe Appliances brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1RkpDKvpBrDmpAQYxnNWlVpAkTW7yFkDIiV9SjvIpNDgteTrTOnloQwEuhiTJakpzOSzqcWi3tXuHr2RXTQp7JgP6X84NdaK1ri8dq4SAivxjDLjBz15CfzlTxwEx9TUJ55hrBMqfAsaPqwXkNUl8WHc4G_q8_bUe7SYtPyM4SpmlV3QDw5gv9ucWt6kl5i9JHABs7cc_sdJyU9ujuo5P3SLDLnrBYuOhkPHjdWzZeNmzu3xKKzc_4_B7S2b9ByrMEevGOkowpg"/>
+</div>
+<button class="absolute bottom-0 right-0 bg-primary text-white p-2 rounded-full shadow-lg hover:bg-primary-container transition-transform hover:scale-110 active:scale-90">
+<span class="material-symbols-outlined text-[18px]" data-icon="photo_camera">photo_camera</span>
+</button>
+</div>
+<div class="text-center md:text-left">
+<h3 class="font-headline-md text-headline-md text-on-surface">Nguyễn Văn A</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Khách hàng từ Tháng 10, 2023</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="space-y-stack-sm">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Họ và tên</label>
+<div class="p-stack-md bg-surface-container rounded-lg font-body-md text-body-md text-on-surface">Nguyễn Văn A</div>
+</div>
+<div class="space-y-stack-sm">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Email</label>
+<div class="p-stack-md bg-surface-container rounded-lg font-body-md text-body-md text-on-surface">nguyenvana@example.com</div>
+</div>
+<div class="space-y-stack-sm">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Số điện thoại</label>
+<div class="p-stack-md bg-surface-container rounded-lg font-body-md text-body-md text-on-surface">090 123 4567</div>
+</div>
+<div class="space-y-stack-sm">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Giới tính</label>
+<div class="p-stack-md bg-surface-container rounded-lg font-body-md text-body-md text-on-surface">Nam</div>
+</div>
+</div>
+</div>
+<!-- Section 2: Address Management -->
+<div class="tab-content bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(31,41,55,0.04)] p-stack-lg md:p-margin-mobile border border-outline-variant/10" id="addresses">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-stack-md mb-stack-lg">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Quản lý địa chỉ</h2>
+<button class="w-full sm:w-auto flex items-center justify-center gap-base px-gutter py-stack-md rounded-lg bg-primary text-white font-label-md text-label-md hover:bg-primary-container transition-all active:scale-95 shadow-md">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+                            Thêm địa chỉ mới
+                        </button>
+</div>
+<div class="grid grid-cols-1 gap-stack-md">
+<!-- Address Card 1 (Default) -->
+<div class="p-stack-lg border border-primary/20 bg-primary-fixed/10 rounded-xl relative group">
+<div class="flex justify-between items-start mb-stack-md">
+<div class="flex items-center gap-stack-md">
+<span class="font-headline-md text-headline-md text-on-surface">Nhà riêng</span>
+<span class="px-stack-md py-stack-sm bg-primary text-white text-[10px] font-bold uppercase tracking-widest rounded-full">Mặc định</span>
+</div>
+<div class="flex gap-stack-sm">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined" data-icon="edit">edit</span></button>
+<button class="p-2 text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined" data-icon="delete">delete</span></button>
+</div>
+</div>
+<div class="space-y-stack-sm">
+<p class="font-body-md text-body-md font-semibold text-on-surface">Nguyễn Văn A</p>
+<p class="font-body-md text-body-md text-on-surface-variant">090 123 4567</p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                                    123 Đường Lê Lợi, Phường Bến Thành,<br/>
+                                    Quận 1, TP. Hồ Chí Minh
+                                </p>
+</div>
+</div>
+<!-- Address Card 2 -->
+<div class="p-stack-lg border border-outline-variant/30 bg-surface rounded-xl hover:border-primary/30 transition-colors cursor-pointer">
+<div class="flex justify-between items-start mb-stack-md">
+<span class="font-headline-md text-headline-md text-on-surface">Văn phòng</span>
+<div class="flex gap-stack-sm">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined" data-icon="edit">edit</span></button>
+<button class="p-2 text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined" data-icon="delete">delete</span></button>
+</div>
+</div>
+<div class="space-y-stack-sm">
+<p class="font-body-md text-body-md font-semibold text-on-surface">Nguyễn Văn A (Phòng Marketing)</p>
+<p class="font-body-md text-body-md text-on-surface-variant">090 987 6543</p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                                    Bitexco Financial Tower, 2 Hải Triều, Phường Bến Nghé,<br/>
+                                    Quận 1, TP. Hồ Chí Minh
+                                </p>
+</div>
+<button class="mt-stack-md text-primary font-label-sm text-label-sm hover:underline">Thiết lập mặc định</button>
+</div>
+</div>
+</div>
+<!-- Section 3: Change Password -->
+<div class="tab-content bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(31,41,55,0.04)] p-stack-lg md:p-margin-mobile border border-outline-variant/10" id="password">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-stack-lg">Đổi mật khẩu</h2>
+<form class="max-w-md space-y-gutter" onsubmit="return false;">
+<div class="space-y-stack-sm">
+<label class="font-label-md text-label-md text-on-surface">Mật khẩu hiện tại</label>
+<div class="relative">
+<input class="w-full p-stack-md bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" placeholder="••••••••" type="password"/>
+<span class="material-symbols-outlined absolute right-stack-md top-1/2 -translate-y-1/2 text-on-surface-variant cursor-pointer" data-icon="visibility">visibility</span>
+</div>
+</div>
+<div class="space-y-stack-sm">
+<label class="font-label-md text-label-md text-on-surface">Mật khẩu mới</label>
+<div class="relative">
+<input class="w-full p-stack-md bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" placeholder="••••••••" type="password"/>
+<span class="material-symbols-outlined absolute right-stack-md top-1/2 -translate-y-1/2 text-on-surface-variant cursor-pointer" data-icon="visibility">visibility</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Mật khẩu phải dài ít nhất 8 ký tự, bao gồm chữ cái và số.</p>
+</div>
+<div class="space-y-stack-sm">
+<label class="font-label-md text-label-md text-on-surface">Xác nhận mật khẩu mới</label>
+<div class="relative">
+<input class="w-full p-stack-md bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" placeholder="••••••••" type="password"/>
+<span class="material-symbols-outlined absolute right-stack-md top-1/2 -translate-y-1/2 text-on-surface-variant cursor-pointer" data-icon="visibility">visibility</span>
+</div>
+</div>
+<div class="pt-stack-md">
+<button class="w-full sm:w-auto px-margin-mobile py-stack-md bg-primary text-white font-label-md text-label-md rounded-lg shadow-md hover:bg-primary-container transition-all active:scale-95" type="submit">
+                                Cập nhật mật khẩu
+                            </button>
+</div>
+</form>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer (Shared Component Logic) -->
+<footer class="w-full py-stack-lg mt-stack-lg bg-surface-container dark:bg-surface-container-highest">
+<div class="flex flex-col md:flex-row justify-between items-center px-gutter max-w-container-max mx-auto gap-stack-md">
+<div class="flex flex-col items-center md:items-start gap-stack-sm">
+<div class="font-headline-lg text-headline-lg font-bold text-primary">LUXE</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 LUXE Home Appliances. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-gutter">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Shipping &amp; Returns</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Us</a>
+</div>
+<div class="flex gap-stack-md">
+<div class="w-8 h-8 rounded-full bg-surface flex items-center justify-center text-primary-container hover:bg-primary-fixed transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[20px]" data-icon="facebook">face_nod</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface flex items-center justify-center text-primary-container hover:bg-primary-fixed transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[20px]" data-icon="share">share</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        function switchTab(tabId) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+
+            // Update sidebar button styles
+            const buttons = document.querySelectorAll('.tab-trigger');
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-tab') === tabId) {
+                    btn.classList.add('sidebar-item-active');
+                    btn.classList.remove('text-on-surface-variant');
+                } else {
+                    btn.classList.remove('sidebar-item-active');
+                    btn.classList.add('text-on-surface-variant');
+                }
+            });
+
+            // Smooth scroll to top on mobile
+            if (window.innerWidth < 768) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Add some micro-interactions for input fields
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('scale-[1.01]');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('scale-[1.01]');
+            });
+        });
+    </script>
+</body></html>

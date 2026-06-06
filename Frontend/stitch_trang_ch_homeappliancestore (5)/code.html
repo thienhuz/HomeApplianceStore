@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e7e8e9",
+                    "primary": "#ab3500",
+                    "tertiary": "#00677e",
+                    "on-primary-fixed": "#390c00",
+                    "inverse-surface": "#2e3132",
+                    "surface-dim": "#d9dadb",
+                    "surface-bright": "#f8f9fa",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-secondary-fixed": "#121c2a",
+                    "on-primary-fixed-variant": "#832600",
+                    "surface": "#f8f9fa",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "secondary-fixed": "#d9e3f6",
+                    "on-tertiary-fixed": "#001f28",
+                    "primary-fixed": "#ffdbd0",
+                    "on-error": "#ffffff",
+                    "primary-container": "#ff6b35",
+                    "primary-fixed-dim": "#ffb59d",
+                    "surface-tint": "#ab3500",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#b5ebff",
+                    "on-background": "#191c1d",
+                    "secondary": "#555f6f",
+                    "background": "#f8f9fa",
+                    "secondary-container": "#d6e0f3",
+                    "on-tertiary-fixed-variant": "#004e60",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#59d5fb",
+                    "surface-container": "#edeeef",
+                    "tertiary-container": "#00a7cb",
+                    "on-surface": "#191c1d",
+                    "surface-variant": "#e1e3e4",
+                    "inverse-primary": "#ffb59d",
+                    "surface-container-low": "#f3f4f5",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f0f1f2",
+                    "outline": "#8d7168",
+                    "on-tertiary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#596373",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#594139",
+                    "on-primary-container": "#5f1900",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#e1bfb5",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "on-tertiary-container": "#003744"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "4px",
+                    "margin-desktop": "64px",
+                    "stack-md": "16px",
+                    "stack-lg": "32px",
+                    "base": "8px",
+                    "container-max": "1280px",
+                    "margin-mobile": "20px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "display-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .form-shadow {
+            box-shadow: 0 4px 20px rgba(31, 41, 55, 0.04);
+        }
+        .form-shadow:focus-within {
+            box-shadow: 0 12px 30px rgba(31, 41, 55, 0.08);
+        }
+        .glass-bg {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- Navigation Shell Suppressed for Transactional Page -->
+<header class="fixed top-0 w-full bg-surface/80 backdrop-blur-xl z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold tracking-tight text-primary">LUXE APPLIANCE</div>
+<a class="text-secondary hover:text-primary transition-colors font-label-md text-label-md" href="#">Support</a>
+</div>
+</header>
+<main class="flex-grow flex items-center justify-center pt-24 pb-stack-lg px-margin-mobile">
+<div class="w-full max-w-[480px] bg-surface-container-lowest rounded-xl p-stack-lg md:p-12 form-shadow transition-all duration-300">
+<!-- Header Section -->
+<div class="text-center mb-stack-lg">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-stack-sm">Tạo tài khoản</h1>
+<p class="font-body-md text-body-md text-secondary">Khám phá không gian sống hiện đại cùng Luxe Appliance</p>
+</div>
+<!-- Registration Form -->
+<form class="space-y-gutter" id="registrationForm" novalidate="">
+<!-- Full Name -->
+<div class="space-y-stack-sm">
+<label class="font-label-md text-label-md text-on-surface-variant block" for="fullName">Họ và tên</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary group-focus-within:text-primary transition-colors" data-icon="person">person</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-container-low border-transparent focus:border-primary focus:ring-0 rounded-lg transition-all font-body-md text-body-md outline-none" id="fullName" name="fullName" placeholder="Nguyễn Văn A" required="" type="text"/>
+</div>
+<p class="text-error text-label-sm font-label-sm hidden" id="fullNameError">Vui lòng nhập họ và tên của bạn</p>
+</div>
+<!-- Email -->
+<div class="space-y-stack-sm">
+<label class="font-label-md text-label-md text-on-surface-variant block" for="email">Email</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary group-focus-within:text-primary transition-colors" data-icon="mail">mail</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-container-low border-transparent focus:border-primary focus:ring-0 rounded-lg transition-all font-body-md text-body-md outline-none" id="email" name="email" placeholder="example@email.com" required="" type="email"/>
+</div>
+<p class="text-error text-label-sm font-label-sm hidden" id="emailError">Email không hợp lệ</p>
+</div>
+<!-- Phone -->
+<div class="space-y-stack-sm">
+<label class="font-label-md text-label-md text-on-surface-variant block" for="phone">Số điện thoại</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary group-focus-within:text-primary transition-colors" data-icon="call">call</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-container-low border-transparent focus:border-primary focus:ring-0 rounded-lg transition-all font-body-md text-body-md outline-none" id="phone" name="phone" placeholder="0901 234 567" required="" type="tel"/>
+</div>
+<p class="text-error text-label-sm font-label-sm hidden" id="phoneError">Số điện thoại không hợp lệ</p>
+</div>
+<!-- Password -->
+<div class="space-y-stack-sm">
+<label class="font-label-md text-label-md text-on-surface-variant block" for="password">Mật khẩu</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary group-focus-within:text-primary transition-colors" data-icon="lock">lock</span>
+<input class="w-full pl-10 pr-12 py-3 bg-surface-container-low border-transparent focus:border-primary focus:ring-0 rounded-lg transition-all font-body-md text-body-md outline-none" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-secondary hover:text-primary transition-colors" onclick="togglePassword()" type="button">
+<span class="material-symbols-outlined" data-icon="visibility" id="passIcon">visibility</span>
+</button>
+</div>
+<div class="flex gap-1 h-1 w-full mt-1" id="passwordStrength">
+<div class="strength-bar flex-1 bg-surface-variant rounded-full transition-all"></div>
+<div class="strength-bar flex-1 bg-surface-variant rounded-full transition-all"></div>
+<div class="strength-bar flex-1 bg-surface-variant rounded-full transition-all"></div>
+<div class="strength-bar flex-1 bg-surface-variant rounded-full transition-all"></div>
+</div>
+<p class="text-error text-label-sm font-label-sm hidden" id="passwordError">Mật khẩu cần ít nhất 8 ký tự</p>
+</div>
+<!-- Terms -->
+<div class="flex items-start gap-3">
+<input class="mt-1 w-4 h-4 text-primary border-outline-variant rounded focus:ring-primary focus:ring-offset-0" id="terms" type="checkbox"/>
+<label class="font-body-sm text-body-sm text-secondary" for="terms">
+                        Tôi đồng ý với <a class="text-primary hover:underline" href="#">Điều khoản dịch vụ</a> và <a class="text-primary hover:underline" href="#">Chính sách bảo mật</a> của Luxe Appliance.
+                    </label>
+</div>
+<!-- Submit Button -->
+<button class="w-full py-4 bg-primary-container text-on-primary font-label-md text-label-md rounded-lg active:scale-[0.98] transition-transform duration-200 shadow-sm hover:opacity-90" type="submit">
+                    Đăng ký
+                </button>
+</form>
+<!-- Login Link -->
+<div class="mt-stack-lg text-center">
+<p class="font-body-sm text-body-sm text-secondary">
+                    Đã có tài khoản? 
+                    <a class="text-primary font-bold hover:underline ml-1" href="#">Đăng nhập ngay</a>
+</p>
+</div>
+</div>
+</main>
+<!-- Simple Footer for Transactional Page -->
+<footer class="w-full py-stack-md px-margin-mobile text-center">
+<p class="font-body-sm text-body-sm text-secondary">© 2024 Luxe Appliance. All rights reserved.</p>
+</footer>
+<!-- Background Decoration -->
+<div class="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden pointer-events-none">
+<div class="absolute -top-[20%] -right-[10%] w-[60%] h-[60%] rounded-full bg-primary/5 blur-[120px]"></div>
+<div class="absolute -bottom-[10%] -left-[5%] w-[40%] h-[40%] rounded-full bg-tertiary/5 blur-[100px]"></div>
+</div>
+<script>
+        function togglePassword() {
+            const passInput = document.getElementById('password');
+            const passIcon = document.getElementById('passIcon');
+            if (passInput.type === 'password') {
+                passInput.type = 'text';
+                passIcon.textContent = 'visibility_off';
+            } else {
+                passInput.type = 'password';
+                passIcon.textContent = 'visibility';
+            }
+        }
+
+        const registrationForm = document.getElementById('registrationForm');
+        const passwordInput = document.getElementById('password');
+        const strengthBars = document.querySelectorAll('.strength-bar');
+
+        passwordInput.addEventListener('input', (e) => {
+            const val = e.target.value;
+            let strength = 0;
+            if (val.length > 5) strength++;
+            if (val.length > 8) strength++;
+            if (/[A-Z]/.test(val)) strength++;
+            if (/[0-9]/.test(val)) strength++;
+
+            strengthBars.forEach((bar, index) => {
+                if (index < strength) {
+                    bar.classList.remove('bg-surface-variant');
+                    if (strength <= 1) bar.classList.add('bg-error');
+                    else if (strength <= 3) bar.classList.add('bg-primary-fixed-dim');
+                    else bar.classList.add('bg-tertiary-container');
+                } else {
+                    bar.className = 'strength-bar flex-1 bg-surface-variant rounded-full transition-all';
+                }
+            });
+        });
+
+        registrationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let hasError = false;
+
+            const fields = [
+                { id: 'fullName', error: 'fullNameError' },
+                { id: 'email', error: 'emailError' },
+                { id: 'phone', error: 'phoneError' },
+                { id: 'password', error: 'passwordError' }
+            ];
+
+            fields.forEach(field => {
+                const input = document.getElementById(field.id);
+                const error = document.getElementById(field.error);
+                if (!input.value || (field.id === 'password' && input.value.length < 8)) {
+                    error.classList.remove('hidden');
+                    input.classList.add('border-error');
+                    hasError = true;
+                } else {
+                    error.classList.add('hidden');
+                    input.classList.remove('border-error');
+                }
+            });
+
+            const terms = document.getElementById('terms');
+            if (!terms.checked) {
+                alert('Vui lòng đồng ý với Điều khoản và Chính sách');
+                hasError = true;
+            }
+
+            if (!hasError) {
+                const btn = e.target.querySelector('button[type="submit"]');
+                btn.innerHTML = '<span class="flex items-center justify-center"><svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Đang xử lý...</span>';
+                btn.disabled = true;
+                setTimeout(() => {
+                    alert('Đăng ký thành công!');
+                    btn.innerHTML = 'Đăng ký';
+                    btn.disabled = false;
+                }, 1500);
+            }
+        });
+    </script>
+</body></html>

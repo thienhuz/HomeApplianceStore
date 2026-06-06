@@ -1,0 +1,185 @@
+import React, { useMemo, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import AuthBackground from './components/AuthBackground';
+import AuthFooter from './components/AuthFooter';
+import SocialLoginButton from './components/SocialLoginButton';
+
+const initialErrors = {
+  email: false,
+  password: false,
+};
+
+const LoginPage: React.FC = () => {
+  const navigate = useNavigate();
+  const { login } = useAuth();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [remember, setRemember] = useState(false);
+  const [errors, setErrors] = useState(initialErrors);
+  const [submitting, setSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [apiError, setApiError] = useState<string | null>(null);
+
+  const submitDisabled = useMemo(
+    () => submitting || !email || !password,
+    [email, password, submitting]
+  );
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const nextErrors = {
+      email: !email.includes('@'),
+      password: password.length < 8,
+    };
+
+    setErrors(nextErrors);
+    setApiError(null);
+
+    if (nextErrors.email || nextErrors.password) {
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      await login({ email, password });
+      navigate('/');
+    } catch (error) {
+      setApiError(error instanceof Error ? error.message : 'Đăng nhập thất bại.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-surface text-on-surface font-body-md flex flex-col">
+      <AuthBackground />
+      <main className="flex-grow flex items-center justify-center px-margin-mobile md:px-margin-desktop py-stack-lg relative overflow-hidden">
+        <div className="w-full max-w-md z-10">
+          <div className="text-center mb-stack-lg">
+            <h1 className="font-headline-lg text-headline-lg text-primary font-bold tracking-tight mb-2">LUXE APPLIANCE</h1>
+            <p className="font-body-md text-body-md text-secondary">Nâng tầm không gian sống của bạn</p>
+          </div>
+
+          <div className="bg-surface-container-lowest p-8 md:p-10 rounded-xl border border-surface-variant/50 shadow-[0_4px_20px_rgba(31,41,55,0.04)] hover:shadow-[0_12px_30px_rgba(31,41,55,0.08)] transition-all duration-300">
+            <h2 className="font-headline-md text-headline-md text-on-surface mb-stack-lg text-center">Đăng nhập</h2>
+
+            <form className="space-y-6" onSubmit={handleSubmit} noValidate>
+              <div className="space-y-2">
+                <label className="font-label-md text-label-md text-secondary block" htmlFor="loginEmail">
+                  Email
+                </label>
+                <div className="relative">
+                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary">mail</span>
+                  <input
+                    id="loginEmail"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="example@email.com"
+                    className="w-full pl-10 pr-4 py-3 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none"
+                  />
+                </div>
+                {errors.email && (
+                  <p className="text-error font-label-sm text-label-sm mt-1">Vui lòng nhập email hợp lệ.</p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <label className="font-label-md text-label-md text-secondary block" htmlFor="loginPassword">
+                    Mật khẩu
+                  </label>
+                  <Link className="font-label-sm text-label-sm text-primary hover:underline transition-all" to="#">
+                    Quên mật khẩu?
+                  </Link>
+                </div>
+                <div className="relative">
+                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary">lock</span>
+                  <input
+                    id="loginPassword"
+                    type={showPassword ? 'text' : 'password'}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="••••••••"
+                    className="w-full pl-10 pr-12 py-3 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword((prev) => !prev)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-secondary hover:text-on-surface transition-colors p-1"
+                  >
+                    <span className="material-symbols-outlined">
+                      {showPassword ? 'visibility_off' : 'visibility'}
+                    </span>
+                  </button>
+                </div>
+                {errors.password && (
+                  <p className="text-error font-label-sm text-label-sm mt-1">Mật khẩu phải có ít nhất 8 ký tự.</p>
+                )}
+              </div>
+
+              <div className="flex items-center">
+                <input
+                  id="remember"
+                  type="checkbox"
+                  checked={remember}
+                  onChange={(e) => setRemember(e.target.checked)}
+                  className="w-4 h-4 text-primary bg-surface-container-low border-outline-variant rounded focus:ring-primary"
+                />
+                <label htmlFor="remember" className="ml-2 font-body-sm text-body-sm text-secondary cursor-pointer select-none">
+                  Ghi nhớ đăng nhập
+                </label>
+              </div>
+
+              {apiError && <p className="text-error font-body-sm text-body-sm">{apiError}</p>}
+
+              <button
+                type="submit"
+                disabled={submitDisabled}
+                className="w-full bg-primary-container text-on-primary font-label-md text-label-md py-4 rounded-lg hover:opacity-90 active:scale-[0.98] transition-all shadow-sm disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {submitting ? 'Đang xử lý...' : 'Đăng nhập'}
+              </button>
+            </form>
+
+            <div className="relative my-8">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-surface-variant"></div>
+              </div>
+              <div className="relative flex justify-center text-label-sm font-label-sm">
+                <span className="px-4 bg-surface-container-lowest text-secondary">Hoặc đăng nhập với</span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <SocialLoginButton
+                label="Google"
+                icon={<img alt="Google" className="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWaOnmGGRxmBa5-t8YF65eu_IKAhmrR2DUHDP4ROIfxj2b5NRZ8BGaPNHMoHqlSEn3gEgICGkgZGvqXox_uAKWo0n_gYx-NAzSHr2ySvsFdihIDjaHLG0kUAfBz0Zq1KMj2e7vFv5H041AttbagZJHhw61p2HtSF15U03QMEp3Q7YfswkDd4Ffr6-iTEmjIDq5TXMPtMGyjZ7cN3jxPLG-ou-2U1EiYLbeVsVCBD-eLxVnRGpq6g6xIsq7P8mgRExMArSGg5xbAA" />}
+              />
+              <SocialLoginButton
+                label="Facebook"
+                icon={
+                  <svg className="w-5 h-5 fill-[#1877F2]" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                  </svg>
+                }
+              />
+            </div>
+
+            <p className="mt-8 text-center font-body-sm text-body-sm text-secondary">
+              Chưa có tài khoản?
+              <Link className="text-primary font-bold hover:underline transition-all ml-1" to="/register">
+                Đăng ký ngay
+              </Link>
+            </p>
+          </div>
+        </div>
+      </main>
+      <AuthFooter />
+    </div>
+  );
+};
+
+export default LoginPage;

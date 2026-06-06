@@ -21,13 +21,13 @@ public class AuthController : ControllerBase
     public async Task<IActionResult> Login([FromBody] LoginRequestDto request)
     {
         var result = await _mediator.Send(new LoginCommand { Data = request });
-        return Ok(new { message = "Đăng nhập thành công", data = result });
+        return Ok(new { success = true, message = "Đăng nhập thành công", data = result });
     }
 
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterRequestDto request)
     {
         var result = await _mediator.Send(new RegisterCommand { Data = request });
-        return Ok(new { message = "Đăng ký thành công", userId = result });
+        return Ok(new { success = true, message = "Đăng ký thành công", data = result });
     }
 }
