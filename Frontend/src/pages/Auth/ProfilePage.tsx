@@ -47,7 +47,7 @@ const ProfilePage: React.FC = () => {
   if (!user) return null;
 
   return (
-    <main className="max-w-container-max mx-auto px-gutter py-margin-desktop min-h-screen">
+    <main className="max-w-container-max mx-auto px-gutter py-stack-lg">
       <div className="flex flex-col md:flex-row gap-gutter">
         <aside className="w-full md:w-80 flex-shrink-0">
           <ProfileSidebar

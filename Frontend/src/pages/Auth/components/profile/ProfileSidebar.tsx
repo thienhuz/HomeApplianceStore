@@ -67,9 +67,9 @@ const ProfileSidebar: React.FC<ProfileSidebarProps> = ({
       <button
         type="button"
         onClick={onNavigateOrders}
-        className="flex items-center gap-stack-md px-stack-lg py-stack-md text-left transition-all text-on-surface-variant hover:bg-surface-container"
+        className={getButtonClass(activeTab === 'orders')}
       >
-        <span className="material-symbols-outlined">shopping_bag</span>
+        <span className="material-symbols-outlined" style={activeTab === 'orders' ? { fontVariationSettings: "'FILL' 1" } : undefined}>shopping_bag</span>
         <span className="font-body-md text-body-md">Đơn hàng của tôi</span>
       </button>
       <hr className="my-stack-sm border-surface-variant" />

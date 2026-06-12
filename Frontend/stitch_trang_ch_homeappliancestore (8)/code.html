@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Chi tiết đơn hàng | LUXE Appliances</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#d9e3f6",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-bright": "#f8f9fa",
+                    "error": "#ba1a1a",
+                    "on-surface": "#191c1d",
+                    "secondary-container": "#d6e0f3",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#00a7cb",
+                    "on-background": "#191c1d",
+                    "secondary": "#555f6f",
+                    "on-primary-fixed-variant": "#832600",
+                    "primary-fixed": "#ffdbd0",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f0f1f2",
+                    "surface": "#f8f9fa",
+                    "on-tertiary-fixed": "#001f28",
+                    "on-primary-fixed": "#390c00",
+                    "tertiary-fixed": "#b5ebff",
+                    "surface-tint": "#ab3500",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-surface-variant": "#594139",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#d9dadb",
+                    "primary-fixed-dim": "#ffb59d",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "outline-variant": "#e1bfb5",
+                    "tertiary": "#00677e",
+                    "surface-container-low": "#f3f4f5",
+                    "outline": "#8d7168",
+                    "on-secondary-container": "#596373",
+                    "surface-container": "#edeeef",
+                    "surface-variant": "#e1e3e4",
+                    "inverse-primary": "#ffb59d",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "tertiary-fixed-dim": "#59d5fb",
+                    "primary-container": "#ff6b35",
+                    "inverse-surface": "#2e3132",
+                    "surface-container-high": "#e7e8e9",
+                    "on-secondary-fixed": "#121c2a",
+                    "on-primary-container": "#5f1900",
+                    "on-error": "#ffffff",
+                    "background": "#f8f9fa",
+                    "on-tertiary-container": "#003744",
+                    "primary": "#ab3500",
+                    "on-tertiary-fixed-variant": "#004e60"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-lg": "32px",
+                    "stack-sm": "4px",
+                    "margin-desktop": "64px",
+                    "container-max": "1280px",
+                    "base": "8px",
+                    "margin-mobile": "20px",
+                    "stack-md": "16px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .active-stepper {
+            color: #ff6b35;
+        }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .custom-shadow {
+            box-shadow: 0 4px 20px rgba(31, 41, 55, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased">
+<!-- TopNavBar -->
+<header class="w-full sticky top-0 z-50 bg-surface/80 glass-nav shadow-sm">
+<div class="flex justify-between items-center px-gutter py-base max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary">LUXE Appliances</div>
+<nav class="hidden md:flex gap-stack-lg items-center">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Kitchen</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Laundry</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Smart Home</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Sale</a>
+</nav>
+<div class="flex items-center gap-stack-md">
+<div class="hidden lg:flex items-center bg-surface-container-low px-4 py-2 rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm w-48" placeholder="Search appliances..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="shopping_cart">shopping_cart</span>
+<span class="absolute -top-1 -right-1 bg-primary-container w-4 h-4 rounded-full text-[10px] flex items-center justify-center text-on-primary-container">2</span>
+</button>
+<button class="active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="account_circle" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-gutter py-stack-lg">
+<div class="flex flex-col md:flex-row gap-gutter">
+<!-- Account Sidebar (Desktop) -->
+<aside class="hidden md:block w-64 flex-shrink-0">
+<div class="bg-surface-container-lowest p-stack-md rounded-xl custom-shadow">
+<div class="flex items-center gap-3 mb-stack-lg">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="person">person</span>
+</div>
+<div>
+<p class="font-label-md text-label-md">Nguyễn Văn A</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Thành viên Vàng</p>
+</div>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span> Thông tin tài khoản
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-label-md text-label-md text-primary bg-primary-fixed/20" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag" style="font-variation-settings: 'FILL' 1;">shopping_bag</span> Quản lý đơn hàng
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span> Danh sách yêu thích
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span> Thông báo
+                        </a>
+<div class="border-t border-outline-variant my-2"></div>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-label-md text-label-md text-error hover:bg-error-container/10 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span> Đăng xuất
+                        </a>
+</nav>
+</div>
+</aside>
+<!-- Order Content Canvas -->
+<section class="flex-grow space-y-stack-lg">
+<!-- Header & Navigation -->
+<div class="space-y-2">
+<a class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors text-body-sm" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_back">arrow_back</span>
+                        Quay lại danh sách đơn hàng
+                    </a>
+<h1 class="font-headline-lg text-headline-lg">Chi tiết đơn hàng #ORD-123456</h1>
+<p class="text-body-sm text-on-surface-variant">Ngày đặt hàng: 12 tháng 10, 2024</p>
+</div>
+<!-- Order Status Timeline (Stepper) -->
+<div class="bg-surface-container-lowest p-gutter rounded-xl custom-shadow overflow-x-auto">
+<div class="min-w-[600px] flex items-center justify-between relative px-8">
+<!-- Progress Bar Background -->
+<div class="absolute top-1/2 left-0 right-0 h-0.5 bg-surface-container-highest -translate-y-4 mx-20"></div>
+<!-- Active Progress Bar -->
+<div class="absolute top-1/2 left-0 w-[66%] h-0.5 bg-primary-container -translate-y-4 mx-20"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-2 relative z-10">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[20px]" data-icon="check">check</span>
+</div>
+<span class="text-label-sm text-primary">Chờ xác nhận</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-2 relative z-10">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[20px]" data-icon="verified">verified</span>
+</div>
+<span class="text-label-sm text-primary">Đã xác nhận</span>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center gap-2 relative z-10">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-white ring-4 ring-primary-fixed/30 animate-pulse">
+<span class="material-symbols-outlined text-[20px]" data-icon="local_shipping">local_shipping</span>
+</div>
+<span class="text-label-sm text-primary font-bold">Đang giao hàng</span>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center gap-2 relative z-10 opacity-40">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="done_all">done_all</span>
+</div>
+<span class="text-label-sm">Giao hàng thành công</span>
+</div>
+</div>
+</div>
+<!-- Info Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Shipping Address -->
+<div class="bg-surface-container-lowest p-gutter rounded-xl custom-shadow space-y-stack-md">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+<h3 class="font-label-md text-label-md uppercase tracking-wider">Thông tin giao hàng</h3>
+</div>
+<div class="space-y-1 text-body-md">
+<p class="font-bold">Nguyễn Văn A</p>
+<p class="text-on-surface-variant">0987 654 321</p>
+<p class="text-on-surface-variant">123 Đường Láng, Phường Láng Thượng, Quận Đống Đa, Hà Nội</p>
+</div>
+<div class="pt-4 border-t border-outline-variant">
+<p class="font-label-md text-label-md text-primary uppercase tracking-wider mb-2">Phương thức thanh toán</p>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="credit_card">credit_card</span>
+<p class="text-body-md">Thẻ tín dụng (Visa ending in 4242)</p>
+</div>
+</div>
+</div>
+<!-- Order Summary -->
+<div class="bg-surface-container-lowest p-gutter rounded-xl custom-shadow space-y-stack-md">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<h3 class="font-label-md text-label-md uppercase tracking-wider">Tóm tắt đơn hàng</h3>
+</div>
+<div class="space-y-stack-sm text-body-md">
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Tạm tính (2 sản phẩm)</span>
+<span>45.980.000₫</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Phí vận chuyển</span>
+<span>Miễn phí</span>
+</div>
+<div class="flex justify-between text-tertiary">
+<span>Giảm giá khuyến mãi</span>
+<span>-2.000.000₫</span>
+</div>
+<div class="border-t border-outline-variant my-4 pt-4 flex justify-between items-end">
+<span class="font-bold text-headline-md">Tổng cộng</span>
+<span class="font-bold text-headline-md text-primary">43.980.000₫</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product List -->
+<div class="bg-surface-container-lowest rounded-xl custom-shadow overflow-hidden">
+<div class="p-gutter border-b border-outline-variant">
+<h3 class="font-label-md text-label-md uppercase tracking-wider text-primary">Danh sách sản phẩm</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low text-label-sm text-on-surface-variant uppercase tracking-wider">
+<tr>
+<th class="px-gutter py-4 font-semibold">Sản phẩm</th>
+<th class="px-gutter py-4 font-semibold">Giá niêm yết</th>
+<th class="px-gutter py-4 font-semibold text-center">Số lượng</th>
+<th class="px-gutter py-4 font-semibold text-right">Thành tiền</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Product 1 -->
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="px-gutter py-6">
+<div class="flex items-center gap-4">
+<div class="w-20 h-20 bg-surface-container rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Smart Refrigerator" class="w-full h-full object-cover" data-alt="A high-end smart stainless steel refrigerator featuring a built-in touch display on the front door. The appliance is set in a modern, ultra-clean kitchen with marble countertops and warm ambient lighting. The atmosphere is sophisticated and contemporary, showcasing premium appliance design with a focus on smart home integration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzTjLOzz_amzxUfcbXtJW-CE2v9ET_ghN_hOO6bj8W-83AW9uW5jDML1x6PlXtb6EHxRXB50vw-iAN5fM-zLxWXqLPg94VM2NCnci5RCN7caKucwmy8hc_AIng8IeRbZqaRcHUm7Qm_P3Qr1r3JinMyeVh6iqfFQyTGo1xP-2d74gZpqpTqMTFMvWTPAjyNQSeVovIokRnNrPMuvhrPnJb8s2RSrPrOn5hHVZEdgGmrL2_dhdo5ubA7379mh7PS1nYW-Z6ZUxtHQ"/>
+</div>
+<div>
+<p class="font-bold text-body-md">Tủ lạnh Bespoke Multi-door 648L</p>
+<p class="text-body-sm text-on-surface-variant">Màu sắc: Trắng/Xanh Navy</p>
+</div>
+</div>
+</td>
+<td class="px-gutter py-6 text-body-md">35.990.000₫</td>
+<td class="px-gutter py-6 text-body-md text-center">01</td>
+<td class="px-gutter py-6 text-body-md font-bold text-right">35.990.000₫</td>
+</tr>
+<!-- Product 2 -->
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="px-gutter py-6">
+<div class="flex items-center gap-4">
+<div class="w-20 h-20 bg-surface-container rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Air Purifier" class="w-full h-full object-cover" data-alt="A sleek, minimalist white air purifier with a cylindrical design and subtle LED indicators. It is placed on a light oak floor in a spacious, sun-drenched living room with Scandinavian furniture. The lighting is soft and natural, emphasizing the product's clean lines and high-end aesthetic in a modern living space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL2Ykj5Rx7jxmHXetIBT-0JFq_oa6UR2WEZZeQqgaDOAbW2DiqupEgXhT3SKBsCrG2OAmLAbgEmS5VdCsKSGUa1J7xDBb8gCAc1OA1gmfO5OxL_qSzl-NVxbYjiutt7QDd1nE-FM0FZC-TrP3NxbNm9TP18SeVNVJejXvam2T4Eeyq2yrmmDNkJCe7u_ZGrZDm6CRDJ-TBpyFB1ycQaxNbXwgfKFkaJd_r6htXi8t8a6jdyhiVkKDXAsfUV4N5cRV3fXLEk7OuUA"/>
+</div>
+<div>
+<p class="font-bold text-body-md">Máy lọc không khí PurePro AI v3</p>
+<p class="text-body-sm text-on-surface-variant">Chế độ: Tự động điều chỉnh</p>
+</div>
+</div>
+</td>
+<td class="px-gutter py-6 text-body-md">9.990.000₫</td>
+<td class="px-gutter py-6 text-body-md text-center">01</td>
+<td class="px-gutter py-6 text-body-md font-bold text-right">9.990.000₫</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Bottom Actions -->
+<div class="flex flex-col sm:flex-row justify-end gap-stack-md pt-stack-lg">
+<button class="px-8 py-3 rounded-lg border border-outline text-label-md text-on-surface-variant hover:bg-surface-container transition-all active:scale-95">
+                        Yêu cầu hỗ trợ
+                    </button>
+<button class="px-8 py-3 rounded-lg bg-primary-container text-on-primary-container text-label-md font-bold hover:shadow-lg transition-all active:scale-95">
+                        Mua lại đơn hàng này
+                    </button>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-stack-lg mt-stack-lg bg-surface-container">
+<div class="flex flex-col md:flex-row justify-between items-center px-gutter max-w-container-max mx-auto gap-stack-md">
+<div class="space-y-2">
+<div class="font-headline-lg text-headline-lg font-bold text-primary">LUXE</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 LUXE Home Appliances. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-gutter">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Shipping &amp; Returns</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Us</a>
+</div>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="public">public</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple scroll effect for TopNavBar
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body></html>

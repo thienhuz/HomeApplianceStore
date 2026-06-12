@@ -1,4 +1,4 @@
-import type { Product, RelatedProduct } from './types';
+import type { Product, RelatedProduct } from '../../../types';
 
 export const productData: Record<string, Product> = {
   '1': {
@@ -11,8 +11,7 @@ export const productData: Record<string, Product> = {
     price: '12.490.000đ',
     oldPrice: '15.990.000đ',
     discountLabel: '-22%',
-    description:
-      'Tủ lạnh Samsung RT38K50822C/SV với dung tích 382 Lít, thiết kế sang trọng với mặt gương đen cao cấp, phù hợp cho gia đình từ 3-5 thành viên.',
+    description: 'Tủ lạnh Samsung RT38K50822C/SV với dung tích 382 Lít, thiết kế sang trọng với mặt gương đen cao cấp, phù hợp cho gia đình từ 3-5 thành viên.',
     highlights: [
       'Công nghệ Digital Inverter tiết kiệm điện năng vận hành êm ái.',
       'Hệ thống Twin Cooling Plus giúp thực phẩm tươi lâu hơn gấp 2 lần.',
@@ -31,8 +30,7 @@ export const productData: Record<string, Product> = {
     tabs: {
       description: {
         title: 'Đặc điểm nổi bật',
-        content:
-          'Tủ lạnh Samsung RT38K50822C/SV với dung tích 382 Lít, thiết kế sang trọng với mặt gương đen cao cấp, phù hợp cho gia đình từ 3-5 thành viên.',
+        content: 'Tủ lạnh Samsung RT38K50822C/SV với dung tích 382 Lít, thiết kế sang trọng với mặt gương đen cao cấp, phù hợp cho gia đình từ 3-5 thành viên.',
         points: [
           'Công nghệ Digital Inverter tiết kiệm điện năng vận hành êm ái.',
           'Hệ thống Twin Cooling Plus giúp thực phẩm tươi lâu hơn gấp 2 lần.',
@@ -54,15 +52,13 @@ export const productData: Record<string, Product> = {
             name: 'Nguyễn Văn An',
             badge: 'Đã mua tại HomeApplianceStore',
             ratingFill: 5,
-            content:
-              'Tủ lạnh chạy rất êm, thiết kế mặt gương cực kỳ sang trọng. Nhân viên lắp đặt nhiệt tình, giao hàng nhanh đúng hẹn. Rất hài lòng với sản phẩm này.',
+            content: 'Tủ lạnh chạy rất êm, thiết kế mặt gương cực kỳ sang trọng. Nhân viên lắp đặt nhiệt tình, giao hàng nhanh đúng hẹn. Rất hài lòng với sản phẩm này.',
           },
           {
             name: 'Trần Thị Hoa',
             badge: 'Đã mua tại HomeApplianceStore',
             ratingFill: 4,
-            content:
-              'Sản phẩm tốt trong tầm giá, ngăn đông làm lạnh nhanh. Tuy nhiên mặt gương hơi dễ bám vân tay nên cần lau chùi thường xuyên.',
+            content: 'Sản phẩm tốt trong tầm giá, ngăn đông làm lạnh nhanh. Tuy nhiên mặt gương hơi dễ bám vân tay nên cần lau chùi thường xuyên.',
           },
         ],
       },
@@ -70,37 +66,37 @@ export const productData: Record<string, Product> = {
   },
 };
 
-export const relatedProducts: RelatedProduct[] = [
+export const relatedProductsData: RelatedProduct[] = [
   {
-    id: '2',
-    brand: 'PANASONIC',
-    title: 'Tủ lạnh Panasonic Inverter 322 Lít NR-BV360QSVN',
-    price: '11.200.000đ',
-    oldPrice: '13.500.000đ',
-    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDsFQ4CJC6KCyheaWthdV--2a3MxKzdI-OzEa10kViKuz86JQEk45VfoJh1c4oOVgiiKqxQxW39HD7KtaxIUb966YlmZSO1LcJRTV0qi62A8XMY78wGPPIhc_6rTlSCp7uc4WE2g_ETGXEXgCUCaqI-61xWMAMI43E3irujHM80iSLZLOS1LLgs7TxsPM8VjG-p_5No8s5HZ85n_kd9O-LC2LhEQwjcKFym61z0irGN72nPt5-c2cGxpyUdEo6amujR6ASequvUww',
+    id: 'r1',
+    brand: 'SAMSUNG',
+    title: 'Tủ lạnh Samsung Inverter 382 Lít RT38K50822C/SV',
+    price: '12.490.000đ',
+    oldPrice: '15.990.000đ',
+    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD8bUKJxDP-uj92n2BPejFD3AdDccTvXRIxno_l_pMbZjbabCt72nSHxlirCXM1jg8yj03mA1TlpOH-kIRylqdMTalHyIuAtFiNDFGK7a3xuKL7ZKI18JkL5m--WIFaOe_Bxt_itEscAXTZbAAJfX4vJ9aUtZyNK3wWXdR4cRbIZxVreKizgjEEJmCAxkJfaduJlQ9YK5mr8ZLI8-QLwE42QKT7HL1uXI7CtyIqzxjoRmHotA0jR_VAOKm026tcXVeICRaDgiM4hg',
   },
   {
-    id: '3',
+    id: 'r2',
+    brand: 'LG',
+    title: 'Tủ lạnh LG Inverter 613 Lít GR-B247JS',
+    price: '16.990.000đ',
+    oldPrice: '19.500.000đ',
+    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC4iXzAerBlJrCLofJJ6mBmcM4P_xByBBBU8XQU_7AO8Fgb4Jt1NUJgz8UTfmeeK52V2j6VyvZzV6qcVz7kjJrpB_73Kupv13ql-QNtH9BiweGP0RfV8z3DFzL3LYkiTS4GgJCngCmfyF32zeFNtHx1AlwMvEZBG0dZrXL6TVGuvhPWAl-2YtfHvkdK3_rq4EOOyTja4Cld5hlh1DN-INMCxfPxAndOq2Q_q6n00Wajfp87v3Wc6FHvSG0zuyBI50zzWwnXSlcyFg',
+  },
+  {
+    id: 'r3',
+    brand: 'PANASONIC',
+    title: 'Tủ lạnh Panasonic Inverter 420 Lít NR-BX471GPKV',
+    price: '14.150.000đ',
+    oldPrice: '16.200.000đ',
+    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCGQLGX4gViGI2jYpqljlvmL-__VqSBc9Z2vhxk3LOhsUUmKP9HJSLxRv33q81QYIPwnIW04ZiCAKhM8TfBVxcCWrbEQLru2qGLW-FrRdUIzHTWYgd84K_267M6IBJdht6DMKrpnnYCft2PcyewBUZ0m2ZPbxqS2GKlT9d4apwSICb_nKQBBwfV4yP1QmiIbV4NTogNEAir18Ppss-cJq3HTJtC0_CSC2a8RqaTDWnggYd2ceTF1iZvNtJmmTJRoZsrg2-hrlG6Qg',
+  },
+  {
+    id: 'r4',
     brand: 'SAMSUNG',
-    title: 'Tủ lạnh Samsung Side by Side 600L',
+    title: 'Tủ lạnh Samsung RS64R5301B4 Side By Side',
     price: '28.900.000đ',
     oldPrice: '32.500.000đ',
-    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAMSN_-ufHlz4_fG_OViW-0ryE51ggvsnWSm_dEZeljyz13LWyvnjm1is6ZulwwKZpSOhtSII0dhjgGZjaMo5g2JkKk2qqPXgeVGIWT81od0OfH90maz1mkkP9KP-cPJuid5fIOXHZz2q3ZAdKbM4Ka0UAKe06O_2U2NYV6zGjeI7eqXCsAyqa5X47oesXAxkAeo_IsX_26UjE1vAdweWpPlJFn_sTw_Y4fthdgZouMDiQv0SMTS8EBPdiP5R5bew_p_3Mypo7Lw',
-  },
-  {
-    id: '4',
-    brand: 'SHARP',
-    title: 'Máy giặt Sharp Inverter 401 Lít SJ-FX631V-SL',
-    price: '13.800.000đ',
-    oldPrice: '15.500.000đ',
-    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAZ7IWxhgVMbEnff-tIw1P0HygaogNyUKtAB2TIR_v0n4vmlzFgz8GYuSQowrazBHbDuEkkBky_0WnIQCyIMxF0oxgPUPf8Nui0Dxy63ZEr0SiyKwY_IhRaXDKvSw2j6uYK9_XOml1TbmQ4GYhJq4w0IyZCGgyIs8qByJGwhdM1bZfuKIwgUukfpOGrpc_XecL9VEMZRzx0RDdn4TVYbCmDliPuIM9q9vGjrRkCxoBp57F3bgn91-NS3jXbt41ukXWUB4zAXcaOtQ',
-  },
-  {
-    id: '5',
-    brand: 'LG',
-    title: 'Máy giặt LG AI DD™ 11kg FV1411S4P',
-    price: '15.990.000đ',
-    oldPrice: '',
-    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDvQLkyQToZXfokx1e1j0e9xhEkbYPTt2Y7QRyOmCXY9z5XLc-TgS7FlfzC6mPevpxnRbtvMG44qsnzSkWmtC8e0nLXWGIq86foIk_qeXepJ99Cjt2H7_8asYp_1W5PomyaF0rMDiOMFGVEyPfPFHSjUAKEfaz5A30J6omRF6gY054dxYmhySjJQFiQP4UxYgLkjZMiVmVhuPCW2pnEyVSDH_IO-6w0BKiFwOTiA8rnuGuK6oTe1eI4y3R7b6iGsXd3a8jrxIDcKQ',
+    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAMSN_-ufHlz4_fG_OViW-0ryE51ggvsnWSm_dEZeljyz13LWyvnjm1is6ZulwwKZpSOhtSII0dhjgGZjaMo5g2JkKk2qqPXgeVGIWT81od0OfH90maz1JmkkP9KP-cPJuid5fIOXHZz2q3ZAdKbM4Ka0UAKe06O_2U2NYV6zGjeI7eqXCsAyqa5X47oesXAxkAeo_IsX_26UjE1vAdweWpPlJFn_sTw_Y4fthdgZouMDiQv0SMTS8EBPdiP5R5bew_p_3Mypo7Lw',
   },
 ];

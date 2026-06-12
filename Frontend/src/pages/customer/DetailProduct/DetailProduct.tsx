@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { productData } from '../../utils/detailProduct/data';
-import type { Product } from '../../utils/detailProduct/types';
+import { productData } from './data';
+import type { Product } from '../../../types';
 import ProductBreadcrumb from './components/ProductBreadcrumb';
 import ProductGallery from './components/ProductGallery';
 import ProductOverview from './components/ProductOverview';

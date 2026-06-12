@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { ProductTabs as ProductTabsType } from '../../../utils/detailProduct/types';
+import type { ProductTabs as ProductTabsType } from '../../../../types';
 
 interface ProductTabsProps {
   tabs: ProductTabsType;

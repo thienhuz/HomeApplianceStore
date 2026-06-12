@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Product } from '../../../utils/detailProduct/types';
+import type { Product } from '../../../../types';
 import QuantitySelector from './QuantitySelector';
 
 interface ProductOverviewProps {

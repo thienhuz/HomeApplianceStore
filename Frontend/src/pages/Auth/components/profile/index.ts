@@ -1,4 +1,4 @@
-export type ProfileTabKey = 'personal-info' | 'addresses' | 'password';
+export type ProfileTabKey = 'personal-info' | 'addresses' | 'password' | 'orders';
 
 export { default as ProfileSidebar } from './ProfileSidebar';
 export { default as ProfilePersonalInfo } from './ProfilePersonalInfo';
