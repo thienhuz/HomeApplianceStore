@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import MainLayout from './components/layout/MainLayout';
 import HomePage from './pages/customer/HomePage/HomePage';
-import CategoryPage from './pages/customer/CategoryPage/CategoryPage';
+import AllProductsPage from './pages/customer/AllProductsPage/AllProductsPage';
 import SearchResultsPage from './pages/customer/SearchResultsPage/SearchResultsPage';
 import DetailProduct from './pages/customer/DetailProduct/DetailProduct';
 import LoginPage from './pages/Auth/LoginPage';
@@ -18,8 +18,8 @@ function App() {
         <Routes>
           <Route path="/" element={<MainLayout />}> 
             <Route index element={<HomePage />} />
-            <Route path="category" element={<CategoryPage />} />
             <Route path="search" element={<SearchResultsPage />} />
+            <Route path="products" element={<AllProductsPage />} />
             <Route path="DetailProduct/:id" element={<DetailProduct />} />
             <Route path="profile" element={<ProfilePage />} />
             <Route path="orders" element={<Orders />} />
