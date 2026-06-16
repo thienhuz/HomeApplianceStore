@@ -43,7 +43,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, loading }) => {
                         <img
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             alt={product.imageAlt || product.title}
-                            src={product.imageUrl || 'https://via.placeholder.com/300?text=No+Image'}
+                            src={product.imageUrl || 'https://placehold.co/400x400/e2e8f0/64748b?text=No+Image'}
                         />
                         {product.badge && (
                             <div className="absolute top-3 left-3 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded">

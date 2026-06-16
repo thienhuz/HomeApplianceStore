@@ -34,8 +34,8 @@ const FeaturedProducts: React.FC = () => {
                             <div className="aspect-square bg-surface-container-lowest rounded-md mb-stack-sm overflow-hidden flex items-center justify-center relative">
                                 <img 
                                     className="object-contain h-full w-full" 
-                                    alt={product.imageAlt || product.title} 
-                                    src={product.imageUrl || 'https://via.placeholder.com/300?text=No+Image'} 
+                                    alt={product.imageAlt || product.title}
+                                    src={product.imageUrl || 'https://placehold.co/400x400/e2e8f0/64748b?text=No+Image'}
                                 />
                                 <div className="absolute inset-0 bg-surface/40 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                                     <button 
