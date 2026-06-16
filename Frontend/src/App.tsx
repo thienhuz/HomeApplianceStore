@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import MainLayout from './components/layout/MainLayout';
+import ScrollToTop from './components/layout/ScrollToTop';
 import HomePage from './pages/customer/HomePage/HomePage';
 import AllProductsPage from './pages/customer/AllProductsPage/AllProductsPage';
 import SearchResultsPage from './pages/customer/SearchResultsPage/SearchResultsPage';
@@ -15,6 +16,7 @@ function App() {
   return (
     <AuthProvider>
       <Router>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<MainLayout />}> 
             <Route index element={<HomePage />} />

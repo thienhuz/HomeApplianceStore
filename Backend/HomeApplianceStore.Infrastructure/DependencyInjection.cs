@@ -29,9 +29,13 @@ public static class DependencyInjection
         // Đăng ký Generic Repository
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
-        // Đăng ký Repositories
+        // Đăng ký Repositories (write side)
         services.AddScoped<ICustomerRepository, CustomerRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
+
+        // Đăng ký Read Repositories (read side - CQRS, dùng Dapper)
+        services.AddScoped<IProductReadRepository, ProductReadRepository>();
+        services.AddScoped<ICatalogReadRepository, CatalogReadRepository>();
 
         // Đăng ký Authentication
         services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { productApi } from '../services/productApi';
-import type { CategoryDto } from '../services/productApi';
+import type { CategoryDto } from '../types';
 
 export function useCategories() {
     const [data, setData] = useState<CategoryDto[]>([]);

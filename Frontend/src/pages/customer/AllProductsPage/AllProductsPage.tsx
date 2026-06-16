@@ -6,7 +6,7 @@ import SortBar from './components/SortBar';
 import ProductGrid from './components/ProductGrid';
 import Pagination from './components/Pagination';
 import { useProducts } from '../../../hooks/useProducts';
-import type { GetProductsFilters } from '../../../services/productApi';
+import type { GetProductsFilters } from '../../../types';
 
 const AllProductsPage: React.FC = () => {
     const [searchParams, setSearchParams] = useSearchParams();

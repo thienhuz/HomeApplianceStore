@@ -1,17 +1,19 @@
 import React, { useMemo, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import AuthBackground from './components/AuthBackground';
 import AuthFooter from './components/AuthFooter';
+import AuthField from './components/AuthField';
 import SocialLoginButton from './components/SocialLoginButton';
 
 const initialErrors = {
-  email: false,
-  password: false,
+  email: '',
+  password: '',
 };
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,6 +22,8 @@ const LoginPage: React.FC = () => {
   const [submitting, setSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
+
+  const justRegistered = (location.state as { justRegistered?: boolean } | null)?.justRegistered ?? false;
 
   const submitDisabled = useMemo(
     () => submitting || !email || !password,
@@ -30,8 +34,8 @@ const LoginPage: React.FC = () => {
     event.preventDefault();
 
     const nextErrors = {
-      email: !email.includes('@'),
-      password: password.length < 8,
+      email: !email.includes('@') ? 'Vui lòng nhập email hợp lệ.' : '',
+      password: password.length < 8 ? 'Mật khẩu phải có ít nhất 8 ký tự.' : '',
     };
 
     setErrors(nextErrors);
@@ -56,69 +60,72 @@ const LoginPage: React.FC = () => {
     <div className="min-h-screen bg-surface text-on-surface font-body-md flex flex-col">
       <AuthBackground />
       <main className="flex-grow flex items-center justify-center px-margin-mobile md:px-margin-desktop py-stack-lg relative overflow-hidden">
-        <div className="w-full max-w-md z-10">
+        <div className="w-full max-w-md z-10 animate-auth-in">
           <div className="text-center mb-stack-lg">
-            <h1 className="font-headline-lg text-headline-lg text-primary font-bold tracking-tight mb-2">LUXE APPLIANCE</h1>
+            <Link
+              to="/"
+              className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary text-on-primary shadow-md mb-3 transition-transform hover:scale-105 active:scale-95"
+              aria-label="Về trang chủ"
+            >
+              <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>storefront</span>
+            </Link>
+            <h1 className="font-headline-lg text-headline-lg text-primary font-bold tracking-tight mb-2">HomeApplianceStore</h1>
             <p className="font-body-md text-body-md text-secondary">Nâng tầm không gian sống của bạn</p>
           </div>
 
           <div className="bg-surface-container-lowest p-8 md:p-10 rounded-xl border border-surface-variant/50 shadow-[0_4px_20px_rgba(31,41,55,0.04)] hover:shadow-[0_12px_30px_rgba(31,41,55,0.08)] transition-all duration-300">
             <h2 className="font-headline-md text-headline-md text-on-surface mb-stack-lg text-center">Đăng nhập</h2>
 
-            <form className="space-y-6" onSubmit={handleSubmit} noValidate>
-              <div className="space-y-2">
-                <label className="font-label-md text-label-md text-secondary block" htmlFor="loginEmail">
-                  Email
-                </label>
-                <div className="relative">
-                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary">mail</span>
-                  <input
-                    id="loginEmail"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="example@email.com"
-                    className="w-full pl-10 pr-4 py-3 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none"
-                  />
-                </div>
-                {errors.email && (
-                  <p className="text-error font-label-sm text-label-sm mt-1">Vui lòng nhập email hợp lệ.</p>
-                )}
+            {justRegistered && (
+              <div className="flex items-center gap-2 mb-stack-lg p-3 rounded-lg bg-tertiary-container/15 text-tertiary font-body-sm text-body-sm">
+                <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  check_circle
+                </span>
+                Đăng ký thành công! Vui lòng đăng nhập để tiếp tục.
               </div>
+            )}
 
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <label className="font-label-md text-label-md text-secondary block" htmlFor="loginPassword">
-                    Mật khẩu
-                  </label>
+            <form className="space-y-6" onSubmit={handleSubmit} noValidate>
+              <AuthField
+                id="loginEmail"
+                label="Email"
+                icon="mail"
+                type="email"
+                value={email}
+                onChange={setEmail}
+                placeholder="example@email.com"
+                autoComplete="email"
+                error={errors.email}
+              />
+
+              <AuthField
+                id="loginPassword"
+                label="Mật khẩu"
+                icon="lock"
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={setPassword}
+                placeholder="••••••••"
+                autoComplete="current-password"
+                error={errors.password}
+                labelAction={
                   <Link className="font-label-sm text-label-sm text-primary hover:underline transition-all" to="#">
                     Quên mật khẩu?
                   </Link>
-                </div>
-                <div className="relative">
-                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary">lock</span>
-                  <input
-                    id="loginPassword"
-                    type={showPassword ? 'text' : 'password'}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••••••"
-                    className="w-full pl-10 pr-12 py-3 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none"
-                  />
+                }
+                trailing={
                   <button
                     type="button"
                     onClick={() => setShowPassword((prev) => !prev)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-secondary hover:text-on-surface transition-colors p-1"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-secondary hover:text-primary transition-colors p-1"
+                    aria-label={showPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'}
                   >
                     <span className="material-symbols-outlined">
                       {showPassword ? 'visibility_off' : 'visibility'}
                     </span>
                   </button>
-                </div>
-                {errors.password && (
-                  <p className="text-error font-label-sm text-label-sm mt-1">Mật khẩu phải có ít nhất 8 ký tự.</p>
-                )}
-              </div>
+                }
+              />
 
               <div className="flex items-center">
                 <input
@@ -133,13 +140,21 @@ const LoginPage: React.FC = () => {
                 </label>
               </div>
 
-              {apiError && <p className="text-error font-body-sm text-body-sm">{apiError}</p>}
+              {apiError && (
+                <p className="flex items-center gap-1 text-error font-body-sm text-body-sm">
+                  <span className="material-symbols-outlined text-[18px]">error</span>
+                  {apiError}
+                </p>
+              )}
 
               <button
                 type="submit"
                 disabled={submitDisabled}
-                className="w-full bg-primary-container text-on-primary font-label-md text-label-md py-4 rounded-lg hover:opacity-90 active:scale-[0.98] transition-all shadow-sm disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full bg-primary-container text-on-primary font-label-md text-label-md py-4 rounded-lg hover:opacity-90 active:scale-[0.98] transition-all shadow-sm disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
+                {submitting && (
+                  <span className="material-symbols-outlined animate-spin text-[20px]">progress_activity</span>
+                )}
                 {submitting ? 'Đang xử lý...' : 'Đăng nhập'}
               </button>
             </form>
@@ -174,6 +189,16 @@ const LoginPage: React.FC = () => {
                 Đăng ký ngay
               </Link>
             </p>
+
+            <div className="mt-6 pt-6 border-t border-surface-variant/50 text-center">
+              <Link
+                to="/"
+                className="inline-flex items-center gap-1 font-label-md text-label-md text-secondary hover:text-primary transition-colors"
+              >
+                <span className="material-symbols-outlined text-[20px]">arrow_back</span>
+                Về trang chủ
+              </Link>
+            </div>
           </div>
         </div>
       </main>

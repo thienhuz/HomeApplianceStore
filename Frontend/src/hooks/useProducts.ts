@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { productApi } from '../services/productApi';
-import type { ProductDto, PagedResult, GetProductsFilters } from '../services/productApi';
+import type { ProductDto, PagedResult, GetProductsFilters } from '../types';
 
 export function useProducts(filters: GetProductsFilters) {
     const [data, setData] = useState<PagedResult<ProductDto> | null>(null);

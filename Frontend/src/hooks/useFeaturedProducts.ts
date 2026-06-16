@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { productApi } from '../services/productApi';
-import type { ProductDto } from '../services/productApi';
+import type { ProductDto } from '../types';
 
 export function useFeaturedProducts(limit: number = 4) {
     const [data, setData] = useState<ProductDto[]>([]);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import type { ProductDto } from '../../../../services/productApi';
+import type { ProductDto } from '../../../../types';
 
 interface ProductGridProps {
     products: ProductDto[];

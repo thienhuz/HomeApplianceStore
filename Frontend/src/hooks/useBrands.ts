@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { productApi } from '../services/productApi';
-import type { BrandDto } from '../services/productApi';
+import type { BrandDto } from '../types';
 
 export function useBrands() {
     const [data, setData] = useState<BrandDto[]>([]);

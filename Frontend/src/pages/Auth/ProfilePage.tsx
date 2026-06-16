@@ -48,7 +48,17 @@ const ProfilePage: React.FC = () => {
 
   return (
     <main className="max-w-container-max mx-auto px-gutter py-stack-lg">
-      <div className="flex flex-col md:flex-row gap-gutter">
+      {/* Breadcrumb + page heading */}
+      <nav className="flex items-center gap-1.5 font-body-sm text-body-sm text-on-surface-variant mb-stack-md">
+        <button type="button" onClick={() => navigate('/')} className="hover:text-primary transition-colors">
+          Trang chủ
+        </button>
+        <span className="material-symbols-outlined text-[16px]">chevron_right</span>
+        <span className="text-on-surface font-medium">Tài khoản của tôi</span>
+      </nav>
+      <h1 className="font-headline-lg text-headline-lg text-on-surface mb-stack-lg">Tài khoản của tôi</h1>
+
+      <div className="flex flex-col md:flex-row gap-gutter items-start">
         <aside className="w-full md:w-80 flex-shrink-0">
           <ProfileSidebar
             user={user}

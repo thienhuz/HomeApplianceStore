@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useCategories } from '../../../../hooks/useCategories';
 import { useBrands } from '../../../../hooks/useBrands';
-import type { GetProductsFilters } from '../../../../services/productApi';
+import type { GetProductsFilters } from '../../../../types';
 
 interface SidebarFiltersProps {
     filters: GetProductsFilters;
