@@ -31,11 +31,18 @@ export interface BrandDto {
   logoUrl?: string;
 }
 
+/** Kết quả gợi ý cho ô tìm kiếm (từ khóa gợi ý + sản phẩm khớp). */
+export interface SearchSuggestion {
+    suggestions: string[];
+    products: ProductDto[];
+}
+
 /** Tham số lọc khi gọi API lấy danh sách sản phẩm. */
 export interface GetProductsFilters {
   pageNumber?: number;
   pageSize?: number;
   sortBy?: string;
+  keyword?: string;
   categoryId?: number;
   brandIds?: number[];
   minPrice?: number;

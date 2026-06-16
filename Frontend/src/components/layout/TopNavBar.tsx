@@ -1,63 +1,36 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import CategoryMenu from './CategoryMenu';
+import SearchBar from './SearchBar';
 
 const TopNavBar: React.FC = () => {
     const navigate = useNavigate();
     const { user, isAuthenticated, logout } = useAuth();
-    const [searchQuery, setSearchQuery] = useState('');
     const [accountMenuOpen, setAccountMenuOpen] = useState(false);
-
-    const handleSearch = () => {
-        const keyword = searchQuery.trim();
-        if (keyword) {
-            navigate(`/search?q=${encodeURIComponent(keyword)}`);
-        }
-    };
 
     return (
         <nav className="bg-surface/95 backdrop-blur-xl fixed inset-x-0 top-0 z-50 border-b border-surface-variant/30 shadow-sm">
-            <div className="w-full flex h-20 items-center gap-4 px-margin-mobile md:px-margin-desktop">
-                <Link to="/" className="font-headline-md text-headline-md font-bold text-primary whitespace-nowrap">
-                    HomeApplianceStore
+            <div className="w-full flex h-16 items-center gap-4 px-margin-mobile md:px-margin-desktop">
+                <Link to="/" className="inline-flex items-center gap-2 whitespace-nowrap font-headline-md text-headline-md font-bold text-primary">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-on-primary">
+                        <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>storefront</span>
+                    </span>
+                    <span className="hidden sm:inline">HomeApplianceStore</span>
                 </Link>
 
-                <div className="hidden lg:flex items-center gap-6">
-                    <Link className="font-label-md text-label-md text-secondary hover:text-primary transition-colors" to="/category">Tủ Lạnh</Link>
-                    <Link className="font-label-md text-label-md text-secondary hover:text-primary transition-colors" to="/category">Bếp Nấu</Link>
-                    <Link className="font-label-md text-label-md text-secondary hover:text-primary transition-colors" to="/category">Máy Giặt</Link>
-                    <Link className="font-label-md text-label-md text-secondary hover:text-primary transition-colors" to="/category">Gia Dụng Nhỏ</Link>
-                    <Link className="font-label-md text-label-md text-secondary hover:text-primary transition-colors" to="/category">Máy Rửa Chén</Link>
+                <div className="hidden lg:block">
+                    <CategoryMenu />
                 </div>
 
 
                 <div className="flex flex-1 items-center justify-end gap-3">
-                    <form
-                        className="hidden md:flex flex-1 max-w-2xl items-center overflow-hidden rounded-full border border-surface-variant bg-surface-bright shadow-sm"
-                        onSubmit={(event) => {
-                            event.preventDefault();
-                            handleSearch();
-                        }}
-                    >
-                        <button type="submit" className="flex h-full items-center justify-center px-4 text-primary">
-                            <span className="material-symbols-outlined">search</span>
-                        </button>
-                        <input
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            onKeyDown={(e) => {
-                                if (e.key === 'Enter') {
-                                    handleSearch();
-                                }
-                            }}
-                            placeholder="Tìm kiếm sản phẩm..."
-                            className="min-w-0 flex-1 border-none bg-transparent px-4 py-3 text-body-sm text-on-surface outline-none placeholder:text-on-surface-variant"
-                            type="text"
-                        />
-                    </form>
+                    <div className="hidden md:block flex-1 max-w-2xl">
+                        <SearchBar />
+                    </div>
 
                     <Link
-                        to="/category"
+                        to="/products"
                         className="hidden lg:inline-flex items-center rounded-full border border-surface-variant bg-surface px-4 py-2 text-label-md text-secondary hover:border-primary hover:text-primary transition-all"
                     >
                         Khuyến Mãi

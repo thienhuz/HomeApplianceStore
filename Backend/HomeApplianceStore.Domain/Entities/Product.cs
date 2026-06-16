@@ -15,4 +15,9 @@ public class Product
     public bool? IsActive { get; set; }
     public DateTime? CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
+
+    // Bổ sung cho trang chi tiết sản phẩm
+    public string? Note { get; set; }
+    public string? FeatureTitle { get; set; }
+    public string? FeatureImageUrl { get; set; }
 }

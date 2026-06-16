@@ -4,7 +4,6 @@ import MainLayout from './components/layout/MainLayout';
 import ScrollToTop from './components/layout/ScrollToTop';
 import HomePage from './pages/customer/HomePage/HomePage';
 import AllProductsPage from './pages/customer/AllProductsPage/AllProductsPage';
-import SearchResultsPage from './pages/customer/SearchResultsPage/SearchResultsPage';
 import DetailProduct from './pages/customer/DetailProduct/DetailProduct';
 import LoginPage from './pages/Auth/LoginPage';
 import RegisterPage from './pages/Auth/RegisterPage';
@@ -20,7 +19,6 @@ function App() {
         <Routes>
           <Route path="/" element={<MainLayout />}> 
             <Route index element={<HomePage />} />
-            <Route path="search" element={<SearchResultsPage />} />
             <Route path="products" element={<AllProductsPage />} />
             <Route path="DetailProduct/:id" element={<DetailProduct />} />
             <Route path="profile" element={<ProfilePage />} />

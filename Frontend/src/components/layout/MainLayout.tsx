@@ -9,7 +9,7 @@ const MainLayout: React.FC = () => {
             <TopNavBar />
             
             {/* Main Content Padding */}
-            <main className="pt-28 pb-16 flex-1">
+            <main className="pt-24 pb-16 flex-1">
                 <Outlet />
             </main>
             

@@ -4,6 +4,7 @@ import type {
     GetProductsFilters,
     PagedResult,
     ProductDto,
+    SearchSuggestion,
 } from '../types';
 import { request } from './apiClient';
 
@@ -13,6 +14,7 @@ export const productApi = {
         if (filters.pageNumber) params.append('PageNumber', filters.pageNumber.toString());
         if (filters.pageSize) params.append('PageSize', filters.pageSize.toString());
         if (filters.sortBy) params.append('SortBy', filters.sortBy);
+        if (filters.keyword) params.append('Keyword', filters.keyword);
         if (filters.categoryId) params.append('CategoryId', filters.categoryId.toString());
         if (filters.brandIds && filters.brandIds.length > 0) {
             filters.brandIds.forEach(id => params.append('BrandIds', id.toString()));
@@ -34,5 +36,10 @@ export const productApi = {
 
     getBrands: async (): Promise<BrandDto[]> => {
         return request<BrandDto[]>('/brands');
+    },
+
+    getSearchSuggestions: async (keyword: string, limit: number = 5): Promise<SearchSuggestion> => {
+        const params = new URLSearchParams({ keyword, limit: limit.toString() });
+        return request<SearchSuggestion>(`/products/search-suggestions?${params.toString()}`);
     }
 };

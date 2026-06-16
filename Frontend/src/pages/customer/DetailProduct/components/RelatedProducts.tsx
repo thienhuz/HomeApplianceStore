@@ -41,7 +41,7 @@ const RelatedProducts: React.FC = () => {
     <section className="mt-24">
       <div className="flex items-center justify-between mb-8">
         <h2 className="font-headline-lg text-headline-lg">Sản phẩm liên quan</h2>
-        <Link className="text-primary font-label-md flex items-center hover:underline" to="/search?q=">Xem tất cả <span className="material-symbols-outlined">chevron_right</span></Link>
+        <Link className="text-primary font-label-md flex items-center hover:underline" to="/products">Xem tất cả <span className="material-symbols-outlined">chevron_right</span></Link>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
         {relatedProducts.map((product) => (

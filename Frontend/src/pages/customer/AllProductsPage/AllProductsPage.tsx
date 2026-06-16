@@ -11,19 +11,23 @@ import type { GetProductsFilters } from '../../../types';
 const AllProductsPage: React.FC = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const categoryIdParam = searchParams.get('categoryId');
+    const keywordParam = searchParams.get('keyword');
 
     const [filters, setFilters] = useState<GetProductsFilters>({
         pageNumber: 1,
         pageSize: 12,
         sortBy: 'newest',
+        keyword: keywordParam || undefined,
         categoryId: categoryIdParam ? parseInt(categoryIdParam, 10) : undefined
     });
 
     useEffect(() => {
         const newCategoryId = searchParams.get('categoryId');
+        const newKeyword = searchParams.get('keyword');
         // eslint-disable-next-line react-hooks/set-state-in-effect
         setFilters(prev => ({
             ...prev,
+            keyword: newKeyword || undefined,
             categoryId: newCategoryId ? parseInt(newCategoryId, 10) : undefined,
             pageNumber: 1
         }));
@@ -71,6 +75,11 @@ const AllProductsPage: React.FC = () => {
                     onFilterChange={handleFilterChange}
                 />
                 <div className="flex-1">
+                    {keywordParam && (
+                        <h1 className="font-headline-md text-headline-md text-on-surface mb-stack-md">
+                            Kết quả tìm kiếm cho: <span className="text-primary">"{keywordParam}"</span>
+                        </h1>
+                    )}
                     <SortBar
                         totalItems={totalItems}
                         pageSize={pageSize}

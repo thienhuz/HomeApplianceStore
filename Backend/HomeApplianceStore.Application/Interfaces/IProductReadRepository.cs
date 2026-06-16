@@ -13,4 +13,13 @@ public interface IProductReadRepository
 {
     Task<PagedResult<ProductDto>> GetProductsAsync(ProductFilter filter);
     Task<IEnumerable<ProductDto>> GetFeaturedProductsAsync(int limit);
+
+    /// <summary>Lấy đầy đủ dữ liệu chi tiết một sản phẩm (ảnh, highlights, đánh giá...).</summary>
+    Task<ProductDetailDto?> GetProductDetailAsync(int productId);
+
+    /// <summary>Tìm sản phẩm khớp từ khóa (theo tên/thương hiệu/danh mục).</summary>
+    Task<IEnumerable<ProductDto>> SearchProductsAsync(string keyword, int limit);
+
+    /// <summary>Lấy tên các thương hiệu có sản phẩm khớp từ khóa (để gợi ý tìm kiếm).</summary>
+    Task<IEnumerable<string>> GetMatchingBrandNamesAsync(string keyword, int limit);
 }

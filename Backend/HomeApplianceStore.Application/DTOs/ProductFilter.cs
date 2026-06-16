@@ -11,6 +11,7 @@ public class ProductFilter
     public int PageNumber { get; set; } = 1;
     public int PageSize { get; set; } = 12;
     public string? SortBy { get; set; } // "newest", "price_asc", "price_desc", "best_selling"
+    public string? Keyword { get; set; } // tìm kiếm theo tên/thương hiệu/danh mục
     public int? CategoryId { get; set; }
     public List<int>? BrandIds { get; set; }
     public decimal? MinPrice { get; set; }

@@ -74,6 +74,13 @@ public class ProductReadRepository : IProductReadRepository
         builder.Where("p.IsActive = 1");
         countBuilder.Where("p.IsActive = 1");
 
+        if (!string.IsNullOrWhiteSpace(filter.Keyword))
+        {
+            var keywordFilter = "(p.ProductName LIKE @Keyword OR b.BrandName LIKE @Keyword OR c.CategoryName LIKE @Keyword)";
+            builder.Where(keywordFilter, new { Keyword = $"%{filter.Keyword}%" });
+            countBuilder.Where(keywordFilter, new { Keyword = $"%{filter.Keyword}%" });
+        }
+
         if (filter.CategoryId.HasValue)
         {
             var categoryFilter = "p.CategoryId IN (SELECT CategoryId FROM Categories WHERE CategoryId = @CategoryId OR ParentId = @CategoryId)";
@@ -180,5 +187,140 @@ public class ProductReadRepository : IProductReadRepository
         ";
 
         return await _connection.QueryAsync<ProductDto>(sql, new { Limit = limit });
+    }
+
+    public async Task<IEnumerable<ProductDto>> SearchProductsAsync(string keyword, int limit)
+    {
+        var sql = @"
+            SELECT TOP (@Limit)
+                p.ProductId AS Id,
+                b.BrandName AS Brand,
+                c.CategoryName AS CategoryName,
+                p.ProductName AS Title,
+                p.Slug,
+                p.Description,
+                p.Price AS DbPrice,
+                p.DiscountPrice AS DbDiscountPrice,
+                COALESCE(AVG(CAST(r.Rating AS FLOAT)), 0) AS Rating,
+                COUNT(r.ReviewId) AS ReviewCount,
+                MAX(CASE WHEN pi.IsPrimary = 1 THEN pi.ImageUrl ELSE NULL END) AS ImageUrl,
+                p.ProductName AS ImageAlt,
+                CASE WHEN p.IsFeatured = 1 THEN 'HOT' ELSE NULL END AS Badge,
+                p.CreatedAt,
+                p.StockQuantity
+            FROM Products p
+            LEFT JOIN Brands b ON p.BrandId = b.BrandId
+            LEFT JOIN Categories c ON p.CategoryId = c.CategoryId
+            LEFT JOIN ProductImages pi ON p.ProductId = pi.ProductId AND pi.IsPrimary = 1
+            LEFT JOIN Reviews r ON p.ProductId = r.ProductId AND r.IsApproved = 1
+            WHERE p.IsActive = 1
+              AND (p.ProductName LIKE @Kw OR b.BrandName LIKE @Kw OR c.CategoryName LIKE @Kw)
+            GROUP BY
+                p.ProductId, b.BrandName, c.CategoryName, p.ProductName, p.Slug,
+                p.Description, p.Price, p.DiscountPrice, p.IsFeatured, p.CreatedAt, p.StockQuantity
+            ORDER BY p.IsFeatured DESC, p.CreatedAt DESC
+        ";
+
+        return await _connection.QueryAsync<ProductDto>(sql, new { Limit = limit, Kw = $"%{keyword}%" });
+    }
+
+    public async Task<ProductDetailDto?> GetProductDetailAsync(int productId)
+    {
+        var sql = @"
+            -- 1) Thông tin sản phẩm + brand/category + rating tổng hợp
+            SELECT
+                p.ProductId AS Id,
+                b.BrandName AS Brand,
+                c.CategoryName AS CategoryName,
+                p.ProductName AS Title,
+                p.Slug,
+                p.Description,
+                p.Price AS DbPrice,
+                p.DiscountPrice AS DbDiscountPrice,
+                p.StockQuantity,
+                p.Note,
+                p.FeatureTitle,
+                p.FeatureImageUrl,
+                COALESCE(AVG(CAST(r.Rating AS FLOAT)), 0) AS Rating,
+                COUNT(r.ReviewId) AS ReviewCount
+            FROM Products p
+            LEFT JOIN Brands b ON p.BrandId = b.BrandId
+            LEFT JOIN Categories c ON p.CategoryId = c.CategoryId
+            LEFT JOIN Reviews r ON p.ProductId = r.ProductId AND r.IsApproved = 1
+            WHERE p.ProductId = @Id AND p.IsActive = 1
+            GROUP BY
+                p.ProductId, b.BrandName, c.CategoryName, p.ProductName, p.Slug, p.Description,
+                p.Price, p.DiscountPrice, p.StockQuantity, p.Note, p.FeatureTitle, p.FeatureImageUrl;
+
+            -- 2) Thư viện ảnh (ảnh chính trước)
+            SELECT ImageUrl FROM ProductImages WHERE ProductId = @Id ORDER BY IsPrimary DESC, ImageId;
+
+            -- 3) Đặc điểm nổi bật
+            SELECT Content FROM ProductHighlights WHERE ProductId = @Id ORDER BY DisplayOrder, HighlightId;
+
+            -- 4) Danh sách đánh giá (kèm tên người dùng)
+            SELECT TOP (20)
+                u.FullName AS Name,
+                CASE WHEN r.IsVerifiedPurchase = 1 THEN N'Đã mua tại HomeApplianceStore' ELSE N'Đánh giá' END AS Badge,
+                r.Rating AS RatingFill,
+                r.Comment AS Content,
+                r.CreatedAt
+            FROM Reviews r
+            LEFT JOIN Users u ON r.UserId = u.UserId
+            WHERE r.ProductId = @Id AND r.IsApproved = 1
+            ORDER BY r.CreatedAt DESC;
+
+            -- 5) Phân bố số sao
+            SELECT Rating, COUNT(*) AS Count
+            FROM Reviews
+            WHERE ProductId = @Id AND IsApproved = 1
+            GROUP BY Rating;
+        ";
+
+        using var multi = await _connection.QueryMultipleAsync(sql, new { Id = productId });
+
+        var detail = await multi.ReadFirstOrDefaultAsync<ProductDetailDto>();
+        if (detail == null)
+        {
+            return null;
+        }
+
+        detail.Images = (await multi.ReadAsync<string>()).ToList();
+        detail.MainImage = detail.Images.FirstOrDefault();
+        detail.Highlights = (await multi.ReadAsync<string>()).ToList();
+        detail.Reviews = (await multi.ReadAsync<ProductReviewDto>()).ToList();
+
+        var counts = new Dictionary<int, int>();
+        foreach (var row in await multi.ReadAsync())
+        {
+            counts[(int)row.Rating] = (int)row.Count;
+        }
+        var total = detail.ReviewCount;
+        detail.ReviewSummary = Enumerable.Range(1, 5)
+            .OrderByDescending(star => star)
+            .Select(star =>
+            {
+                counts.TryGetValue(star, out var count);
+                var percent = total > 0 ? (int)Math.Round(count * 100.0 / total) : 0;
+                return new ReviewSummaryDto { Rating = star, Percent = $"{percent}%" };
+            })
+            .ToList();
+
+        return detail;
+    }
+
+    public async Task<IEnumerable<string>> GetMatchingBrandNamesAsync(string keyword, int limit)
+    {
+        var sql = @"
+            SELECT DISTINCT TOP (@Limit) b.BrandName
+            FROM Products p
+            INNER JOIN Brands b ON p.BrandId = b.BrandId
+            LEFT JOIN Categories c ON p.CategoryId = c.CategoryId
+            WHERE p.IsActive = 1
+              AND (p.ProductName LIKE @Kw OR b.BrandName LIKE @Kw OR c.CategoryName LIKE @Kw)
+            ORDER BY b.BrandName
+        ";
+
+        return await _connection.QueryAsync<string>(sql, new { Limit = limit, Kw = $"%{keyword}%" });
     }
 }
