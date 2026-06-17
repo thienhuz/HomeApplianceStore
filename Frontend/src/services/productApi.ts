@@ -3,6 +3,7 @@ import type {
     CategoryDto,
     GetProductsFilters,
     PagedResult,
+    ProductDetail,
     ProductDto,
     SearchSuggestion,
 } from '../types';
@@ -28,6 +29,14 @@ export const productApi = {
 
     getFeaturedProducts: async (limit: number = 4): Promise<ProductDto[]> => {
         return request<ProductDto[]>(`/products/featured?limit=${limit}`);
+    },
+
+    getProductDetail: async (id: number): Promise<ProductDetail> => {
+        return request<ProductDetail>(`/products/${id}`);
+    },
+
+    getRelatedProducts: async (id: number, limit: number = 4): Promise<ProductDto[]> => {
+        return request<ProductDto[]>(`/products/${id}/related?limit=${limit}`);
     },
 
     getCategories: async (): Promise<CategoryDto[]> => {

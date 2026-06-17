@@ -309,6 +309,42 @@ public class ProductReadRepository : IProductReadRepository
         return detail;
     }
 
+    public async Task<IEnumerable<ProductDto>> GetRelatedProductsAsync(int productId, int limit)
+    {
+        var sql = @"
+            SELECT TOP (@Limit)
+                p.ProductId AS Id,
+                b.BrandName AS Brand,
+                c.CategoryName AS CategoryName,
+                p.ProductName AS Title,
+                p.Slug,
+                p.Description,
+                p.Price AS DbPrice,
+                p.DiscountPrice AS DbDiscountPrice,
+                COALESCE(AVG(CAST(r.Rating AS FLOAT)), 0) AS Rating,
+                COUNT(r.ReviewId) AS ReviewCount,
+                MAX(CASE WHEN pi.IsPrimary = 1 THEN pi.ImageUrl ELSE NULL END) AS ImageUrl,
+                p.ProductName AS ImageAlt,
+                CASE WHEN p.IsFeatured = 1 THEN 'HOT' ELSE NULL END AS Badge,
+                p.CreatedAt,
+                p.StockQuantity
+            FROM Products p
+            LEFT JOIN Brands b ON p.BrandId = b.BrandId
+            LEFT JOIN Categories c ON p.CategoryId = c.CategoryId
+            LEFT JOIN ProductImages pi ON p.ProductId = pi.ProductId AND pi.IsPrimary = 1
+            LEFT JOIN Reviews r ON p.ProductId = r.ProductId AND r.IsApproved = 1
+            WHERE p.IsActive = 1
+              AND p.ProductId <> @ProductId
+              AND p.CategoryId = (SELECT CategoryId FROM Products WHERE ProductId = @ProductId)
+            GROUP BY
+                p.ProductId, b.BrandName, c.CategoryName, p.ProductName, p.Slug,
+                p.Description, p.Price, p.DiscountPrice, p.IsFeatured, p.CreatedAt, p.StockQuantity
+            ORDER BY p.IsFeatured DESC, p.CreatedAt DESC
+        ";
+
+        return await _connection.QueryAsync<ProductDto>(sql, new { ProductId = productId, Limit = limit });
+    }
+
     public async Task<IEnumerable<string>> GetMatchingBrandNamesAsync(string keyword, int limit)
     {
         var sql = @"

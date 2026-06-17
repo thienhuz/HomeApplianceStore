@@ -36,10 +36,10 @@ const TopNavBar: React.FC = () => {
                         Khuyến Mãi
                     </Link>
 
-                    <button className="relative p-2 text-secondary hover:text-primary transition-colors">
+                    <Link to="/cart" className="relative p-2 text-secondary hover:text-primary transition-colors">
                         <span className="material-symbols-outlined">shopping_cart</span>
                         <span className="absolute -top-1 -right-1 inline-flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] text-white">3</span>
-                    </button>
+                    </Link>
 
                     {isAuthenticated && user ? (
                         <div className="relative">

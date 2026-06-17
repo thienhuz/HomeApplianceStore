@@ -40,9 +40,11 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ tabs, reviewCount }) => {
                 ))}
               </ul>
             </div>
-            <div className="rounded-xl overflow-hidden shadow-lg">
-              <img alt="Interior feature" className="w-full h-full object-cover" src={tabs.description.featureImage} />
-            </div>
+            {tabs.description.featureImage && (
+              <div className="rounded-xl overflow-hidden shadow-lg">
+                <img alt="Interior feature" className="w-full h-full object-cover" src={tabs.description.featureImage} />
+              </div>
+            )}
           </div>
         </div>
       ) : (

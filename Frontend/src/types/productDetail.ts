@@ -54,3 +54,36 @@ export type RelatedProduct = {
   oldPrice: string;
   img: string;
 };
+
+// ===== Dữ liệu chi tiết sản phẩm trả về từ API (GET /products/{id}) =====
+
+export interface ProductDetailReview {
+  name: string;
+  badge: string;
+  ratingFill: number;
+  content?: string | null;
+  createdAt?: string | null;
+}
+
+export interface ProductDetail {
+  id: number;
+  brand: string;
+  categoryName: string;
+  title: string;
+  slug: string;
+  description?: string | null;
+  price: string;
+  oldPrice?: string | null;
+  discountLabel?: string | null;
+  rating: number;
+  reviewCount: number;
+  stockQuantity: number;
+  note?: string | null;
+  featureTitle?: string | null;
+  featureImageUrl?: string | null;
+  highlights: string[];
+  mainImage?: string | null;
+  images: string[];
+  reviewSummary: ProductReviewSummary[];
+  reviews: ProductDetailReview[];
+}

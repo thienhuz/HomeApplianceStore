@@ -38,6 +38,13 @@ public class ProductsController : ControllerBase
         return Ok(new { success = true, message = "Lấy chi tiết sản phẩm thành công", data = result });
     }
 
+    [HttpGet("{id:int}/related")]
+    public async Task<IActionResult> GetRelatedProducts(int id, [FromQuery] int limit = 4)
+    {
+        var result = await _mediator.Send(new GetRelatedProductsQuery { ProductId = id, Limit = limit });
+        return Ok(new { success = true, message = "Lấy sản phẩm liên quan thành công", data = result });
+    }
+
     [HttpGet("search-suggestions")]
     public async Task<IActionResult> SearchSuggestions([FromQuery] string keyword, [FromQuery] int limit = 5)
     {

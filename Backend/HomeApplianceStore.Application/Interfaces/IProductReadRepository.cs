@@ -17,6 +17,9 @@ public interface IProductReadRepository
     /// <summary>Lấy đầy đủ dữ liệu chi tiết một sản phẩm (ảnh, highlights, đánh giá...).</summary>
     Task<ProductDetailDto?> GetProductDetailAsync(int productId);
 
+    /// <summary>Lấy sản phẩm liên quan (cùng danh mục, trừ chính nó).</summary>
+    Task<IEnumerable<ProductDto>> GetRelatedProductsAsync(int productId, int limit);
+
     /// <summary>Tìm sản phẩm khớp từ khóa (theo tên/thương hiệu/danh mục).</summary>
     Task<IEnumerable<ProductDto>> SearchProductsAsync(string keyword, int limit);
 

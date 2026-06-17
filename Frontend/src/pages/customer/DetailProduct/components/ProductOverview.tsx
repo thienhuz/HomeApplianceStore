@@ -40,10 +40,14 @@ const ProductOverview: React.FC<ProductOverviewProps> = ({ product, quantity, on
       <div className="p-6 bg-surface-container-low rounded-xl mb-stack-lg">
         <div className="flex items-baseline gap-4 mb-2 flex-wrap">
           <span className="font-display-lg text-display-lg text-primary">{product.price}</span>
-          <span className="font-body-md text-body-md text-on-surface-variant line-through">{product.oldPrice}</span>
-          <span className="px-2 py-0.5 bg-primary-container text-on-primary-container rounded font-label-md text-label-md">{product.discountLabel}</span>
+          {product.oldPrice && (
+            <span className="font-body-md text-body-md text-on-surface-variant line-through">{product.oldPrice}</span>
+          )}
+          {product.discountLabel && (
+            <span className="px-2 py-0.5 bg-primary-container text-on-primary-container rounded font-label-md text-label-md">{product.discountLabel}</span>
+          )}
         </div>
-        <p className="font-body-sm text-body-sm text-on-surface-variant italic">{product.note}</p>
+        {product.note && <p className="font-body-sm text-body-sm text-on-surface-variant italic">{product.note}</p>}
       </div>
 
       <div className="space-y-stack-lg">
