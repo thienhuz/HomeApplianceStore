@@ -1,5 +1,7 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { Product } from '../../../../types';
+import { useCart } from '../../../../context/CartContext';
 import QuantitySelector from './QuantitySelector';
 
 interface ProductOverviewProps {
@@ -10,6 +12,17 @@ interface ProductOverviewProps {
 
 const ProductOverview: React.FC<ProductOverviewProps> = ({ product, quantity, onQuantityChange }) => {
   const ratingStars = Array.from({ length: 5 }, (_, index) => index + 1);
+  const { addItem } = useCart();
+  const navigate = useNavigate();
+
+  const handleAddToCart = () => {
+    addItem(Number(product.id), quantity);
+  };
+
+  const handleBuyNow = async () => {
+    await addItem(Number(product.id), quantity);
+    navigate('/cart');
+  };
 
   return (
     <div className="lg:col-span-5 flex flex-col">
@@ -54,11 +67,11 @@ const ProductOverview: React.FC<ProductOverviewProps> = ({ product, quantity, on
         <QuantitySelector quantity={quantity} onChange={onQuantityChange} />
 
         <div className="flex flex-col md:flex-row gap-4">
-          <button className="flex-[2] bg-primary-container text-white py-4 rounded-lg font-headline-md text-headline-md hover:opacity-90 transition-all shadow-md active:scale-95 flex items-center justify-center gap-2" type="button">
+          <button onClick={handleAddToCart} className="flex-[2] bg-primary-container text-white py-4 rounded-lg font-headline-md text-headline-md hover:opacity-90 transition-all shadow-md active:scale-95 flex items-center justify-center gap-2" type="button">
             <span className="material-symbols-outlined">shopping_bag</span>
             THÊM VÀO GIỎ HÀNG
           </button>
-          <button className="flex-1 border-2 border-primary text-primary py-4 rounded-lg font-headline-md text-headline-md hover:bg-primary/5 transition-all active:scale-95" type="button">
+          <button onClick={handleBuyNow} className="flex-1 border-2 border-primary text-primary py-4 rounded-lg font-headline-md text-headline-md hover:bg-primary/5 transition-all active:scale-95" type="button">
             MUA NGAY
           </button>
         </div>

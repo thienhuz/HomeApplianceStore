@@ -32,10 +32,10 @@ const CategoryMenu: React.FC = () => {
                 type="button"
                 aria-haspopup="true"
                 aria-expanded={open}
-                className={`inline-flex items-center gap-2 rounded-full px-4 py-2 font-label-md text-label-md transition-all ${
+                className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 font-medium transition-colors border ${
                     open
-                        ? 'bg-primary text-on-primary shadow-sm'
-                        : 'bg-primary/10 text-primary hover:bg-primary hover:text-on-primary'
+                        ? 'bg-primary border-primary text-white'
+                        : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100 hover:border-slate-300'
                 }`}
             >
                 <span className="material-symbols-outlined text-[20px]">menu</span>

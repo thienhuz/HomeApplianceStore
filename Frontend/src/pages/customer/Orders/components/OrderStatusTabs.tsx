@@ -16,20 +16,23 @@ interface OrderStatusTabsProps {
 
 const OrderStatusTabs: React.FC<OrderStatusTabsProps> = ({ activeTab, onTabChange }) => {
     return (
-        <div className="mb-stack-lg border-b border-surface-container-highest overflow-x-auto no-scrollbar">
-            <div className="flex gap-stack-lg whitespace-nowrap min-w-max pb-px">
+        <div className="mb-6 border-b border-slate-200 overflow-x-auto no-scrollbar">
+            <div className="flex gap-0 whitespace-nowrap min-w-max">
                 {statusTabs.map((tab) => (
                     <button
                         key={tab}
-                        className={`font-label-md text-label-md py-stack-md px-stack-sm active:scale-95 transition-all ${
+                        className={`text-sm font-medium py-3 px-4 transition-colors relative ${
                             activeTab === tab
-                                ? 'text-primary border-b-2 border-primary'
-                                : 'text-on-surface-variant hover:text-primary'
+                                ? 'text-primary'
+                                : 'text-slate-500 hover:text-slate-800'
                         }`}
                         onClick={() => onTabChange(tab)}
                         type="button"
                     >
                         {tab}
+                        {activeTab === tab && (
+                            <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full" />
+                        )}
                     </button>
                 ))}
             </div>

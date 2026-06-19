@@ -37,6 +37,9 @@ public static class DependencyInjection
         services.AddScoped<IProductReadRepository, ProductReadRepository>();
         services.AddScoped<ICatalogReadRepository, CatalogReadRepository>();
 
+        // Đăng ký Cart Repository
+        services.AddScoped<ICartRepository, CartRepository>();
+
         // Đăng ký Authentication
         services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 

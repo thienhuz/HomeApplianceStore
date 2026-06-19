@@ -39,13 +39,13 @@ const ProfileSidebar: React.FC<ProfileSidebarProps> = ({
     .join('');
 
   return (
-    <div className="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(31,41,55,0.04)] overflow-hidden border border-outline-variant/10 md:sticky md:top-24">
+    <div className="bg-white rounded-2xl overflow-hidden border border-slate-200 md:sticky md:top-24">
       {/* Header with gradient banner */}
       <div className="relative">
-        <div className="h-16 bg-gradient-to-r from-primary to-primary-fixed-dim" />
-        <div className="px-stack-lg pb-stack-lg -mt-8 flex flex-col items-center text-center">
+        <div className="h-20 bg-gradient-to-br from-slate-700 to-slate-900" />
+        <div className="px-6 pb-6 -mt-8 flex flex-col items-center text-center">
           <div className="relative">
-            <div className="w-16 h-16 rounded-full overflow-hidden bg-secondary-container flex items-center justify-center text-on-secondary-container text-xl font-semibold ring-4 ring-surface-container-lowest shadow-sm">
+            <div className="w-16 h-16 rounded-full overflow-hidden bg-slate-100 flex items-center justify-center text-slate-600 text-xl font-semibold ring-4 ring-white shadow-sm">
               {user.imageUrl ? (
                 <img src={user.imageUrl} alt={user.fullName} className="h-full w-full object-cover" />
               ) : (
@@ -53,12 +53,12 @@ const ProfileSidebar: React.FC<ProfileSidebarProps> = ({
               )}
             </div>
             <span
-              className="absolute bottom-0.5 right-0.5 w-3.5 h-3.5 bg-green-500 rounded-full ring-2 ring-surface-container-lowest"
+              className="absolute bottom-0.5 right-0.5 w-3 h-3 bg-emerald-500 rounded-full ring-2 ring-white"
               title="Đang hoạt động"
             />
           </div>
-          <p className="font-label-md text-label-md text-on-surface mt-stack-md">{user.fullName}</p>
-          <span className="mt-1 inline-flex items-center gap-1 text-[11px] font-semibold text-on-primary-fixed-variant bg-primary-fixed/40 px-2.5 py-0.5 rounded-full">
+          <p className="font-semibold text-slate-900 mt-4 text-[15px]">{user.fullName}</p>
+          <span className="mt-2 inline-flex items-center gap-1 text-[11px] font-medium text-amber-700 bg-amber-50 border border-amber-200/60 px-2.5 py-1 rounded-lg">
             <span className="material-symbols-outlined text-[13px]" style={{ fontVariationSettings: "'FILL' 1" }}>
               workspace_premium
             </span>
@@ -67,9 +67,9 @@ const ProfileSidebar: React.FC<ProfileSidebarProps> = ({
         </div>
       </div>
 
-      <hr className="border-surface-variant" />
+      <hr className="border-slate-100" />
 
-      <nav className="flex flex-col p-stack-md gap-1">
+      <nav className="flex flex-col p-3 gap-0.5">
         {navItems.map((item) => {
           const active = activeTab === item.key;
           return (
@@ -78,22 +78,22 @@ const ProfileSidebar: React.FC<ProfileSidebarProps> = ({
               type="button"
               onClick={item.onClick}
               aria-current={active ? 'page' : undefined}
-              className={`group flex items-center gap-stack-md px-stack-md py-stack-md rounded-lg text-left transition-all ${
+              className={`group flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-colors ${
                 active
-                  ? 'text-primary bg-primary-fixed/15 font-semibold'
-                  : 'text-on-surface-variant hover:bg-surface-container hover:translate-x-0.5'
+                  ? 'text-primary bg-primary/5 font-medium'
+                  : 'text-slate-600 hover:bg-slate-50'
               }`}
             >
               <span
-                className="material-symbols-outlined"
+                className={`material-symbols-outlined text-[20px] ${active ? 'text-primary' : 'text-slate-400'}`}
                 style={active ? { fontVariationSettings: "'FILL' 1" } : undefined}
               >
                 {item.icon}
               </span>
-              <span className="font-body-md text-body-md flex-grow">{item.label}</span>
+              <span className="text-[14px] flex-grow">{item.label}</span>
               <span
-                className={`material-symbols-outlined text-[18px] transition-all ${
-                  active ? 'opacity-100' : 'opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0'
+                className={`material-symbols-outlined text-[16px] transition-opacity ${
+                  active ? 'opacity-100 text-primary' : 'opacity-0 group-hover:opacity-40'
                 }`}
               >
                 chevron_right
@@ -102,15 +102,15 @@ const ProfileSidebar: React.FC<ProfileSidebarProps> = ({
           );
         })}
 
-        <hr className="my-stack-sm border-surface-variant" />
+        <hr className="my-2 border-slate-100" />
 
         <button
           type="button"
           onClick={onLogout}
-          className="flex items-center gap-stack-md px-stack-md py-stack-md rounded-lg text-left transition-all text-error hover:bg-error/10"
+          className="flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-colors text-red-500 hover:bg-red-50"
         >
-          <span className="material-symbols-outlined">logout</span>
-          <span className="font-body-md text-body-md">Đăng xuất</span>
+          <span className="material-symbols-outlined text-[20px]">logout</span>
+          <span className="text-[14px]">Đăng xuất</span>
         </button>
       </nav>
     </div>

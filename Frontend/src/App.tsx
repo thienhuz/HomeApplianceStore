@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { CartProvider } from './context/CartContext';
 import MainLayout from './components/layout/MainLayout';
 import ScrollToTop from './components/layout/ScrollToTop';
 import HomePage from './pages/customer/HomePage/HomePage';
@@ -16,9 +17,10 @@ function App() {
   return (
     <AuthProvider>
       <Router>
+        <CartProvider>
         <ScrollToTop />
         <Routes>
-          <Route path="/" element={<MainLayout />}> 
+          <Route path="/" element={<MainLayout />}>
             <Route index element={<HomePage />} />
             <Route path="products" element={<AllProductsPage />} />
             <Route path="DetailProduct/:id" element={<DetailProduct />} />
@@ -30,6 +32,7 @@ function App() {
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
         </Routes>
+        </CartProvider>
       </Router>
     </AuthProvider>
   );

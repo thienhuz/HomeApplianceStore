@@ -63,21 +63,21 @@ const SearchBar: React.FC = () => {
     return (
         <div ref={containerRef} className="relative w-full">
             <form
-                className="flex items-center overflow-hidden rounded-full border border-surface-variant bg-surface-bright shadow-sm transition-colors focus-within:border-primary"
+                className="flex items-center overflow-hidden rounded-xl border border-slate-200 bg-slate-50 transition-all duration-200 focus-within:border-primary focus-within:bg-white focus-within:ring-4 focus-within:ring-primary/10"
                 onSubmit={(e) => {
                     e.preventDefault();
                     goSearch(query);
                 }}
             >
-                <button type="submit" className="flex cursor-pointer items-center justify-center pl-4 pr-2 text-primary transition-colors hover:text-primary/80" aria-label="Tìm kiếm">
-                    <span className="material-symbols-outlined">search</span>
+                <button type="submit" className="flex cursor-pointer items-center justify-center pl-4 pr-2 text-slate-400 hover:text-primary transition-colors" aria-label="Tìm kiếm">
+                    <span className="material-symbols-outlined text-[22px]">search</span>
                 </button>
                 <input
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     onFocus={() => setOpen(true)}
                     placeholder="Tìm kiếm sản phẩm..."
-                    className="min-w-0 flex-1 border-none bg-transparent py-2.5 pr-2 text-body-sm text-on-surface outline-none placeholder:text-on-surface-variant"
+                    className="min-w-0 flex-1 border-none bg-transparent py-2.5 pr-4 text-[15px] text-slate-700 outline-none placeholder:text-slate-400"
                     type="text"
                 />
                 {query && (

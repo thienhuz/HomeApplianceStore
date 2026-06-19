@@ -1,5 +1,7 @@
 import React from 'react';
-import { formatVnd } from '../data';
+import { formatVnd } from '../../../../context/CartContext';
+
+const SHIPPING_FEE = 30000;
 
 interface CartSummaryProps {
   selectedCount: number;
@@ -8,6 +10,10 @@ interface CartSummaryProps {
 
 const CartSummary: React.FC<CartSummaryProps> = ({ selectedCount, subtotal }) => {
   const disabled = selectedCount === 0;
+  const freeShipping = selectedCount >= 2;
+  const shipping = freeShipping || selectedCount === 0 ? 0 : SHIPPING_FEE;
+  const total = subtotal + shipping;
+  const remaining = Math.max(0, 2 - selectedCount);
 
   return (
     <div className="bg-surface-container-lowest rounded-xl p-8 shadow-[0_12px_30px_rgba(31,41,55,0.06)]">
@@ -19,7 +25,11 @@ const CartSummary: React.FC<CartSummaryProps> = ({ selectedCount, subtotal }) =>
         </div>
         <div className="flex justify-between">
           <span className="text-secondary">Phí vận chuyển</span>
-          <span className="text-tertiary font-medium">Miễn phí</span>
+          {freeShipping ? (
+            <span className="text-tertiary font-medium">Miễn phí</span>
+          ) : (
+            <span className="font-medium text-on-surface">{formatVnd(shipping)}</span>
+          )}
         </div>
         <div className="flex justify-between">
           <span className="text-secondary">Giảm giá</span>
@@ -27,18 +37,27 @@ const CartSummary: React.FC<CartSummaryProps> = ({ selectedCount, subtotal }) =>
         </div>
         {/* Free shipping indicator */}
         <div className="mt-2">
-          <div className="flex justify-between items-center text-xs mb-1">
-            <span className="text-tertiary font-bold">Bạn đã đủ điều kiện miễn phí vận chuyển!</span>
-            <span className="material-symbols-outlined text-tertiary text-sm">check_circle</span>
-          </div>
+          {freeShipping ? (
+            <div className="flex justify-between items-center text-xs mb-1">
+              <span className="text-tertiary font-bold">Bạn đã đủ điều kiện miễn phí vận chuyển!</span>
+              <span className="material-symbols-outlined text-tertiary text-sm">check_circle</span>
+            </div>
+          ) : (
+            <div className="text-xs mb-1 text-on-surface-variant">
+              Mua thêm <span className="font-bold text-primary">{remaining}</span> sản phẩm để được miễn phí vận chuyển
+            </div>
+          )}
           <div className="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
-            <div className="h-full bg-tertiary w-full"></div>
+            <div
+              className={`h-full transition-all ${freeShipping ? 'bg-tertiary' : 'bg-primary-fixed-dim'}`}
+              style={{ width: `${Math.min(100, (selectedCount / 2) * 100)}%` }}
+            />
           </div>
         </div>
       </div>
       <div className="flex justify-between items-center mb-8">
         <span className="font-headline-md text-headline-md">Tổng cộng</span>
-        <span className="font-headline-md text-headline-md text-primary">{formatVnd(subtotal)}</span>
+        <span className="font-headline-md text-headline-md text-primary">{formatVnd(total)}</span>
       </div>
       <button
         type="button"

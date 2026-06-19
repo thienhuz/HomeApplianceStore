@@ -74,26 +74,26 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-surface text-on-surface font-body-md flex flex-col">
+    <div className="min-h-screen bg-slate-50 font-body-md flex flex-col">
       <AuthBackground />
-      <main className="flex-grow flex items-center justify-center py-stack-lg px-margin-mobile">
+      <main className="flex-grow flex items-center justify-center py-16 px-6">
         <div className="w-full max-w-[480px] animate-auth-in">
-          <div className="text-center mb-stack-lg">
+          <div className="text-center mb-10">
             <Link
               to="/"
-              className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary text-on-primary shadow-md mb-3 transition-transform hover:scale-105 active:scale-95"
+              className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary text-white shadow-lg mb-4 transition-colors hover:bg-primary/90"
               aria-label="Về trang chủ"
             >
-              <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>storefront</span>
+              <span className="material-symbols-outlined text-[28px]" style={{ fontVariationSettings: "'FILL' 1" }}>storefront</span>
             </Link>
-            <h1 className="font-headline-lg text-headline-lg text-primary font-bold tracking-tight mb-2">HomeApplianceStore</h1>
-            <p className="font-body-md text-body-md text-secondary">Khám phá không gian sống hiện đại cùng HomeApplianceStore</p>
+            <h1 className="text-2xl font-bold tracking-tight text-slate-900 mb-2">HomeApplianceStore</h1>
+            <p className="text-sm text-slate-500">Khám phá không gian sống hiện đại cùng HomeApplianceStore</p>
           </div>
 
-          <div className="bg-surface-container-lowest rounded-xl p-stack-lg md:p-12 border border-surface-variant/50 shadow-[0_4px_20px_rgba(31,41,55,0.04)] focus-within:shadow-[0_12px_30px_rgba(31,41,55,0.08)] transition-all duration-300">
-            <h2 className="font-headline-md text-headline-md text-on-surface text-center mb-stack-lg">Tạo tài khoản</h2>
+          <div className="bg-white rounded-2xl p-8 md:p-10 border border-slate-200 shadow-xl shadow-slate-200/50">
+            <h2 className="text-2xl font-semibold text-slate-900 text-center mb-8">Tạo tài khoản</h2>
 
-          <form className="space-y-gutter" onSubmit={handleSubmit} noValidate>
+          <form className="space-y-6" onSubmit={handleSubmit} noValidate>
             <AuthField
               id="fullName"
               label="Họ và tên"
@@ -143,7 +143,7 @@ const RegisterPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowPassword((prev) => !prev)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-secondary hover:text-primary transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
                   aria-label={showPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'}
                 >
                   <span className="material-symbols-outlined">{showPassword ? 'visibility_off' : 'visibility'}</span>
@@ -179,15 +179,15 @@ const RegisterPage: React.FC = () => {
                     setTermsAccepted(e.target.checked);
                     if (e.target.checked) setTermsError(false);
                   }}
-                  className="mt-1 w-4 h-4 text-primary border-outline-variant rounded focus:ring-primary focus:ring-offset-0"
+                  className="mt-0.5 w-4 h-4 text-primary border-slate-300 rounded cursor-pointer focus:ring-primary focus:ring-offset-0 transition-colors"
                 />
-                <label htmlFor="terms" className="font-body-sm text-body-sm text-secondary">
+                <label htmlFor="terms" className="text-sm text-slate-600 leading-relaxed">
                   Tôi đồng ý với{' '}
-                  <a className="text-primary hover:underline" href="#">
+                  <a className="font-medium text-primary hover:text-primary/80 transition-colors" href="#">
                     Điều khoản dịch vụ
                   </a>{' '}
                   và{' '}
-                  <a className="text-primary hover:underline" href="#">
+                  <a className="font-medium text-primary hover:text-primary/80 transition-colors" href="#">
                     Chính sách bảo mật
                   </a>{' '}
                   của HomeApplianceStore.
@@ -211,7 +211,7 @@ const RegisterPage: React.FC = () => {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full py-4 bg-primary-container text-on-primary font-label-md text-label-md rounded-lg active:scale-[0.98] transition-transform duration-200 shadow-sm hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full py-3.5 bg-primary text-white font-medium rounded-xl transition-colors duration-200 shadow-sm hover:bg-primary/90 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {submitting && (
                 <span className="material-symbols-outlined animate-spin text-[20px]">progress_activity</span>
@@ -220,21 +220,21 @@ const RegisterPage: React.FC = () => {
             </button>
           </form>
 
-          <div className="mt-stack-lg text-center">
-            <p className="font-body-sm text-body-sm text-secondary">
+          <div className="mt-8 text-center">
+            <p className="text-sm text-slate-600">
               Đã có tài khoản?
-              <Link className="text-primary font-bold hover:underline ml-1" to="/login">
+              <Link className="font-medium text-primary hover:text-primary/80 transition-colors ml-1.5" to="/login">
                 Đăng nhập ngay
               </Link>
             </p>
           </div>
 
-            <div className="mt-stack-md pt-stack-md border-t border-surface-variant/50 text-center">
+            <div className="mt-8 pt-6 border-t border-slate-100 text-center">
               <Link
                 to="/"
-                className="inline-flex items-center gap-1 font-label-md text-label-md text-secondary hover:text-primary transition-colors"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 hover:text-slate-800 transition-colors"
               >
-                <span className="material-symbols-outlined text-[20px]">arrow_back</span>
+                <span className="material-symbols-outlined text-[18px]">arrow_back</span>
                 Về trang chủ
               </Link>
             </div>

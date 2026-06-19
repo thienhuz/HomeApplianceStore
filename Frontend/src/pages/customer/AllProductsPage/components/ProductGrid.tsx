@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import type { ProductDto } from '../../../../types';
+import { useCart } from '../../../../context/CartContext';
 
 interface ProductGridProps {
     products: ProductDto[];
@@ -8,6 +9,8 @@ interface ProductGridProps {
 }
 
 const ProductGrid: React.FC<ProductGridProps> = ({ products, loading }) => {
+    const { addItem } = useCart();
+
     if (loading) {
         return (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
@@ -73,7 +76,11 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, loading }) => {
                                 <span className="text-secondary line-through text-body-sm">{product.originalPrice}</span>
                             )}
                         </div>
-                        <button className="w-full py-3 bg-primary text-white font-label-md rounded-lg flex items-center justify-center gap-2 hover:bg-primary-container active:scale-[0.98] transition-all mt-4">
+                        <button
+                            type="button"
+                            onClick={() => addItem(product.id)}
+                            className="w-full py-3 bg-primary text-white font-label-md rounded-lg flex items-center justify-center gap-2 hover:bg-primary-container active:scale-[0.98] transition-all mt-4"
+                        >
                             <span className="material-symbols-outlined text-[20px]">shopping_cart</span>
                             Thêm vào giỏ
                         </button>

@@ -47,18 +47,18 @@ const ProfilePage: React.FC = () => {
   if (!user) return null;
 
   return (
-    <main className="max-w-container-max mx-auto px-gutter py-stack-lg">
+    <main className="max-w-container-max mx-auto px-6 md:px-8 py-8">
       {/* Breadcrumb + page heading */}
-      <nav className="flex items-center gap-1.5 font-body-sm text-body-sm text-on-surface-variant mb-stack-md">
+      <nav className="flex items-center gap-1.5 text-sm text-slate-500 mb-4">
         <button type="button" onClick={() => navigate('/')} className="hover:text-primary transition-colors">
           Trang chủ
         </button>
-        <span className="material-symbols-outlined text-[16px]">chevron_right</span>
-        <span className="text-on-surface font-medium">Tài khoản của tôi</span>
+        <span className="material-symbols-outlined text-[16px] text-slate-300">chevron_right</span>
+        <span className="text-slate-900 font-medium">Tài khoản của tôi</span>
       </nav>
-      <h1 className="font-headline-lg text-headline-lg text-on-surface mb-stack-lg">Tài khoản của tôi</h1>
+      <h1 className="text-2xl font-bold text-slate-900 mb-8">Tài khoản của tôi</h1>
 
-      <div className="flex flex-col md:flex-row gap-gutter items-start">
+      <div className="flex flex-col md:flex-row gap-6 items-start">
         <aside className="w-full md:w-80 flex-shrink-0">
           <ProfileSidebar
             user={user}

@@ -3,37 +3,37 @@ import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
     return (
-        <footer className="bg-surface-container-low w-full mt-stack-lg">
-            <div className="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-stack-lg">
+        <footer className="bg-slate-50 w-full mt-16 border-t border-slate-200">
+            <div className="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 px-8 py-16">
                 <div className="col-span-1 md:col-span-1">
-                    <div className="font-headline-md text-headline-md font-bold text-on-surface mb-stack-sm">HomeApplianceStore</div>
-                    <p className="text-on-secondary-container mt-2">Mang đến sự tiện nghi và hiện đại cho ngôi nhà của bạn bằng những sản phẩm điện máy chất lượng cao.</p>
+                    <div className="text-xl font-bold text-slate-900 mb-4 tracking-tight">HomeApplianceStore</div>
+                    <p className="text-slate-500 leading-relaxed text-sm">Mang đến sự tiện nghi và hiện đại cho ngôi nhà của bạn bằng những sản phẩm điện máy chất lượng cao.</p>
                 </div>
-                <div className="col-span-1 flex flex-col gap-2">
-                    <span className="font-label-md text-label-md text-on-surface font-bold mb-2">Chính Sách</span>
-                    <Link className="text-on-secondary-container hover:text-primary transition-colors underline cursor-pointer" to="#">Shipping Policy</Link>
-                    <Link className="text-on-secondary-container hover:text-primary transition-colors underline cursor-pointer" to="#">Returns</Link>
-                    <Link className="text-on-secondary-container hover:text-primary transition-colors underline cursor-pointer" to="#">Privacy Policy</Link>
-                    <Link className="text-on-secondary-container hover:text-primary transition-colors underline cursor-pointer" to="#">Terms of Service</Link>
+                <div className="col-span-1 flex flex-col gap-3">
+                    <span className="font-semibold text-slate-900 mb-2">Chính Sách</span>
+                    <Link className="text-slate-500 hover:text-primary transition-colors text-sm" to="#">Shipping Policy</Link>
+                    <Link className="text-slate-500 hover:text-primary transition-colors text-sm" to="#">Returns</Link>
+                    <Link className="text-slate-500 hover:text-primary transition-colors text-sm" to="#">Privacy Policy</Link>
+                    <Link className="text-slate-500 hover:text-primary transition-colors text-sm" to="#">Terms of Service</Link>
                 </div>
-                <div className="col-span-1 flex flex-col gap-2">
-                    <span className="font-label-md text-label-md text-on-surface font-bold mb-2">Thông Tin</span>
-                    <Link className="text-on-secondary-container hover:text-primary transition-colors underline cursor-pointer" to="#">About Us</Link>
-                    <Link className="text-on-secondary-container hover:text-primary transition-colors underline cursor-pointer" to="#">Contact</Link>
+                <div className="col-span-1 flex flex-col gap-3">
+                    <span className="font-semibold text-slate-900 mb-2">Thông Tin</span>
+                    <Link className="text-slate-500 hover:text-primary transition-colors text-sm" to="#">About Us</Link>
+                    <Link className="text-slate-500 hover:text-primary transition-colors text-sm" to="#">Contact</Link>
                 </div>
-                <div className="col-span-1 flex flex-col gap-2">
-                    <span className="font-label-md text-label-md text-on-surface font-bold mb-2">Liên Hệ</span>
-                    <div className="flex items-center gap-2 text-on-secondary-container">
-                        <span className="material-symbols-outlined">location_on</span>
-                        <span>123 Đường Nguyễn Văn Linh, Quận 7, TP.HCM</span>
+                <div className="col-span-1 flex flex-col gap-3">
+                    <span className="font-semibold text-slate-900 mb-2">Liên Hệ</span>
+                    <div className="flex items-start gap-3 text-slate-500 text-sm leading-relaxed">
+                        <span className="material-symbols-outlined text-[20px] text-slate-400 mt-0.5">location_on</span>
+                        <span>123 Đường Nguyễn Văn Linh,<br />Quận 7, TP.HCM</span>
                     </div>
-                    <div className="flex items-center gap-2 text-on-secondary-container mt-2">
-                        <span className="material-symbols-outlined">call</span>
+                    <div className="flex items-center gap-3 text-slate-500 text-sm mt-1">
+                        <span className="material-symbols-outlined text-[20px] text-slate-400">call</span>
                         <span>1900 1234</span>
                     </div>
                 </div>
-                <div className="col-span-1 md:col-span-4 border-t border-surface-variant/20 mt-stack-md pt-stack-md text-center text-on-secondary-container">
-                    © 2024 HomeApplianceStore. All rights reserved.
+                <div className="col-span-1 md:col-span-4 border-t border-slate-200 mt-8 pt-8 text-center text-slate-400 text-sm">
+                    © 2026 HomeApplianceStore. All rights reserved.
                 </div>
             </div>
         </footer>
