@@ -64,19 +64,19 @@ const AllProductsPage: React.FC = () => {
     const pageSize = data?.pageSize || 12;
 
     return (
-        <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop min-h-screen">
+        <div className="max-w-container-max mx-auto px-4 md:px-8 min-h-screen">
             <Breadcrumb />
             {error && (
-                <div className="mb-4 p-4 text-center text-error bg-error-container rounded-lg">{error}</div>
+                <div className="mb-4 p-4 text-center text-red-700 bg-red-50 border border-red-200/60 rounded-xl text-sm">{error}</div>
             )}
-            <div className="flex flex-col md:flex-row gap-gutter">
+            <div className="flex flex-col md:flex-row gap-6 items-start">
                 <SidebarFilters
                     filters={filters}
                     onFilterChange={handleFilterChange}
                 />
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                     {keywordParam && (
-                        <h1 className="font-headline-md text-headline-md text-on-surface mb-stack-md">
+                        <h1 className="text-lg font-semibold text-slate-900 mb-4">
                             Kết quả tìm kiếm cho: <span className="text-primary">"{keywordParam}"</span>
                         </h1>
                     )}

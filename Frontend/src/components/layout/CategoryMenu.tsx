@@ -32,16 +32,16 @@ const CategoryMenu: React.FC = () => {
                 type="button"
                 aria-haspopup="true"
                 aria-expanded={open}
-                className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 font-medium transition-colors border ${
+                className={`inline-flex items-center justify-center gap-1.5 md:gap-2 rounded-xl px-2 md:px-4 py-2 md:py-2.5 font-medium transition-colors border ${
                     open
                         ? 'bg-primary border-primary text-white'
                         : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100 hover:border-slate-300'
                 }`}
             >
-                <span className="material-symbols-outlined text-[20px]">menu</span>
-                Danh mục
+                <span className="material-symbols-outlined text-[24px] md:text-[20px]">menu</span>
+                <span className="hidden md:inline">Danh mục</span>
                 <span
-                    className={`material-symbols-outlined text-[18px] transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+                    className={`hidden md:inline material-symbols-outlined text-[18px] transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
                 >
                     expand_more
                 </span>

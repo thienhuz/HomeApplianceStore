@@ -11,15 +11,16 @@ const Footer: React.FC = () => {
                 </div>
                 <div className="col-span-1 flex flex-col gap-3">
                     <span className="font-semibold text-slate-900 mb-2">Chính Sách</span>
-                    <Link className="text-slate-500 hover:text-primary transition-colors text-sm" to="#">Shipping Policy</Link>
-                    <Link className="text-slate-500 hover:text-primary transition-colors text-sm" to="#">Returns</Link>
-                    <Link className="text-slate-500 hover:text-primary transition-colors text-sm" to="#">Privacy Policy</Link>
-                    <Link className="text-slate-500 hover:text-primary transition-colors text-sm" to="#">Terms of Service</Link>
+                    <Link className="text-slate-500 hover:text-primary transition-colors text-sm" to="#">Chính sách vận chuyển</Link>
+                    <Link className="text-slate-500 hover:text-primary transition-colors text-sm" to="#">Chính sách đổi trả</Link>
+                    <Link className="text-slate-500 hover:text-primary transition-colors text-sm" to="#">Chính sách bảo mật</Link>
+                    <Link className="text-slate-500 hover:text-primary transition-colors text-sm" to="#">Điều khoản dịch vụ</Link>
                 </div>
                 <div className="col-span-1 flex flex-col gap-3">
                     <span className="font-semibold text-slate-900 mb-2">Thông Tin</span>
-                    <Link className="text-slate-500 hover:text-primary transition-colors text-sm" to="#">About Us</Link>
-                    <Link className="text-slate-500 hover:text-primary transition-colors text-sm" to="#">Contact</Link>
+                    <Link className="text-slate-500 hover:text-primary transition-colors text-sm" to="#">Về chúng tôi</Link>
+                    <Link className="text-slate-500 hover:text-primary transition-colors text-sm" to="#">Liên hệ hỗ trợ</Link>
+                    <Link className="text-slate-500 hover:text-primary transition-colors text-sm" to="#">Câu hỏi thường gặp (FAQ)</Link>
                 </div>
                 <div className="col-span-1 flex flex-col gap-3">
                     <span className="font-semibold text-slate-900 mb-2">Liên Hệ</span>

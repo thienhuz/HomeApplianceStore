@@ -7,10 +7,10 @@ interface BreadcrumbProps {
 
 const Breadcrumb: React.FC<BreadcrumbProps> = ({ categoryName }) => {
     return (
-        <nav className="flex items-center gap-2 mb-stack-md text-secondary font-body-sm text-body-sm pt-stack-sm">
+        <nav className="flex items-center gap-1.5 text-sm text-slate-500 pt-4 mb-4">
             <Link className="hover:text-primary transition-colors" to="/">Trang chủ</Link>
-            <span className="material-symbols-outlined text-sm">chevron_right</span>
-            <span className="text-on-surface font-medium">{categoryName || 'Tất cả sản phẩm'}</span>
+            <span className="material-symbols-outlined text-[16px] text-slate-300">chevron_right</span>
+            <span className="text-slate-900 font-medium">{categoryName || 'Tất cả sản phẩm'}</span>
         </nav>
     );
 };

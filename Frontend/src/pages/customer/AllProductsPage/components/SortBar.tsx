@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 interface SortBarProps {
     totalItems: number;
     pageSize: number;
@@ -14,14 +13,14 @@ const SortBar: React.FC<SortBarProps> = ({ totalItems, pageSize, pageNumber, sor
     const endItem = Math.min(pageNumber * pageSize, totalItems);
 
     return (
-        <div className="flex flex-col md:flex-row justify-between items-center mb-gutter bg-surface-container-lowest p-stack-md rounded-lg shadow-sm">
-            <span className="font-body-md text-body-md text-secondary mb-2 md:mb-0">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 bg-white p-4 rounded-xl border border-slate-200">
+            <span className="text-sm text-slate-500 mb-2 sm:mb-0">
                 Hiển thị {startItem}-{endItem} trên {totalItems} sản phẩm
             </span>
-            <div className="flex items-center gap-4">
-                <span className="font-label-md text-label-md text-on-surface">Sắp xếp:</span>
+            <div className="flex items-center gap-2">
+                <span className="text-sm font-medium text-slate-700">Sắp xếp:</span>
                 <select
-                    className="bg-transparent border-none focus:ring-0 font-body-md text-body-md text-primary font-semibold cursor-pointer"
+                    className="bg-transparent border border-slate-200 rounded-lg px-3 py-1.5 text-sm text-primary font-semibold cursor-pointer outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all"
                     value={sortBy || 'newest'}
                     onChange={(e) => onSortChange(e.target.value)}
                 >

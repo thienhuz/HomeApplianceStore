@@ -63,19 +63,19 @@ const DetailProduct: React.FC = () => {
 
   if (error || !product) {
     return (
-      <div className="flex min-h-[60vh] flex-col items-center justify-center gap-3 text-center px-margin-mobile">
-        <span className="material-symbols-outlined text-5xl text-on-surface-variant">search_off</span>
-        <p className="font-headline-md text-headline-md text-on-surface">Không tìm thấy sản phẩm</p>
-        <p className="font-body-md text-body-md text-on-surface-variant">{error ?? 'Sản phẩm không tồn tại hoặc đã bị ẩn.'}</p>
+      <div className="flex min-h-[60vh] flex-col items-center justify-center gap-3 text-center px-4">
+        <span className="material-symbols-outlined text-5xl text-slate-300">search_off</span>
+        <p className="text-lg font-semibold text-slate-900">Không tìm thấy sản phẩm</p>
+        <p className="text-sm text-slate-500">{error ?? 'Sản phẩm không tồn tại hoặc đã bị ẩn.'}</p>
       </div>
     );
   }
 
   return (
-    <div className="pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto min-h-screen">
+    <div className="pb-16 px-4 md:px-8 max-w-container-max mx-auto min-h-screen">
       <ProductBreadcrumb title={product.title} />
 
-      <section className="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+      <section className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         <ProductGallery title={product.title} mainImage={product.mainImage} images={product.images} />
         <ProductOverview product={product} quantity={quantity} onQuantityChange={setQuantity} />
       </section>

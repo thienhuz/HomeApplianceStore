@@ -1,3 +1,16 @@
+## Frontend / NodeJS & React (Vite)
+**/node_modules/
+**/dist/
+**/build/
+**/.vite/
+**/.env
+**/.env.local
+**/.env.*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintcache
+
 ## .NET / C# Backend
 **/bin/
 **/obj/
@@ -18,8 +31,9 @@ bld/
 [Ll]og/
 [Ll]ogs/
 
-# Visual Studio
+# Visual Studio / Rider
 .vs/
+.idea/
 *.csproj.user
 launchSettings.json.user
 
@@ -27,8 +41,13 @@ launchSettings.json.user
 *.nupkg
 **/packages/
 
-# Rider
-.idea/
+# Editors & Tools
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.gemini/
 
 # OS files
 Thumbs.db
@@ -38,10 +57,13 @@ Desktop.ini
 
 # User-specific files
 *.rsuser
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
 
 # Ignore sensitive config files
+appsettings.Development.json
 appsettings*.json
+!appsettings.json
+
+# Temporary/Screenshot files
+ui-current.png
+localhost_*.png
+*.mp4

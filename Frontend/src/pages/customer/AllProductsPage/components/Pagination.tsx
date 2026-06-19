@@ -16,36 +16,36 @@ const Pagination: React.FC<PaginationProps> = ({ totalPages, pageNumber, onPageC
                 <button
                     key={i}
                     onClick={() => onPageChange(i)}
-                    className={`w-10 h-10 flex items-center justify-center rounded-lg transition-colors ${
+                    className={`w-10 h-10 flex items-center justify-center rounded-xl text-sm font-medium transition-colors ${
                         pageNumber === i
-                            ? 'bg-primary text-white font-bold'
-                            : 'border border-surface-container-highest hover:bg-surface-container hover:text-primary'
+                            ? 'bg-primary text-white'
+                            : 'border border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300'
                     }`}
                 >
                     {i}
                 </button>
             );
         } else if (i === pageNumber - 2 || i === pageNumber + 2) {
-            pages.push(<span key={i} className="px-2">...</span>);
+            pages.push(<span key={i} className="px-1 text-slate-400">...</span>);
         }
     }
 
     return (
-        <div className="mt-stack-lg flex items-center justify-center gap-2 py-10">
+        <div className="mt-8 flex items-center justify-center gap-2 py-8">
             <button
                 onClick={() => onPageChange(Math.max(1, pageNumber - 1))}
                 disabled={pageNumber === 1}
-                className="w-10 h-10 flex items-center justify-center rounded-lg border border-surface-container-highest hover:bg-surface-container hover:text-primary transition-colors disabled:opacity-50"
+                className="w-10 h-10 flex items-center justify-center rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300 transition-colors disabled:opacity-40 disabled:pointer-events-none"
             >
-                <span className="material-symbols-outlined">chevron_left</span>
+                <span className="material-symbols-outlined text-[20px]">chevron_left</span>
             </button>
             {pages}
             <button
                 onClick={() => onPageChange(Math.min(totalPages, pageNumber + 1))}
                 disabled={pageNumber === totalPages}
-                className="w-10 h-10 flex items-center justify-center rounded-lg border border-surface-container-highest hover:bg-surface-container hover:text-primary transition-colors disabled:opacity-50"
+                className="w-10 h-10 flex items-center justify-center rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300 transition-colors disabled:opacity-40 disabled:pointer-events-none"
             >
-                <span className="material-symbols-outlined">chevron_right</span>
+                <span className="material-symbols-outlined text-[20px]">chevron_right</span>
             </button>
         </div>
     );
