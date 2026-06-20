@@ -32,6 +32,13 @@ export async function register(data: RegisterRequest): Promise<number> {
   });
 }
 
+export async function changePassword(data: any): Promise<any> {
+  return request<any>('/auth/change-password', {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  });
+}
+
 export function logout(): void {
   localStorage.removeItem(TOKEN_KEY);
   localStorage.removeItem(USER_KEY);

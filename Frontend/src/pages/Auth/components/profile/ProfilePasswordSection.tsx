@@ -1,9 +1,52 @@
 import React, { useState } from 'react';
 
+import { changePassword } from '../../../../services/authService';
+
 const ProfilePasswordSection: React.FC = () => {
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setError('');
+    setSuccess('');
+
+    if (!currentPassword || !newPassword || !confirmPassword) {
+      setError('Vui lòng điền đầy đủ các trường.');
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      setError('Mật khẩu xác nhận không khớp.');
+      return;
+    }
+
+    if (newPassword.length < 8) {
+      setError('Mật khẩu mới phải dài ít nhất 8 ký tự.');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await changePassword({ currentPassword, newPassword });
+      setSuccess('Đổi mật khẩu thành công!');
+      setCurrentPassword('');
+      setNewPassword('');
+      setConfirmPassword('');
+    } catch (err: any) {
+      setError(err.message || 'Đã có lỗi xảy ra khi đổi mật khẩu.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="bg-white rounded-2xl overflow-hidden border border-slate-200">
@@ -11,14 +54,28 @@ const ProfilePasswordSection: React.FC = () => {
         <h2 className="text-xl font-semibold text-slate-900">Đổi mật khẩu</h2>
         <p className="text-sm text-slate-500 mt-1">Để bảo mật tài khoản, vui lòng không chia sẻ mật khẩu cho người khác</p>
       </div>
-      
+
       <div className="px-8 py-8">
-        <form className="max-w-xl space-y-6" onSubmit={(event) => event.preventDefault()}>
+        <form className="max-w-xl space-y-6" onSubmit={handleSubmit}>
+
+          {error && (
+            <div className="p-3 mb-4 text-sm text-red-600 bg-red-50 rounded-xl border border-red-100">
+              {error}
+            </div>
+          )}
+          {success && (
+            <div className="p-3 mb-4 text-sm text-emerald-600 bg-emerald-50 rounded-xl border border-emerald-100">
+              {success}
+            </div>
+          )}
+
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
             <label className="w-48 text-sm font-medium text-slate-500 shrink-0">Mật khẩu hiện tại</label>
             <div className="relative flex-grow">
               <input
                 type={showCurrentPassword ? 'text' : 'password'}
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
                 className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 outline-none transition-all focus:border-primary focus:ring-4 focus:ring-primary/10"
                 placeholder="••••••••"
               />
@@ -38,6 +95,8 @@ const ProfilePasswordSection: React.FC = () => {
               <div className="relative">
                 <input
                   type={showNewPassword ? 'text' : 'password'}
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
                   className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 outline-none transition-all focus:border-primary focus:ring-4 focus:ring-primary/10"
                   placeholder="••••••••"
                 />
@@ -61,6 +120,8 @@ const ProfilePasswordSection: React.FC = () => {
             <div className="relative flex-grow">
               <input
                 type={showConfirmPassword ? 'text' : 'password'}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 outline-none transition-all focus:border-primary focus:ring-4 focus:ring-primary/10"
                 placeholder="••••••••"
               />
@@ -75,8 +136,12 @@ const ProfilePasswordSection: React.FC = () => {
           </div>
 
           <div className="pt-4 flex sm:justify-end">
-            <button className="w-full sm:w-auto px-8 py-3 bg-primary text-white font-medium text-sm rounded-xl hover:bg-primary/90 transition-colors" type="submit">
-              Cập nhật mật khẩu
+            <button
+              disabled={loading}
+              className={`w-full sm:w-auto px-8 py-3 bg-primary text-white font-medium text-sm rounded-xl transition-colors ${loading ? 'opacity-70 cursor-not-allowed' : 'hover:bg-primary/90'}`}
+              type="submit"
+            >
+              {loading ? 'Đang cập nhật...' : 'Cập nhật mật khẩu'}
             </button>
           </div>
         </form>
