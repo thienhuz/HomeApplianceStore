@@ -18,8 +18,8 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     protected readonly IDbConnection _connection;
     protected readonly IDbTransaction? _transaction;
 
-    private readonly string _tableName;
-    private readonly string _keyColumn;
+    protected string _tableName;
+    protected string _keyColumn;
 
     public GenericRepository(IDbConnection connection, IDbTransaction? transaction = null)
     {
@@ -72,12 +72,24 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     }
 
     /// <summary>
-    /// Lấy các property có thể ghi (bỏ qua key column vì nó là IDENTITY).
+    /// Lấy các property có thể ghi (bỏ qua key column và các navigation properties phức tạp).
     /// </summary>
     private PropertyInfo[] GetWritableProperties()
     {
         return typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance)
-            .Where(p => p.Name != _keyColumn && p.CanWrite)
+            .Where(p => p.Name != _keyColumn && p.CanWrite && IsSimpleType(p.PropertyType))
             .ToArray();
+    }
+
+    private bool IsSimpleType(Type type)
+    {
+        var underlyingType = Nullable.GetUnderlyingType(type) ?? type;
+        return underlyingType.IsPrimitive || 
+               underlyingType.IsEnum || 
+               underlyingType == typeof(string) || 
+               underlyingType == typeof(decimal) || 
+               underlyingType == typeof(DateTime) ||
+               underlyingType == typeof(Guid) ||
+               underlyingType == typeof(TimeSpan);
     }
 }

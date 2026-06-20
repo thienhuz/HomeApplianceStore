@@ -70,10 +70,6 @@ const ProfilePersonalInfo: React.FC<ProfilePersonalInfoProps> = ({
           <div className="w-48 text-sm font-medium text-slate-500 mb-1 sm:mb-0">Số điện thoại</div>
           <div className="text-[15px] text-slate-900 flex-grow">{user.phone || <span className="text-slate-400 italic">Chưa có thông tin</span>}</div>
         </div>
-        <div className="py-4 flex flex-col sm:flex-row sm:items-start">
-          <div className="w-48 text-sm font-medium text-slate-500 mb-1 sm:mb-0 pt-0.5">Địa chỉ mặc định</div>
-          <div className="text-[15px] text-slate-900 flex-grow leading-relaxed max-w-lg">{user.address || <span className="text-slate-400 italic">Chưa thiết lập địa chỉ</span>}</div>
-        </div>
       </div>
     </div>
   </div>

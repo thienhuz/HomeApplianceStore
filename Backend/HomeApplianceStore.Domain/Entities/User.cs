@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace HomeApplianceStore.Domain.Entities;
 
 public class User
@@ -8,8 +11,9 @@ public class User
     public string Email { get; set; } = null!;
     public string PasswordHash { get; set; } = null!;
     public string? Phone { get; set; }
-    public string? Address { get; set; }
     public string? ImageUrl { get; set; }
     public bool IsActive { get; set; }
     public DateTime CreatedAt { get; set; }
+
+    public virtual ICollection<UserAddress> UserAddresses { get; set; } = new List<UserAddress>();
 }

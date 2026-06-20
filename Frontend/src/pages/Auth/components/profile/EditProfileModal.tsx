@@ -12,8 +12,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ isOpen, onClose, us
   const [formData, setFormData] = useState({
     fullName: user.fullName || '',
     phone: user.phone || '',
-    email: user.email || '',
-    address: user.address || ''
+    email: user.email || ''
   });
 
   const [avatar, setAvatar] = useState(user.imageUrl || 'https://placehold.co/200x200/f1f5f9/94a3b8?text=Avatar');
@@ -24,8 +23,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ isOpen, onClose, us
       setFormData({
         fullName: user.fullName || '',
         phone: user.phone || '',
-        email: user.email || '',
-        address: user.address || ''
+        email: user.email || ''
       });
       setAvatar(user.imageUrl || 'https://placehold.co/200x200/f1f5f9/94a3b8?text=Avatar');
     }
@@ -141,17 +139,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ isOpen, onClose, us
                 />
               </div>
 
-              {/* Address */}
-              <div className="space-y-1.5">
-                <label className="text-sm font-medium text-slate-700 px-1">Địa chỉ mặc định</label>
-                <textarea 
-                  rows={3}
-                  value={formData.address}
-                  onChange={(e) => setFormData({...formData, address: e.target.value})}
-                  placeholder="Nhập địa chỉ của bạn"
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all resize-none"
-                />
-              </div>
+              {/* Removed Address field as it is now managed via UserAddresses */}
             </div>
           </div>
 

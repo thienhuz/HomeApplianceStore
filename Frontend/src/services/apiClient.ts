@@ -33,7 +33,8 @@ export async function request<T>(endpoint: string, options?: RequestInit): Promi
   }
 
   const result: ApiResponse<T> = await response.json();
-  if (!result.success) {
+  const isSuccess = result.success !== undefined ? result.success : (result as any).succeeded;
+  if (!isSuccess) {
     throw new Error(result.message || 'Lỗi xử lý nghiệp vụ tại C# Backend');
   }
 

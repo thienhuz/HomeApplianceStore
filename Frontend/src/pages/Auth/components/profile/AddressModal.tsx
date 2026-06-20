@@ -1,31 +1,29 @@
 import React, { useState, useEffect } from 'react';
-
-export interface AddressData {
-  fullName: string;
-  phone: string;
-  city: string;
-  district: string;
-  ward: string;
-  detail: string;
-  type: 'home' | 'office';
-  isDefault: boolean;
-}
+import { getProvinces } from '../../../../services/addressService';
+import type { UserAddress, Province } from '../../../../types';
 
 interface AddressModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (data: AddressData) => void;
-  initialData?: AddressData | null;
+  onSubmit: (data: UserAddress) => void;
+  initialData?: UserAddress | null;
+  user?: { fullName?: string, phone?: string };
 }
 
-const AddressModal = ({ isOpen, onClose, onSubmit, initialData }: AddressModalProps) => {
-  const [formData, setFormData] = useState<AddressData>({
-    fullName: '',
-    phone: '',
-    city: '',
+const AddressModal = ({ isOpen, onClose, onSubmit, initialData, user }: AddressModalProps) => {
+  const [provinces, setProvinces] = useState<Province[]>([]);
+
+  useEffect(() => {
+    getProvinces().then(setProvinces).catch(console.error);
+  }, []);
+
+  const [formData, setFormData] = useState<UserAddress>({
+    receiverName: user?.fullName || '',
+    phone: user?.phone || '',
+    province: '',
     district: '',
     ward: '',
-    detail: '',
+    addressDetail: '',
     type: 'home',
     isDefault: false
   });
@@ -35,17 +33,17 @@ const AddressModal = ({ isOpen, onClose, onSubmit, initialData }: AddressModalPr
       setFormData(initialData);
     } else {
       setFormData({
-        fullName: '',
-        phone: '',
-        city: '',
+        receiverName: user?.fullName || '',
+        phone: user?.phone || '',
+        province: '',
         district: '',
         ward: '',
-        detail: '',
+        addressDetail: '',
         type: 'home',
         isDefault: false
       });
     }
-  }, [initialData, isOpen]);
+  }, [initialData, isOpen, user]);
 
   if (!isOpen) return null;
 
@@ -90,14 +88,14 @@ const AddressModal = ({ isOpen, onClose, onSubmit, initialData }: AddressModalPr
             {/* Row 1: Full Name & Phone */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className={labelClasses}>Họ và tên</label>
+                <label className={labelClasses}>Họ và tên người nhận</label>
                 <input 
                   type="text"
                   required
                   placeholder="Nhập họ và tên"
                   className={inputClasses}
-                  value={formData.fullName}
-                  onChange={(e) => setFormData({...formData, fullName: e.target.value})}
+                  value={formData.receiverName}
+                  onChange={(e) => setFormData({...formData, receiverName: e.target.value})}
                 />
               </div>
               <div className="space-y-1">
@@ -121,43 +119,37 @@ const AddressModal = ({ isOpen, onClose, onSubmit, initialData }: AddressModalPr
                   <select 
                     required
                     className={inputClasses}
-                    value={formData.city}
-                    onChange={(e) => setFormData({...formData, city: e.target.value})}
+                    value={formData.province}
+                    onChange={(e) => setFormData({...formData, province: e.target.value})}
                   >
                     <option value="" disabled>Chọn Tỉnh/Thành</option>
-                    <option value="hcm">TP. Hồ Chí Minh</option>
-                    <option value="hn">Hà Nội</option>
-                    <option value="dn">Đà Nẵng</option>
+                    {provinces.map(p => (
+                      <option key={p.provinceId} value={p.name}>{p.name}</option>
+                    ))}
                   </select>
                 </div>
               </div>
               <div className="space-y-1">
                 <label className={labelClasses}>Quận/Huyện</label>
-                <select 
+                <input 
+                  type="text"
                   required
+                  placeholder="Nhập Quận/Huyện"
                   className={inputClasses}
                   value={formData.district}
                   onChange={(e) => setFormData({...formData, district: e.target.value})}
-                >
-                  <option value="" disabled>Chọn Quận/Huyện</option>
-                  <option value="q1">Quận 1</option>
-                  <option value="q3">Quận 3</option>
-                  <option value="qtb">Quận Tân Bình</option>
-                </select>
+                />
               </div>
               <div className="space-y-1">
                 <label className={labelClasses}>Phường/Xã</label>
-                <select 
+                <input 
+                  type="text"
                   required
+                  placeholder="Nhập Phường/Xã"
                   className={inputClasses}
                   value={formData.ward}
                   onChange={(e) => setFormData({...formData, ward: e.target.value})}
-                >
-                  <option value="" disabled>Chọn Phường/Xã</option>
-                  <option value="p1">Phường 1</option>
-                  <option value="pbn">Phường Bến Nghé</option>
-                  <option value="pbt">Phường Bến Thành</option>
-                </select>
+                />
               </div>
             </div>
 
@@ -169,8 +161,8 @@ const AddressModal = ({ isOpen, onClose, onSubmit, initialData }: AddressModalPr
                 required
                 placeholder="Số nhà, tên đường, tòa nhà..."
                 className={`${inputClasses} resize-none`}
-                value={formData.detail}
-                onChange={(e) => setFormData({...formData, detail: e.target.value})}
+                value={formData.addressDetail}
+                onChange={(e) => setFormData({...formData, addressDetail: e.target.value})}
               />
             </div>
 

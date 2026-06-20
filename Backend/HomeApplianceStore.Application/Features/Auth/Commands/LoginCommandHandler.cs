@@ -45,7 +45,6 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, AuthResponseDto
                 FullName = user.FullName,
                 Email = user.Email,
                 Phone = user.Phone,
-                Address = user.Address,
                 ImageUrl = user.ImageUrl,
                 IsActive = user.IsActive,
                 CreatedAt = user.CreatedAt

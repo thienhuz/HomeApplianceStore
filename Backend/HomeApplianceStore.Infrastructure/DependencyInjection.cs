@@ -32,6 +32,8 @@ public static class DependencyInjection
         // Đăng ký Repositories (write side)
         services.AddScoped<ICustomerRepository, CustomerRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IUserAddressRepository, UserAddressRepository>();
+        services.AddScoped<IProvinceRepository, ProvinceRepository>();
 
         // Đăng ký Read Repositories (read side - CQRS, dùng Dapper)
         services.AddScoped<IProductReadRepository, ProductReadRepository>();
