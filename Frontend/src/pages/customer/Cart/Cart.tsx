@@ -61,11 +61,11 @@ const Cart: React.FC = () => {
   }, [items, selectedIds]);
 
   return (
-    <div className="pb-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-      <div className="mb-stack-lg">
-        <h1 className="font-headline-lg text-headline-lg mb-2">Giỏ hàng của bạn</h1>
-        <p className="font-body-md text-body-md text-secondary">
-          Bạn đang có {cart.totalQuantity} sản phẩm trong giỏ hàng
+    <div className="pb-16 pt-8 px-4 md:px-8 max-w-7xl mx-auto min-h-screen">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-slate-900 mb-2">Giỏ hàng của bạn</h1>
+        <p className="text-base text-slate-500">
+          Bạn đang có <span className="font-semibold text-primary">{cart.totalQuantity}</span> sản phẩm trong giỏ hàng
         </p>
       </div>
 
@@ -74,27 +74,29 @@ const Cart: React.FC = () => {
           <span className="material-symbols-outlined animate-spin text-4xl text-primary">progress_activity</span>
         </div>
       ) : items.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-24 text-center bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(31,41,55,0.04)]">
-          <span className="material-symbols-outlined text-6xl text-on-surface-variant mb-4">remove_shopping_cart</span>
-          <p className="font-headline-md text-headline-md mb-2">Giỏ hàng của bạn đang trống</p>
-          <p className="font-body-md text-body-md text-secondary mb-6">Hãy thêm sản phẩm để bắt đầu mua sắm.</p>
+        <div className="flex flex-col items-center justify-center py-32 text-center bg-slate-50 border border-slate-100 rounded-3xl">
+          <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-sm mb-6">
+            <span className="material-symbols-outlined text-5xl text-slate-300">remove_shopping_cart</span>
+          </div>
+          <p className="text-2xl font-bold text-slate-900 mb-2">Giỏ hàng trống</p>
+          <p className="text-slate-500 mb-8 max-w-sm">Chưa có sản phẩm nào trong giỏ hàng của bạn. Khám phá các ưu đãi ngay hôm nay!</p>
           <Link
             to="/products"
-            className="inline-flex items-center gap-2 bg-primary-container text-on-primary px-6 py-3 rounded-xl font-label-md text-label-md hover:opacity-90 active:scale-95 transition-all shadow-sm"
+            className="inline-flex items-center gap-2 bg-primary text-white px-8 py-3.5 rounded-xl font-bold hover:bg-primary/90 transition-colors shadow-md shadow-primary/20"
           >
             <span className="material-symbols-outlined">storefront</span>
             Mua sắm ngay
           </Link>
         </div>
       ) : (
-        <div className="flex flex-col lg:flex-row gap-gutter">
+        <div className="flex flex-col lg:flex-row gap-8">
           {/* Danh sách sản phẩm */}
-          <div className="flex-grow space-y-gutter">
+          <div className="flex-grow space-y-4">
             {/* Thanh chọn tất cả */}
-            <div className="bg-surface-container-lowest rounded-xl px-5 py-4 flex items-center justify-between shadow-[0_4px_20px_rgba(31,41,55,0.04)]">
+            <div className="bg-white rounded-2xl px-6 py-4 flex items-center justify-between border border-slate-200">
               <div className="flex items-center gap-3">
                 <Checkbox checked={allSelected} indeterminate={someSelected} onChange={toggleAll} ariaLabel="Chọn tất cả" />
-                <button type="button" onClick={toggleAll} className="font-label-md text-label-md text-on-surface">
+                <button type="button" onClick={toggleAll} className="font-semibold text-sm text-slate-900">
                   Chọn tất cả ({items.length})
                 </button>
               </div>
@@ -102,29 +104,31 @@ const Cart: React.FC = () => {
                 <button
                   type="button"
                   onClick={removeSelected}
-                  className="inline-flex items-center gap-1 text-secondary hover:text-error transition-colors font-label-md text-label-md"
+                  className="inline-flex items-center gap-1.5 text-slate-500 hover:text-red-500 transition-colors font-semibold text-sm"
                 >
-                  <span className="material-symbols-outlined text-[20px]">delete</span>
+                  <span className="material-symbols-outlined text-[18px]">delete</span>
                   Xóa đã chọn ({selectedIds.size})
                 </button>
               )}
             </div>
 
-            {items.map((item) => (
-              <CartItem
-                key={item.productId}
-                item={item}
-                selected={selectedIds.has(item.productId)}
-                onToggle={toggleItem}
-                onQuantityChange={updateItem}
-                onRemove={removeItem}
-              />
-            ))}
+            <div className="space-y-4">
+              {items.map((item) => (
+                <CartItem
+                  key={item.productId}
+                  item={item}
+                  selected={selectedIds.has(item.productId)}
+                  onToggle={toggleItem}
+                  onQuantityChange={updateItem}
+                  onRemove={removeItem}
+                />
+              ))}
+            </div>
 
-            <div className="pt-stack-md">
+            <div className="pt-4">
               <Link
                 to="/products"
-                className="inline-flex items-center gap-2 text-secondary hover:text-primary transition-colors font-label-md text-label-md"
+                className="inline-flex items-center gap-2 text-slate-500 hover:text-primary transition-colors font-semibold text-sm"
               >
                 <span className="material-symbols-outlined">arrow_back</span>
                 Tiếp tục mua sắm
@@ -134,7 +138,7 @@ const Cart: React.FC = () => {
 
           {/* Sidebar tóm tắt (sticky) */}
           <aside className="w-full lg:w-[400px] flex-shrink-0">
-            <div className="sticky top-28 space-y-gutter">
+            <div className="sticky top-28 space-y-6">
               <VoucherInput />
               <CartSummary selectedCount={selectedCount} subtotal={subtotal} />
             </div>

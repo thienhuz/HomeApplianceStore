@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { AuthUser } from '../../../../types';
+import AddressModal, { type AddressData } from './AddressModal';
 
 interface ProfileAddressesProps {
   user: AuthUser;
@@ -7,7 +8,36 @@ interface ProfileAddressesProps {
 
 const ProfileAddresses: React.FC<ProfileAddressesProps> = ({ user }) => {
   const addressValue = user.address || 'Chưa có địa chỉ';
-  
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingAddress, setEditingAddress] = useState<AddressData | null>(null);
+
+  const handleAddAddress = () => {
+    setEditingAddress(null);
+    setIsModalOpen(true);
+  };
+
+  const handleEditAddress = (type: 'home' | 'office') => {
+    // Mock data for editing
+    setEditingAddress({
+      fullName: user.fullName || '',
+      phone: user.phone || '',
+      city: 'hcm',
+      district: 'q1',
+      ward: 'pbn',
+      detail: addressValue,
+      type: type,
+      isDefault: type === 'home'
+    });
+    setIsModalOpen(true);
+  };
+
+  const handleSubmitAddress = (data: AddressData) => {
+    console.log("Saving address:", data);
+    alert("Đã lưu địa chỉ thành công!");
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="bg-white rounded-2xl overflow-hidden border border-slate-200">
       <div className="px-8 py-6 border-b border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -15,7 +45,10 @@ const ProfileAddresses: React.FC<ProfileAddressesProps> = ({ user }) => {
           <h2 className="text-xl font-semibold text-slate-900">Quản lý địa chỉ</h2>
           <p className="text-sm text-slate-500 mt-1">Quản lý địa chỉ nhận hàng của bạn</p>
         </div>
-        <button className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors">
+        <button
+          onClick={handleAddAddress}
+          className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors"
+        >
           <span className="material-symbols-outlined text-[18px]">add</span>
           Thêm địa chỉ mới
         </button>
@@ -34,7 +67,10 @@ const ProfileAddresses: React.FC<ProfileAddressesProps> = ({ user }) => {
                 <span className="text-base font-semibold text-slate-900">Nhà riêng</span>
               </div>
               <div className="flex gap-1.5">
-                <button className="p-2 text-slate-400 hover:text-primary rounded-lg hover:bg-primary/5 transition-colors" title="Chỉnh sửa">
+                <button
+                  onClick={() => handleEditAddress('home')}
+                  className="p-2 text-slate-400 hover:text-primary rounded-lg hover:bg-primary/5 transition-colors" title="Chỉnh sửa"
+                >
                   <span className="material-symbols-outlined text-[18px]">edit</span>
                 </button>
                 <button className="p-2 text-slate-400 hover:text-red-500 rounded-lg hover:bg-red-50 transition-colors" title="Xóa">
@@ -42,7 +78,7 @@ const ProfileAddresses: React.FC<ProfileAddressesProps> = ({ user }) => {
                 </button>
               </div>
             </div>
-            
+
             <div className="space-y-2.5">
               <div className="flex items-center gap-2.5">
                 <span className="material-symbols-outlined text-[18px] text-slate-400">person</span>
@@ -67,7 +103,10 @@ const ProfileAddresses: React.FC<ProfileAddressesProps> = ({ user }) => {
                 <span className="text-base font-semibold text-slate-900">Văn phòng</span>
               </div>
               <div className="flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
-                <button className="p-2 text-slate-400 hover:text-primary rounded-lg hover:bg-primary/5 transition-colors" title="Chỉnh sửa">
+                <button
+                  onClick={() => handleEditAddress('office')}
+                  className="p-2 text-slate-400 hover:text-primary rounded-lg hover:bg-primary/5 transition-colors" title="Chỉnh sửa"
+                >
                   <span className="material-symbols-outlined text-[18px]">edit</span>
                 </button>
                 <button className="p-2 text-slate-400 hover:text-red-500 rounded-lg hover:bg-red-50 transition-colors" title="Xóa">
@@ -75,7 +114,7 @@ const ProfileAddresses: React.FC<ProfileAddressesProps> = ({ user }) => {
                 </button>
               </div>
             </div>
-            
+
             <div className="space-y-2.5">
               <div className="flex items-center gap-2.5">
                 <span className="material-symbols-outlined text-[18px] text-slate-400">person</span>
@@ -90,7 +129,7 @@ const ProfileAddresses: React.FC<ProfileAddressesProps> = ({ user }) => {
                 <span className="text-sm text-slate-600 leading-relaxed">{addressValue}</span>
               </div>
             </div>
-            
+
             <div className="mt-5 pt-4 border-t border-slate-100 flex justify-end">
               <button className="text-primary text-xs font-semibold uppercase tracking-wider hover:text-primary/80 transition-colors">
                 Thiết lập mặc định
@@ -99,6 +138,13 @@ const ProfileAddresses: React.FC<ProfileAddressesProps> = ({ user }) => {
           </div>
         </div>
       </div>
+
+      <AddressModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={handleSubmitAddress}
+        initialData={editingAddress}
+      />
     </div>
   );
 };

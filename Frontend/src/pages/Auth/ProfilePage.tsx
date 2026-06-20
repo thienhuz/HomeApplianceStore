@@ -9,10 +9,13 @@ import {
   type ProfileTabKey,
 } from './components/profile';
 
+import EditProfileModal from './components/profile/EditProfileModal';
+
 const ProfilePage: React.FC = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<ProfileTabKey>('personal-info');
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   useEffect(() => {
     if (!user) {
@@ -75,13 +78,19 @@ const ProfilePage: React.FC = () => {
               user={user}
               initials={initials}
               memberSinceLabel={memberSinceLabel}
-              onEdit={() => undefined}
+              onEdit={() => setIsEditModalOpen(true)}
             />
           )}
           {activeTab === 'addresses' && <ProfileAddresses user={user} />}
           {activeTab === 'password' && <ProfilePasswordSection />}
         </section>
       </div>
+
+      <EditProfileModal 
+        isOpen={isEditModalOpen} 
+        onClose={() => setIsEditModalOpen(false)} 
+        user={user} 
+      />
     </main>
   );
 };

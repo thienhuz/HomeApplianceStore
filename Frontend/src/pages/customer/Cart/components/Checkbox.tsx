@@ -16,14 +16,14 @@ const Checkbox: React.FC<CheckboxProps> = ({ checked, indeterminate = false, onC
       onClick={onChange}
       aria-label={ariaLabel}
       aria-pressed={checked}
-      className={`w-6 h-6 shrink-0 rounded-md border-2 flex items-center justify-center transition-all active:scale-90 ${
+      className={`w-5 h-5 shrink-0 rounded border flex items-center justify-center transition-colors ${
         active
           ? 'bg-primary border-primary text-white'
-          : 'bg-surface-container-lowest border-outline-variant hover:border-primary'
+          : 'bg-white border-slate-300 hover:border-primary'
       }`}
     >
       {active && (
-        <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: "'wght' 600" }}>
+        <span className="material-symbols-outlined text-[16px] font-bold">
           {indeterminate ? 'remove' : 'check'}
         </span>
       )}

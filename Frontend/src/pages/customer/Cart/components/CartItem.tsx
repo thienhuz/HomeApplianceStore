@@ -4,7 +4,7 @@ import Checkbox from './Checkbox';
 import type { CartItem as CartItemType } from '../../../../types';
 import { formatVnd } from '../../../../context/CartContext';
 
-const PLACEHOLDER = 'https://placehold.co/200x200/e2e8f0/64748b?text=No+Image';
+const PLACEHOLDER = 'https://placehold.co/200x200/f1f5f9/94a3b8?text=No+Image';
 
 interface CartItemProps {
   item: CartItemType;
@@ -17,64 +17,71 @@ interface CartItemProps {
 const CartItem: React.FC<CartItemProps> = ({ item, selected, onToggle, onQuantityChange, onRemove }) => {
   return (
     <div
-      className={`bg-surface-container-lowest rounded-xl p-5 md:p-6 flex flex-col md:flex-row items-center gap-4 md:gap-6 transition-all ${
+      className={`bg-white rounded-2xl p-4 md:p-5 flex flex-col md:flex-row items-center gap-4 md:gap-6 border transition-all duration-200 ${
         selected
-          ? 'ring-2 ring-primary shadow-[0_8px_24px_rgba(171,53,0,0.08)]'
-          : 'shadow-[0_4px_20px_rgba(31,41,55,0.04)] hover:shadow-[0_12px_30px_rgba(31,41,55,0.08)]'
+          ? 'border-primary ring-1 ring-primary bg-primary/5'
+          : 'border-slate-200 hover:border-slate-300'
       }`}
     >
-      <Checkbox checked={selected} onChange={() => onToggle(item.productId)} ariaLabel={`Chọn ${item.title}`} />
-
-      <Link
-        to={`/DetailProduct/${item.productId}`}
-        className="w-28 h-28 flex-shrink-0 bg-surface-container rounded-lg overflow-hidden"
-      >
-        <img
-          className="w-full h-full object-cover transition-transform hover:scale-105"
-          alt={item.title}
-          src={item.imageUrl || PLACEHOLDER}
-        />
-      </Link>
-
-      <div className="flex-grow text-center md:text-left">
-        <span className="font-label-sm text-label-sm text-secondary uppercase tracking-wider">{item.brand}</span>
-        <Link to={`/DetailProduct/${item.productId}`} className="block">
-          <h3 className="font-headline-md text-headline-md mt-1 mb-1 hover:text-primary transition-colors">{item.title}</h3>
-        </Link>
-        <div className="font-body-sm text-body-sm text-secondary">{item.price} / sản phẩm</div>
+      <div className="hidden md:block">
+        <Checkbox checked={selected} onChange={() => onToggle(item.productId)} ariaLabel={`Chọn ${item.title}`} />
       </div>
 
-      <div className="flex items-center gap-4 md:gap-6">
-        <div className="flex items-center border border-outline-variant rounded-full px-2 py-1">
+      <div className="flex w-full md:w-auto items-center gap-4">
+        <div className="md:hidden">
+            <Checkbox checked={selected} onChange={() => onToggle(item.productId)} ariaLabel={`Chọn ${item.title}`} />
+        </div>
+        <Link
+          to={`/DetailProduct/${item.productId}`}
+          className="w-24 h-24 flex-shrink-0 bg-slate-50 rounded-xl overflow-hidden border border-slate-100 block"
+        >
+          <img
+            className="w-full h-full object-cover transition-transform hover:scale-105"
+            alt={item.title}
+            src={item.imageUrl || PLACEHOLDER}
+          />
+        </Link>
+      </div>
+
+      <div className="flex-grow w-full text-left space-y-1">
+        <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">{item.brand}</span>
+        <Link to={`/DetailProduct/${item.productId}`} className="block">
+          <h3 className="text-base font-semibold text-slate-900 hover:text-primary transition-colors line-clamp-2">{item.title}</h3>
+        </Link>
+        <div className="text-sm font-medium text-slate-500">{item.price} / sản phẩm</div>
+      </div>
+
+      <div className="flex w-full md:w-auto items-center justify-between md:justify-end gap-6 border-t md:border-t-0 border-slate-100 pt-4 md:pt-0 mt-2 md:mt-0">
+        <div className="flex items-center border border-slate-200 rounded-lg overflow-hidden h-9 bg-white">
           <button
             type="button"
             onClick={() => onQuantityChange(item.productId, item.quantity - 1)}
-            className="w-8 h-8 flex items-center justify-center text-secondary hover:text-primary transition-colors disabled:opacity-40"
+            className="w-8 h-full flex items-center justify-center text-slate-500 hover:bg-slate-50 transition-colors disabled:opacity-30"
             disabled={item.quantity <= 1}
           >
-            <span className="material-symbols-outlined">remove</span>
+            <span className="material-symbols-outlined text-[18px]">remove</span>
           </button>
-          <span className="w-10 text-center font-bold">{item.quantity}</span>
+          <span className="w-10 text-center font-semibold text-sm text-slate-900">{item.quantity}</span>
           <button
             type="button"
             onClick={() => onQuantityChange(item.productId, item.quantity + 1)}
-            className="w-8 h-8 flex items-center justify-center text-secondary hover:text-primary transition-colors"
+            className="w-8 h-full flex items-center justify-center text-slate-500 hover:bg-slate-50 transition-colors"
           >
-            <span className="material-symbols-outlined">add</span>
+            <span className="material-symbols-outlined text-[18px]">add</span>
           </button>
         </div>
 
-        <div className="text-primary font-bold text-lg min-w-[130px] text-right">
+        <div className="text-primary font-bold text-lg min-w-[120px] text-right">
           {formatVnd(item.lineTotal)}
         </div>
 
         <button
           type="button"
           onClick={() => onRemove(item.productId)}
-          className="p-2 text-secondary hover:text-error transition-colors rounded-full hover:bg-error-container/20"
+          className="w-9 h-9 flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 transition-colors rounded-lg flex-shrink-0"
           aria-label="Xóa sản phẩm"
         >
-          <span className="material-symbols-outlined">delete</span>
+          <span className="material-symbols-outlined text-[20px]">delete</span>
         </button>
       </div>
     </div>
