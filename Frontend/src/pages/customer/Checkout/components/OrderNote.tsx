@@ -1,14 +1,21 @@
 import React from 'react';
 
-const OrderNote: React.FC = () => {
+interface OrderNoteProps {
+    value: string;
+    onChange: (value: string) => void;
+}
+
+const OrderNote: React.FC<OrderNoteProps> = ({ value, onChange }) => {
     return (
-        <section className="bg-surface-container-lowest p-stack-lg rounded-xl checkout-shadow">
-            <div className="flex items-center gap-2 mb-stack-md">
-                <span className="material-symbols-outlined text-primary">sticky_note_2</span>
-                <h2 className="font-headline-md text-headline-md">Ghi chú đơn hàng</h2>
+        <section className="bg-white p-6 rounded-2xl shadow-sm ring-1 ring-slate-100">
+            <div className="flex items-center gap-2 mb-6">
+                <span className="material-symbols-outlined text-primary text-xl">sticky_note_2</span>
+                <h2 className="text-lg font-semibold text-slate-800">Ghi chú đơn hàng</h2>
             </div>
             <textarea 
-                className="w-full min-h-[120px] rounded-lg border-outline-variant focus:border-primary focus:ring-primary p-stack-md font-body-sm transition-all" 
+                value={value}
+                onChange={(e) => onChange(e.target.value)}
+                className="w-full min-h-[120px] rounded-xl border-0 ring-1 ring-slate-200 focus:ring-2 focus:ring-primary p-4 text-sm text-slate-800 placeholder:text-slate-400 transition-all resize-y outline-none" 
                 placeholder="Nhập lời nhắn cho người bán hoặc yêu cầu giao hàng đặc biệt..."
             />
         </section>

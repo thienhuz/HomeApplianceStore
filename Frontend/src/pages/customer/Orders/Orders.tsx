@@ -6,69 +6,85 @@ import type { ProfileTabKey } from '../../Auth/components/profile';
 import OrderStatusTabs from './components/OrderStatusTabs';
 import OrderCard from './components/OrderCard';
 
-const ordersData = [
-    {
-        orderId: '#ORD-123456',
-        date: '24/10/2023',
-        status: 'Chờ thanh toán',
-        statusStyle: 'bg-amber-50 text-amber-700 border border-amber-200/60',
-        totalAmount: '24.990.000₫',
-        productImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCw5w1m4RWqn5A2-bQnvJHipBx0JRD455zKHVuiTOyIU_vVWUjCv8P7otkP9IrUFRt-RE7PJlSrvY-iIXFfIOAcOW_C0dJ9q3JKxUKcqrNxTYj3gkvZXiIMuAYkGUhNDeGXRYhom6SJOkbbMXmMP3DKjeD71ymirInxNoPbnQ3mvEedoqyCYOgLFi2X9lQVyiFlJjv0qscca34GLHss_QRpeCYrB-Y6q6SjKyOUq0mxLaOT6dnegrMGNWjSOd-ScsxHIQWPlS3iyQ',
-        productImageAlt: 'Refrigerator',
-        productTitle: 'Tủ lạnh Bespoke Multi Door 648L',
-        productSubtitle: 'và 2 sản phẩm khác',
-    },
-    {
-        orderId: '#ORD-123789',
-        date: '20/10/2023',
-        status: 'Đang giao',
-        statusStyle: 'bg-blue-50 text-blue-700 border border-blue-200/60',
-        totalAmount: '15.450.000₫',
-        productImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDC3cbqhaTzK9O-6-UOc890oZFUlPUhiyaYncmHM1dK-nRzNA_C6wF-n1uxzYmcDGG4RkbJ7QXFfxOTegom1er35O5keIOWSqpDq_EhjKs4080vNP3rod_TPSJtOgmJvTHIajfpkV1SjbPkkyAWmBNfLJGEN3a23X9QQjYQWG8tj9eULOmi6widNXdAosWUJ2T1KxUJo0hWGtNuLT2Z-hUljSI7kbh1-rPCIhfvTJttWNn28GmcXbQhg04CVbNbDBg6jHvjPbTp-g',
-        productImageAlt: 'Washing Machine',
-        productTitle: 'Máy giặt Inverter AI Ecobubble 12kg',
-        productSubtitle: 'Sản phẩm đơn lẻ',
-    },
-    {
-        orderId: '#ORD-120112',
-        date: '15/09/2023',
-        status: 'Đã giao',
-        statusStyle: 'bg-emerald-50 text-emerald-700 border border-emerald-200/60',
-        totalAmount: '8.200.000₫',
-        productImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCqsiGYQlcJ3WZFX4-KhEctC8Tamf9OM6iWlWcd3EHiU7TPBI8Tehec5VSxqtw9iu7_ddMtnRp40SEBmIKV_ZR5G4UDYPUKL1U2MwbYXN8vZl-lRyXI-7nxubN2AqF30Pw4y5cKNl5TlGQ4elqmQSAza-K9WX9ATSMuHNer0wP2yns017KXSkLFHy6mVAESyLNmlLoGDZVfanQ5yvHJMcynXojCpd_kNPHjf69sPxRppukQQd4PY7lH6noiyj2KbZv3ztfC8WEqtg',
-        productImageAlt: 'Microwave Oven',
-        productTitle: 'Lò nướng đối lưu Smart Air 40L',
-        productSubtitle: 'và 1 sản phẩm khác',
-    },
-    {
-        orderId: '#ORD-119888',
-        date: '01/09/2023',
-        status: 'Đã hủy',
-        statusStyle: 'bg-red-50 text-red-600 border border-red-200/60',
-        totalAmount: '2.100.000₫',
-        productImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCa4l8qNfxREuuQdW-a8T_sPS19x9vhv6UzHDLriV1WwXMdbj9Nox9dV0aZ6Q29qgKHb7duBrgqsd8npXVRhYinTHLR1XVtMiTRV2hgYzleSCeFJmAYit5ewin00d7CLEO4J2QZvssHYWycAY0IEArXr8eOrzh0YYFc30m89w2yqnR-p4Nx0R_L_7MT8wzaXtMeQjIi9GFN_8c_HduJttFJapGurOUpm3NZ1eeDQd-ZyCsNcBPVDWCecU9b2AeFGZufg0Tuia-ROA',
-        productImageAlt: 'Smart Kettle',
-        productTitle: 'Ấm đun nước thông minh WiFi Pro',
-        productSubtitle: 'Sản phẩm đơn lẻ',
-        cardExtraClass: 'opacity-70 hover:opacity-100',
-    },
-];
+import { orderApi } from '../../../services/orderApi';
+import type { OrderHistory } from '../../../types/order';
+
+const mapTabToStatus = (tab: string): number | undefined => {
+    switch (tab) {
+        case 'Chờ thanh toán': return 1;
+        case 'Đang xử lý': return 2;
+        case 'Đang giao': return 3;
+        case 'Đã giao': return 4;
+        case 'Đã hủy': return 5;
+        default: return undefined;
+    }
+};
+
+const getStatusInfo = (statusByte: number) => {
+    switch (statusByte) {
+        case 1: return { text: 'Chờ thanh toán', style: 'bg-amber-50 text-amber-700 border border-amber-200/60' };
+        case 2: return { text: 'Đang xử lý', style: 'bg-blue-50 text-blue-700 border border-blue-200/60' };
+        case 3: return { text: 'Đang giao', style: 'bg-indigo-50 text-indigo-700 border border-indigo-200/60' };
+        case 4: return { text: 'Đã giao', style: 'bg-emerald-50 text-emerald-700 border border-emerald-200/60' };
+        case 5: return { text: 'Đã hủy', style: 'bg-red-50 text-red-600 border border-red-200/60' };
+        default: return { text: 'Khác', style: 'bg-slate-50 text-slate-700 border border-slate-200/60' };
+    }
+};
 
 const Orders: React.FC = () => {
     const [activeTab, setActiveTab] = useState('Tất cả');
+    const [orders, setOrders] = useState<OrderHistory[]>([]);
+    const [totalCount, setTotalCount] = useState(0);
+    const [pageIndex, setPageIndex] = useState(1);
+    const [pageSize, setPageSize] = useState(4);
+    const [isPaginationMode, setIsPaginationMode] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+
     const { user, logout } = useAuth();
     const navigate = useNavigate();
 
+    const fetchOrders = async (page: number, size: number, tab: string) => {
+        try {
+            setIsLoading(true);
+            const statusByte = mapTabToStatus(tab);
+            const res = await orderApi.getMyOrders(page, size, statusByte);
+            setOrders(res.items);
+            setTotalCount(res.totalItems);
+        } catch (error) {
+            console.error('Failed to fetch orders:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     useEffect(() => {
-        if (!user) navigate('/login');
-    }, [user, navigate]);
+        if (!user) {
+            navigate('/login');
+        } else {
+            fetchOrders(pageIndex, pageSize, activeTab);
+        }
+    }, [user, navigate, pageIndex, pageSize, activeTab]);
 
     if (!user) return null;
+
+    const handleTabChange = (tab: string) => {
+        setActiveTab(tab);
+        // Reset pagination when changing tab
+        setPageIndex(1);
+        setPageSize(4);
+        setIsPaginationMode(false);
+    };
 
     const handleChangeTab = (tab: ProfileTabKey) => {
         if (tab !== 'orders') {
             navigate('/profile', { state: { tab } });
         }
+    };
+
+    const handleLoadMore = () => {
+        setPageSize(10);
+        setPageIndex(1);
+        setIsPaginationMode(true);
     };
 
     return (
@@ -99,19 +115,69 @@ const Orders: React.FC = () => {
                         <h2 className="text-xl font-semibold text-slate-900">Đơn hàng của tôi</h2>
                     </div>
 
-                    <OrderStatusTabs activeTab={activeTab} onTabChange={setActiveTab} />
+                    <OrderStatusTabs activeTab={activeTab} onTabChange={handleTabChange} />
 
-                    <div className="space-y-4">
-                        {ordersData.map((order) => (
-                            <OrderCard key={order.orderId} {...order} />
-                        ))}
-                    </div>
+                    {isLoading ? (
+                        <div className="flex justify-center py-12">
+                            <div className="w-8 h-8 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+                        </div>
+                    ) : orders.length === 0 ? (
+                        <div className="text-center py-12 bg-white rounded-2xl border border-slate-200">
+                            <span className="material-symbols-outlined text-6xl text-slate-200 mb-3">inbox</span>
+                            <p className="text-slate-500">Chưa có đơn hàng nào.</p>
+                        </div>
+                    ) : (
+                        <div className="space-y-4">
+                            {orders.map((order) => {
+                                const statusInfo = getStatusInfo(order.orderStatus);
+                                return (
+                                    <OrderCard 
+                                        key={order.orderId}
+                                        orderId={`#ORD-${order.orderId.toString().padStart(6, '0')}`}
+                                        date={new Intl.DateTimeFormat('vi-VN', { dateStyle: 'short' }).format(new Date(order.orderDate))}
+                                        status={statusInfo.text}
+                                        statusStyle={statusInfo.style}
+                                        totalAmount={`${order.totalAmount.toLocaleString('vi-VN')}₫`}
+                                        productImage={order.firstProductImageUrl || '/placeholder-image.png'}
+                                        productImageAlt={order.firstProductTitle || 'Product'}
+                                        productTitle={order.firstProductTitle || 'Sản phẩm'}
+                                        productSubtitle={order.totalProductCount > 1 ? `và ${order.totalProductCount - 1} sản phẩm khác` : 'Sản phẩm đơn lẻ'}
+                                        cardExtraClass={order.orderStatus === 5 ? 'opacity-70 hover:opacity-100' : ''}
+                                    />
+                                );
+                            })}
+                        </div>
+                    )}
 
-                    <div className="mt-8 flex justify-center">
-                        <button className="px-6 py-2.5 border border-slate-200 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:border-slate-300 transition-colors" type="button">
-                            Tải thêm đơn hàng
-                        </button>
-                    </div>
+                    {!isLoading && !isPaginationMode && totalCount > 4 && (
+                        <div className="mt-8 flex justify-center">
+                            <button 
+                                onClick={handleLoadMore}
+                                className="px-6 py-2.5 border border-slate-200 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:border-slate-300 transition-colors" 
+                                type="button"
+                            >
+                                Tải thêm đơn hàng
+                            </button>
+                        </div>
+                    )}
+
+                    {!isLoading && isPaginationMode && Math.ceil(totalCount / 10) > 1 && (
+                        <div className="mt-8 flex justify-center gap-2">
+                            {Array.from({ length: Math.ceil(totalCount / 10) }).map((_, i) => (
+                                <button
+                                    key={i}
+                                    onClick={() => setPageIndex(i + 1)}
+                                    className={`w-10 h-10 flex items-center justify-center rounded-xl text-sm font-medium transition-colors ${
+                                        pageIndex === i + 1 
+                                        ? 'bg-primary text-white shadow-sm' 
+                                        : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
+                                    }`}
+                                >
+                                    {i + 1}
+                                </button>
+                            ))}
+                        </div>
+                    )}
                 </section>
             </div>
         </main>

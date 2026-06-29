@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { AuthProvider } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
 import MainLayout from './components/layout/MainLayout';
@@ -20,6 +21,7 @@ function App() {
       <Router>
         <CartProvider>
         <ScrollToTop />
+        <ToastContainer position="top-right" autoClose={3000} />
         <Routes>
           <Route path="/" element={<MainLayout />}>
             <Route index element={<HomePage />} />

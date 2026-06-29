@@ -3,6 +3,7 @@ import type { AuthUser } from '../../../../types';
 import AddressModal from './AddressModal';
 import { getMyAddresses, addAddress, updateAddress, deleteAddress, setDefaultAddress } from '../../../../services/addressService';
 import type { UserAddress } from '../../../../types';
+import { toast } from 'react-toastify';
 
 interface ProfileAddressesProps {
   user: AuthUser;
@@ -47,8 +48,9 @@ const ProfileAddresses: React.FC<ProfileAddressesProps> = ({ user }) => {
       try {
         await deleteAddress(id);
         await loadAddresses();
+        toast.success("Xóa địa chỉ thành công");
       } catch (error) {
-        alert("Có lỗi xảy ra khi xóa.");
+        toast.error("Có lỗi xảy ra khi xóa.");
       }
     }
   };
@@ -58,8 +60,9 @@ const ProfileAddresses: React.FC<ProfileAddressesProps> = ({ user }) => {
     try {
       await setDefaultAddress(id);
       await loadAddresses();
+      toast.success("Đã thiết lập làm địa chỉ mặc định");
     } catch (error) {
-      alert("Có lỗi xảy ra khi thiết lập mặc định.");
+      toast.error("Có lỗi xảy ra khi thiết lập mặc định.");
     }
   };
 
@@ -67,13 +70,16 @@ const ProfileAddresses: React.FC<ProfileAddressesProps> = ({ user }) => {
     try {
       if (editingAddress?.addressId) {
         await updateAddress(editingAddress.addressId, data);
+        toast.success("Cập nhật địa chỉ thành công");
       } else {
         await addAddress(data);
+        toast.success("Thêm địa chỉ mới thành công");
       }
       setIsModalOpen(false);
       await loadAddresses();
     } catch (error) {
-      alert("Đã có lỗi xảy ra. Vui lòng thử lại.");
+      console.error(error);
+      toast.error("Đã có lỗi xảy ra. Vui lòng thử lại.");
     }
   };
 

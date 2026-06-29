@@ -27,7 +27,7 @@ public class UnitOfWork : IUnitOfWork
     public IGenericRepository<Category> Categories => Repository<Category>();
     public IGenericRepository<Brand> Brands => Repository<Brand>();
     public IGenericRepository<Banner> Banners => Repository<Banner>();
-    public IGenericRepository<Order> Orders => Repository<Order>();
+    public IOrderRepository Orders => (IOrderRepository)_repositories.GetOrAdd("OrderRepository", _ => new OrderRepository(_connection, _transaction));
     public IGenericRepository<OrderDetail> OrderDetails => Repository<OrderDetail>();
     public IGenericRepository<Cart> Carts => Repository<Cart>();
     public IGenericRepository<CartItem> CartItems => Repository<CartItem>();

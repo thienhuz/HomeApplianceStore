@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Skeleton from 'react-loading-skeleton';
 import { useCategories } from '../../hooks/useCategories';
 
 /** Chọn icon Material Symbols phù hợp theo tên danh mục (fallback: category). */
@@ -53,38 +54,38 @@ const CategoryMenu: React.FC = () => {
                     open ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 -translate-y-1'
                 }`}
             >
-                <div className="w-[520px] max-w-[85vw] overflow-hidden rounded-2xl border border-surface-variant/40 bg-surface-container-lowest shadow-2xl">
-                    <div className="flex items-center gap-2 border-b border-surface-variant/40 bg-surface-container-low px-5 py-3">
-                        <span className="material-symbols-outlined text-[20px] text-primary">category</span>
-                        <p className="font-label-md text-label-md font-semibold text-on-surface">Danh mục sản phẩm</p>
+                <div className="w-[520px] max-w-[85vw] overflow-hidden rounded-2xl bg-white shadow-xl ring-1 ring-slate-100">
+                    <div className="flex items-center gap-2 border-b border-slate-100 bg-slate-50 px-6 py-4">
+                        <span className="material-symbols-outlined text-xl text-primary">category</span>
+                        <p className="text-sm font-semibold text-slate-800">Danh mục sản phẩm</p>
                     </div>
 
                     {loading ? (
-                        <div className="grid grid-cols-2 gap-1 p-3">
+                        <div className="grid grid-cols-2 gap-2 p-4">
                             {Array.from({ length: 6 }).map((_, i) => (
-                                <div key={i} className="h-12 animate-pulse rounded-lg bg-surface-container" />
+                                <Skeleton key={i} height={48} borderRadius={12} />
                             ))}
                         </div>
                     ) : categories.length === 0 ? (
-                        <p className="p-6 text-center font-body-sm text-body-sm text-on-surface-variant">
+                        <p className="p-8 text-center text-sm text-slate-500">
                             Chưa có danh mục nào
                         </p>
                     ) : (
-                        <div className="grid max-h-[60vh] grid-cols-2 gap-1 overflow-y-auto p-3">
+                        <div className="grid max-h-[60vh] grid-cols-2 gap-2 overflow-y-auto p-4">
                             {categories.map((cat) => (
                                 <Link
                                     key={cat.categoryId}
                                     to={`/products?categoryId=${cat.categoryId}`}
                                     onClick={() => setOpen(false)}
-                                    className="group flex items-center gap-3 rounded-lg px-3 py-2.5 transition-colors hover:bg-primary/5"
+                                    className="group flex items-center gap-4 rounded-xl px-4 py-3 transition-colors hover:bg-slate-50"
                                 >
-                                    <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-on-primary">
-                                        <span className="material-symbols-outlined text-[20px]">{pickIcon(cat.categoryName)}</span>
+                                    <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500 transition-colors group-hover:bg-primary/10 group-hover:text-primary">
+                                        <span className="material-symbols-outlined text-xl">{pickIcon(cat.categoryName)}</span>
                                     </span>
-                                    <span className="flex-1 truncate font-body-md text-body-md text-on-surface transition-colors group-hover:text-primary">
+                                    <span className="flex-1 truncate text-sm font-medium text-slate-700 transition-colors group-hover:text-primary">
                                         {cat.categoryName}
                                     </span>
-                                    <span className="material-symbols-outlined -translate-x-1 text-[18px] text-on-surface-variant opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100">
+                                    <span className="material-symbols-outlined -translate-x-1 text-lg text-slate-400 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100 group-hover:text-primary">
                                         chevron_right
                                     </span>
                                 </Link>
@@ -95,10 +96,10 @@ const CategoryMenu: React.FC = () => {
                     <Link
                         to="/products"
                         onClick={() => setOpen(false)}
-                        className="flex items-center justify-center gap-1 border-t border-surface-variant/40 px-5 py-3 font-label-md text-label-md text-primary transition-colors hover:bg-primary/5"
+                        className="flex items-center justify-center gap-2 border-t border-slate-100 bg-slate-50 px-6 py-4 text-sm font-semibold text-primary transition-colors hover:bg-slate-100"
                     >
                         Xem tất cả sản phẩm
-                        <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+                        <span className="material-symbols-outlined text-lg">arrow_forward</span>
                     </Link>
                 </div>
             </div>

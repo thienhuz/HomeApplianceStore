@@ -16,7 +16,7 @@ public interface IUnitOfWork : IDisposable
     IGenericRepository<Category> Categories { get; }
     IGenericRepository<Brand> Brands { get; }
     IGenericRepository<Banner> Banners { get; }
-    IGenericRepository<Order> Orders { get; }
+    IOrderRepository Orders { get; }
     IGenericRepository<OrderDetail> OrderDetails { get; }
     IGenericRepository<Cart> Carts { get; }
     IGenericRepository<CartItem> CartItems { get; }

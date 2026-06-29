@@ -14,3 +14,4 @@ export * from './cart';
 export * from './catalog';
 export * from './productDetail';
 export * from './address';
+export * from './order';

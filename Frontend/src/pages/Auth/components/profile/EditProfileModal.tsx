@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import type { AuthUser } from '../../../../types';
 
 interface EditProfileModalProps {
@@ -31,12 +32,16 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ isOpen, onClose, us
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Saving profile data:', formData);
-    alert("Đã lưu thông tin thành công!");
-    onClose();
+    try {
+      // TODO: Call API to update profile here
+      console.log('Saving profile data:', formData);
+      toast.success("Đã lưu thông tin thành công!");
+      onClose();
+    } catch (error) {
+      toast.error("Có lỗi xảy ra khi lưu thông tin");
+    }
   };
 
   return (

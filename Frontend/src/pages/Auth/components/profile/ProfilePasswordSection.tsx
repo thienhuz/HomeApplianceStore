@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { toast } from 'react-toastify';
 import { changePassword } from '../../../../services/authService';
 
 const ProfilePasswordSection: React.FC = () => {
@@ -11,38 +11,34 @@ const ProfilePasswordSection: React.FC = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    setError('');
-    setSuccess('');
 
     if (!currentPassword || !newPassword || !confirmPassword) {
-      setError('Vui lòng điền đầy đủ các trường.');
+      toast.warning('Vui lòng điền đầy đủ các trường.');
       return;
     }
 
     if (newPassword !== confirmPassword) {
-      setError('Mật khẩu xác nhận không khớp.');
+      toast.error('Mật khẩu xác nhận không khớp.');
       return;
     }
 
     if (newPassword.length < 8) {
-      setError('Mật khẩu mới phải dài ít nhất 8 ký tự.');
+      toast.error('Mật khẩu mới phải dài ít nhất 8 ký tự.');
       return;
     }
 
     setLoading(true);
     try {
       await changePassword({ currentPassword, newPassword });
-      setSuccess('Đổi mật khẩu thành công!');
+      toast.success('Đổi mật khẩu thành công!');
       setCurrentPassword('');
       setNewPassword('');
       setConfirmPassword('');
     } catch (err: any) {
-      setError(err.message || 'Đã có lỗi xảy ra khi đổi mật khẩu.');
+      toast.error(err.message || 'Đã có lỗi xảy ra khi đổi mật khẩu.');
     } finally {
       setLoading(false);
     }
@@ -57,17 +53,6 @@ const ProfilePasswordSection: React.FC = () => {
 
       <div className="px-8 py-8">
         <form className="max-w-xl space-y-6" onSubmit={handleSubmit}>
-
-          {error && (
-            <div className="p-3 mb-4 text-sm text-red-600 bg-red-50 rounded-xl border border-red-100">
-              {error}
-            </div>
-          )}
-          {success && (
-            <div className="p-3 mb-4 text-sm text-emerald-600 bg-emerald-50 rounded-xl border border-emerald-100">
-              {success}
-            </div>
-          )}
 
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
             <label className="w-48 text-sm font-medium text-slate-500 shrink-0">Mật khẩu hiện tại</label>

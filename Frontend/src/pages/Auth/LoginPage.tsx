@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { useAuth } from '../../context/AuthContext';
 import AuthBackground from './components/AuthBackground';
 import AuthFooter from './components/AuthFooter';
@@ -21,7 +22,6 @@ const LoginPage: React.FC = () => {
   const [errors, setErrors] = useState(initialErrors);
   const [submitting, setSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [apiError, setApiError] = useState<string | null>(null);
 
   const justRegistered = (location.state as { justRegistered?: boolean } | null)?.justRegistered ?? false;
 
@@ -39,7 +39,6 @@ const LoginPage: React.FC = () => {
     };
 
     setErrors(nextErrors);
-    setApiError(null);
 
     if (nextErrors.email || nextErrors.password) {
       return;
@@ -48,9 +47,10 @@ const LoginPage: React.FC = () => {
     setSubmitting(true);
     try {
       await login({ email, password });
+      toast.success('Đăng nhập thành công!');
       navigate('/');
     } catch (error) {
-      setApiError(error instanceof Error ? error.message : 'Đăng nhập thất bại.');
+      toast.error(error instanceof Error ? error.message : 'Đăng nhập thất bại.');
     } finally {
       setSubmitting(false);
     }
@@ -139,13 +139,6 @@ const LoginPage: React.FC = () => {
                   Ghi nhớ đăng nhập
                 </label>
               </div>
-
-              {apiError && (
-                <p className="flex items-center gap-1 text-error font-body-sm text-body-sm">
-                  <span className="material-symbols-outlined text-[18px]">error</span>
-                  {apiError}
-                </p>
-              )}
 
               <button
                 type="submit"
