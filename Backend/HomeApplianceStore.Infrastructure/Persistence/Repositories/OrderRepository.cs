@@ -67,4 +67,51 @@ public class OrderRepository : GenericRepository<Order>, IOrderRepository
             TotalPages = (int)System.Math.Ceiling((double)totalItems / pageSize)
         };
     }
+
+    public async Task<HomeApplianceStore.Application.DTOs.OrderDto?> GetOrderDetailsAsync(int orderId, int userId)
+    {
+        var sql = @"
+            SELECT 
+                O.OrderId, O.OrderDate, O.OrderStatus, O.PaymentMethod, O.PaymentStatus,
+                O.ShippingName, O.ShippingPhone, O.ShippingAddress, O.Note,
+                O.TotalAmount, O.DiscountAmount, O.FinalAmount
+            FROM [dbo].[Orders] O
+            WHERE O.OrderId = @OrderId AND O.UserId = @UserId;
+
+            SELECT 
+                OD.ProductId,
+                OD.ProductName,
+                OD.Quantity,
+                OD.UnitPrice,
+                OD.TotalPrice,
+                PI.ImageUrl
+            FROM [dbo].[OrderDetails] OD
+            LEFT JOIN [dbo].[ProductImages] PI ON PI.ProductId = OD.ProductId AND PI.IsPrimary = 1
+            WHERE OD.OrderId = @OrderId;
+        ";
+
+        using var multi = await _connection.QueryMultipleAsync(sql, new { OrderId = orderId, UserId = userId }, _transaction);
+        
+        var order = await multi.ReadSingleOrDefaultAsync<HomeApplianceStore.Application.DTOs.OrderDto>();
+        
+        if (order != null)
+        {
+            var items = await multi.ReadAsync<HomeApplianceStore.Application.DTOs.OrderDetailItemDto>();
+            order.Items = items;
+        }
+
+        return order;
+    }
+
+    public async Task<bool> CancelOrderAsync(int orderId, int userId)
+    {
+        var sql = @"
+            UPDATE [dbo].[Orders]
+            SET OrderStatus = 5
+            WHERE OrderId = @OrderId AND UserId = @UserId AND OrderStatus IN (1, 2);
+        ";
+
+        var affectedRows = await _connection.ExecuteAsync(sql, new { OrderId = orderId, UserId = userId }, _transaction);
+        return affectedRows > 0;
+    }
 }

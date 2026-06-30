@@ -42,8 +42,11 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, int
         try
         {
             // 2. Tính toán tiền
+            var totalQuantity = cart.Items.Sum(x => x.Quantity);
+            var shippingFee = totalQuantity >= 2 ? 0 : 30000;
+            
             var totalAmount = cart.Subtotal;
-            var finalAmount = totalAmount; // Tạm thời chưa tính voucher
+            var finalAmount = totalAmount + shippingFee; // Tạm thời chưa tính voucher
             
             // 3. Tạo Order
             var order = new Order

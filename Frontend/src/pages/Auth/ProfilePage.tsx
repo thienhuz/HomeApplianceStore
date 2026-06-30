@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import {
   ProfileAddresses,
@@ -14,8 +14,17 @@ import EditProfileModal from './components/profile/EditProfileModal';
 const ProfilePage: React.FC = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<ProfileTabKey>('personal-info');
+  const location = useLocation();
+  const [activeTab, setActiveTab] = useState<ProfileTabKey>(
+    (location.state as any)?.tab || 'personal-info'
+  );
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (location.state && (location.state as any).tab) {
+      setActiveTab((location.state as any).tab);
+    }
+  }, [location.state]);
 
   useEffect(() => {
     if (!user) {

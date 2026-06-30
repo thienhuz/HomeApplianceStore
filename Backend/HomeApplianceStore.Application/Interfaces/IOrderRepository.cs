@@ -15,4 +15,14 @@ public interface IOrderRepository : IGenericRepository<Order>
         int pageIndex, 
         int pageSize, 
         byte? status);
+
+    /// <summary>
+    /// Lấy thông tin chi tiết của 1 đơn hàng (có kiểm tra quyền sở hữu bằng UserId)
+    /// </summary>
+    Task<HomeApplianceStore.Application.DTOs.OrderDto?> GetOrderDetailsAsync(int orderId, int userId);
+
+    /// <summary>
+    /// Hủy đơn hàng nếu đang ở trạng thái chờ xác nhận
+    /// </summary>
+    Task<bool> CancelOrderAsync(int orderId, int userId);
 }

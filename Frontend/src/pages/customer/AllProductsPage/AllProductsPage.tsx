@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Breadcrumb from './components/Breadcrumb';
 import SidebarFilters from './components/SidebarFilters';
@@ -10,51 +10,52 @@ import type { GetProductsFilters } from '../../../types';
 
 const AllProductsPage: React.FC = () => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const categoryIdParam = searchParams.get('categoryId');
-    const keywordParam = searchParams.get('keyword');
 
-    const [filters, setFilters] = useState<GetProductsFilters>({
-        pageNumber: 1,
-        pageSize: 12,
-        sortBy: 'newest',
-        keyword: keywordParam || undefined,
-        categoryId: categoryIdParam ? parseInt(categoryIdParam, 10) : undefined
-    });
-
-    useEffect(() => {
-        const newCategoryId = searchParams.get('categoryId');
-        const newKeyword = searchParams.get('keyword');
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setFilters(prev => ({
-            ...prev,
-            keyword: newKeyword || undefined,
-            categoryId: newCategoryId ? parseInt(newCategoryId, 10) : undefined,
-            pageNumber: 1
-        }));
+    // Use URL Search Params as the single source of truth for filters
+    const filters: GetProductsFilters = useMemo(() => {
+        const brandIds = searchParams.get('brandIds');
+        return {
+            pageNumber: parseInt(searchParams.get('pageNumber') || '1', 10),
+            pageSize: 12,
+            sortBy: searchParams.get('sortBy') || 'newest',
+            keyword: searchParams.get('keyword') || undefined,
+            categoryId: searchParams.get('categoryId') ? parseInt(searchParams.get('categoryId')!, 10) : undefined,
+            brandIds: brandIds ? brandIds.split(',').map(Number) : undefined,
+            minPrice: searchParams.get('minPrice') ? parseInt(searchParams.get('minPrice')!, 10) : undefined,
+            maxPrice: searchParams.get('maxPrice') ? parseInt(searchParams.get('maxPrice')!, 10) : undefined,
+            minRating: searchParams.get('minRating') ? parseInt(searchParams.get('minRating')!, 10) : undefined,
+        };
     }, [searchParams]);
 
     const { data, loading, error } = useProducts(filters);
 
+    const updateFilters = (newFilters: Partial<GetProductsFilters>, replace = false) => {
+        const nextFilters = { ...filters, ...newFilters };
+        const newParams = new URLSearchParams();
+        
+        if (nextFilters.pageNumber && nextFilters.pageNumber > 1) newParams.set('pageNumber', nextFilters.pageNumber.toString());
+        if (nextFilters.sortBy && nextFilters.sortBy !== 'newest') newParams.set('sortBy', nextFilters.sortBy);
+        if (nextFilters.keyword) newParams.set('keyword', nextFilters.keyword);
+        if (nextFilters.categoryId) newParams.set('categoryId', nextFilters.categoryId.toString());
+        if (nextFilters.brandIds && nextFilters.brandIds.length > 0) newParams.set('brandIds', nextFilters.brandIds.join(','));
+        if (nextFilters.minPrice !== undefined) newParams.set('minPrice', nextFilters.minPrice.toString());
+        if (nextFilters.maxPrice !== undefined) newParams.set('maxPrice', nextFilters.maxPrice.toString());
+        if (nextFilters.minRating !== undefined) newParams.set('minRating', nextFilters.minRating.toString());
+        
+        setSearchParams(newParams, { replace });
+    };
+
     const handleFilterChange = (newFilters: Partial<GetProductsFilters>) => {
-        if ('categoryId' in newFilters) {
-            const newParams = new URLSearchParams(searchParams);
-            if (newFilters.categoryId === undefined || newFilters.categoryId === null) {
-                newParams.delete('categoryId');
-            } else {
-                newParams.set('categoryId', newFilters.categoryId.toString());
-            }
-            setSearchParams(newParams);
-        }
-        setFilters(prev => ({ ...prev, ...newFilters, pageNumber: 1 }));
+        updateFilters({ ...newFilters, pageNumber: 1 }, true); // Dùng replace: true để không làm rác history khi click nhiều filter
     };
 
     const handlePageChange = (page: number) => {
-        setFilters(prev => ({ ...prev, pageNumber: page }));
+        updateFilters({ pageNumber: page });
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const handleSortChange = (sort: string) => {
-        setFilters(prev => ({ ...prev, sortBy: sort, pageNumber: 1 }));
+        updateFilters({ sortBy: sort, pageNumber: 1 }, true);
     };
 
     const items = data?.items || [];
@@ -75,16 +76,16 @@ const AllProductsPage: React.FC = () => {
                     onFilterChange={handleFilterChange}
                 />
                 <div className="flex-1 min-w-0">
-                    {keywordParam && (
+                    {filters.keyword && (
                         <h1 className="text-lg font-semibold text-slate-900 mb-4">
-                            Kết quả tìm kiếm cho: <span className="text-primary">"{keywordParam}"</span>
+                            Kết quả tìm kiếm cho: <span className="text-primary">"{filters.keyword}"</span>
                         </h1>
                     )}
                     <SortBar
                         totalItems={totalItems}
                         pageSize={pageSize}
                         pageNumber={pageNumber}
-                        sortBy={filters.sortBy}
+                        sortBy={filters.sortBy || 'newest'}
                         onSortChange={handleSortChange}
                     />
                     <ProductGrid

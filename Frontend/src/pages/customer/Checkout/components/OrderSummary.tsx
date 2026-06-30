@@ -8,6 +8,12 @@ interface OrderSummaryProps {
 
 const OrderSummary: React.FC<OrderSummaryProps> = ({ onCheckout, isProcessing }) => {
     const { cart } = useCart();
+    
+    const totalQuantity = cart.items.reduce((sum, item) => sum + item.quantity, 0);
+    const SHIPPING_FEE = 30000;
+    const freeShipping = totalQuantity >= 2;
+    const shippingAmount = freeShipping || totalQuantity === 0 ? 0 : SHIPPING_FEE;
+    const finalTotal = cart.subtotal + shippingAmount;
 
     return (
         <div className="sticky top-8 flex flex-col gap-6">
@@ -54,7 +60,11 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ onCheckout, isProcessing })
                     </div>
                     <div className="flex justify-between text-sm text-slate-600">
                         <span>Phí vận chuyển</span>
-                        <span className="font-medium text-teal-600">{cart.freeShipping ? "Miễn phí" : "Chưa tính"}</span>
+                        {freeShipping ? (
+                            <span className="font-medium text-teal-600">Miễn phí</span>
+                        ) : (
+                            <span className="font-medium text-slate-800">{shippingAmount.toLocaleString('vi-VN')}₫</span>
+                        )}
                     </div>
                     <div className="flex justify-between text-sm text-slate-600">
                         <span>Giảm giá voucher</span>
@@ -62,7 +72,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ onCheckout, isProcessing })
                     </div>
                     <div className="flex justify-between items-center border-t border-slate-100 pt-6 mt-2">
                         <span className="text-lg font-bold text-slate-900">Tổng cộng</span>
-                        <span className="text-xl font-bold text-primary">{cart.subtotal.toLocaleString('vi-VN')}₫</span>
+                        <span className="text-xl font-bold text-primary">{finalTotal.toLocaleString('vi-VN')}₫</span>
                     </div>
                 </div>
                 {/* Checkout Button */}

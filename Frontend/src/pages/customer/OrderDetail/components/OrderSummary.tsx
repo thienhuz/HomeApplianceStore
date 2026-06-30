@@ -1,29 +1,43 @@
 import React from 'react';
 
-const OrderSummary: React.FC = () => {
+interface OrderSummaryProps {
+    totalAmount: number;
+    discountAmount?: number;
+    finalAmount: number;
+    itemCount: number;
+}
+
+const OrderSummary: React.FC<OrderSummaryProps> = ({ totalAmount, discountAmount, finalAmount, itemCount }) => {
     return (
-        <div className="bg-surface-container-lowest p-gutter rounded-xl order-card-shadow space-y-stack-md">
-            <div className="flex items-center gap-2 text-primary">
-                <span className="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
-                <h3 className="font-label-md text-label-md uppercase tracking-wider">Tóm tắt đơn hàng</h3>
+        <div className="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/30 space-y-4">
+            {/* Section label */}
+            <div className="flex items-center gap-2">
+                <span className="material-symbols-outlined text-[18px] text-on-surface-variant" data-icon="receipt_long">receipt_long</span>
+                <h3 className="text-[12px] font-semibold text-on-surface-variant uppercase tracking-wider">Tóm tắt đơn hàng</h3>
             </div>
-            <div className="space-y-stack-sm text-body-md">
-                <div className="flex justify-between">
-                    <span className="text-on-surface-variant">Tạm tính (2 sản phẩm)</span>
-                    <span>45.980.000₫</span>
+
+            {/* Line items */}
+            <div className="space-y-3 text-[13px]">
+                <div className="flex justify-between items-baseline">
+                    <span className="text-on-surface-variant">Tạm tính ({itemCount} sản phẩm)</span>
+                    <span className="text-on-surface font-medium tabular-nums">{totalAmount.toLocaleString('vi-VN')}₫</span>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex justify-between items-baseline">
                     <span className="text-on-surface-variant">Phí vận chuyển</span>
-                    <span>Miễn phí</span>
+                    <span className="text-emerald-600 font-medium">Miễn phí</span>
                 </div>
-                <div className="flex justify-between text-tertiary">
-                    <span>Giảm giá khuyến mãi</span>
-                    <span>-2.000.000₫</span>
-                </div>
-                <div className="border-t border-outline-variant my-4 pt-4 flex justify-between items-end">
-                    <span className="font-bold text-headline-md">Tổng cộng</span>
-                    <span className="font-bold text-headline-md text-primary">43.980.000₫</span>
-                </div>
+                {discountAmount && discountAmount > 0 && (
+                    <div className="flex justify-between items-baseline">
+                        <span className="text-on-surface-variant">Giảm giá</span>
+                        <span className="text-red-500 font-medium tabular-nums">-{discountAmount.toLocaleString('vi-VN')}₫</span>
+                    </div>
+                )}
+            </div>
+
+            {/* Total */}
+            <div className="border-t border-outline-variant/30 pt-4 flex justify-between items-baseline">
+                <span className="text-[14px] font-semibold text-on-surface">Tổng cộng</span>
+                <span className="text-[18px] font-bold text-primary tabular-nums">{finalAmount.toLocaleString('vi-VN')}₫</span>
             </div>
         </div>
     );

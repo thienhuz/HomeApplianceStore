@@ -15,6 +15,11 @@ const SidebarFilters: React.FC<SidebarFiltersProps> = ({ filters, onFilterChange
     const [customMinPrice, setCustomMinPrice] = useState(filters.minPrice?.toString() || '');
     const [customMaxPrice, setCustomMaxPrice] = useState(filters.maxPrice?.toString() || '');
 
+    React.useEffect(() => {
+        setCustomMinPrice(filters.minPrice?.toString() || '');
+        setCustomMaxPrice(filters.maxPrice?.toString() || '');
+    }, [filters.minPrice, filters.maxPrice]);
+
     const handleCategoryClick = (categoryId?: number) => {
         onFilterChange({ categoryId });
     };

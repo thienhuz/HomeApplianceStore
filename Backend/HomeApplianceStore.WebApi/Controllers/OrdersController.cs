@@ -48,4 +48,34 @@ public class OrdersController : ControllerBase
 
         return Ok(new { success = true, data = result });
     }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetOrderById(int id)
+    {
+        var result = await _mediator.Send(new HomeApplianceStore.Application.Features.Orders.Queries.GetOrderByIdQuery
+        {
+            OrderId = id,
+            UserId = CurrentUserId
+        });
+
+        if (result == null)
+            return NotFound(new { success = false, message = "Đơn hàng không tồn tại hoặc bạn không có quyền xem." });
+
+        return Ok(new { success = true, data = result });
+    }
+
+    [HttpPut("{id}/cancel")]
+    public async Task<IActionResult> CancelOrder(int id)
+    {
+        var result = await _mediator.Send(new HomeApplianceStore.Application.Features.Orders.Commands.CancelOrderCommand
+        {
+            OrderId = id,
+            UserId = CurrentUserId
+        });
+
+        if (!result)
+            return BadRequest(new { success = false, message = "Không thể hủy đơn hàng này. Có thể đơn hàng không tồn tại, bạn không có quyền, hoặc đơn hàng đã qua giai đoạn chờ xác nhận." });
+
+        return Ok(new { success = true, message = "Hủy đơn hàng thành công" });
+    }
 }

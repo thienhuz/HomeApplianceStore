@@ -3,7 +3,6 @@ import DeliveryAddress from './components/DeliveryAddress';
 import PaymentMethod from './components/PaymentMethod';
 import OrderNote from './components/OrderNote';
 import OrderSummary from './components/OrderSummary';
-import CheckoutSuccessModal from './components/CheckoutSuccessModal';
 import { getMyAddresses } from '../../../services/addressService';
 import { orderApi } from '../../../services/orderApi';
 import type { UserAddress } from '../../../types';
@@ -20,7 +19,6 @@ const CheckoutPage: React.FC = () => {
     const [paymentMethod, setPaymentMethod] = useState<number>(1); // 1 = COD
     const [note, setNote] = useState<string>('');
     const [isProcessing, setIsProcessing] = useState(false);
-    const [showSuccessModal, setShowSuccessModal] = useState(false);
 
     useEffect(() => {
         getMyAddresses().then(data => {
@@ -62,7 +60,8 @@ const CheckoutPage: React.FC = () => {
                 note: note
             });
             await refresh(); // Clear cart in UI Context
-            setShowSuccessModal(true);
+            toast.success('Đặt hàng thành công!');
+            navigate('/orders');
         } catch (err: any) {
             toast.error(err.message || 'Có lỗi xảy ra khi đặt hàng');
         } finally {
@@ -98,8 +97,6 @@ const CheckoutPage: React.FC = () => {
                     </div>
                 </div>
             </main>
-            
-            <CheckoutSuccessModal isOpen={showSuccessModal} />
         </div>
     );
 };

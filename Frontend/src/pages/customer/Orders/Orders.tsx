@@ -24,8 +24,8 @@ const getStatusInfo = (statusByte: number) => {
     switch (statusByte) {
         case 1: return { text: 'Chờ thanh toán', style: 'bg-amber-50 text-amber-700 border border-amber-200/60' };
         case 2: return { text: 'Đang xử lý', style: 'bg-blue-50 text-blue-700 border border-blue-200/60' };
-        case 3: return { text: 'Đang giao', style: 'bg-indigo-50 text-indigo-700 border border-indigo-200/60' };
-        case 4: return { text: 'Đã giao', style: 'bg-emerald-50 text-emerald-700 border border-emerald-200/60' };
+        case 3: return { text: 'Đang giao', style: 'bg-sky-50 text-sky-700 border border-sky-200/60' };
+        case 4: return { text: 'Đã giao', style: 'bg-teal-50 text-teal-700 border border-teal-200/60' };
         case 5: return { text: 'Đã hủy', style: 'bg-red-50 text-red-600 border border-red-200/60' };
         default: return { text: 'Khác', style: 'bg-slate-50 text-slate-700 border border-slate-200/60' };
     }
@@ -69,7 +69,6 @@ const Orders: React.FC = () => {
 
     const handleTabChange = (tab: string) => {
         setActiveTab(tab);
-        // Reset pagination when changing tab
         setPageIndex(1);
         setPageSize(4);
         setIsPaginationMode(false);
@@ -88,18 +87,18 @@ const Orders: React.FC = () => {
     };
 
     return (
-        <main className="max-w-container-max mx-auto px-6 md:px-8 py-8">
-            {/* Breadcrumb + page heading — đồng bộ với trang Profile */}
-            <nav className="flex items-center gap-1.5 text-sm text-slate-500 mb-4">
-                <button type="button" onClick={() => navigate('/')} className="hover:text-primary transition-colors">
+        <main className="max-w-container-max mx-auto px-gutter py-8">
+            {/* Breadcrumb */}
+            <nav className="flex items-center gap-1.5 text-[13px] text-on-surface-variant mb-4">
+                <button type="button" onClick={() => navigate('/')} className="hover:text-primary transition-colors duration-200">
                     Trang chủ
                 </button>
-                <span className="material-symbols-outlined text-[16px] text-slate-300">chevron_right</span>
-                <span className="text-slate-900 font-medium">Tài khoản của tôi</span>
+                <span className="material-symbols-outlined text-[14px] text-on-surface-variant/40">chevron_right</span>
+                <span className="text-on-surface font-medium">Tài khoản của tôi</span>
             </nav>
-            <h1 className="text-2xl font-bold text-slate-900 mb-8">Tài khoản của tôi</h1>
+            <h1 className="text-[22px] font-semibold text-on-surface tracking-tight mb-8">Tài khoản của tôi</h1>
 
-            <div className="flex flex-col md:flex-row gap-6 items-start">
+            <div className="flex flex-col md:flex-row gap-gutter items-start">
                 <aside className="w-full md:w-80 flex-shrink-0">
                     <ProfileSidebar
                         user={user}
@@ -111,20 +110,18 @@ const Orders: React.FC = () => {
                 </aside>
 
                 <section className="flex-grow min-w-0">
-                    <div className="flex items-center justify-between mb-6">
-                        <h2 className="text-xl font-semibold text-slate-900">Đơn hàng của tôi</h2>
-                    </div>
+                    <h2 className="text-[18px] font-semibold text-on-surface mb-6">Đơn hàng của tôi</h2>
 
                     <OrderStatusTabs activeTab={activeTab} onTabChange={handleTabChange} />
 
                     {isLoading ? (
-                        <div className="flex justify-center py-12">
-                            <div className="w-8 h-8 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+                        <div className="flex justify-center py-16">
+                            <div className="w-8 h-8 border-[3px] border-slate-200 border-t-primary rounded-full animate-spin"></div>
                         </div>
                     ) : orders.length === 0 ? (
-                        <div className="text-center py-12 bg-white rounded-2xl border border-slate-200">
-                            <span className="material-symbols-outlined text-6xl text-slate-200 mb-3">inbox</span>
-                            <p className="text-slate-500">Chưa có đơn hàng nào.</p>
+                        <div className="text-center py-16 bg-surface-container-lowest rounded-xl border border-outline-variant/30">
+                            <span className="material-symbols-outlined text-[40px] text-on-surface-variant/30 mb-3 block" data-icon="inbox">inbox</span>
+                            <p className="text-on-surface-variant text-[14px]">Chưa có đơn hàng nào.</p>
                         </div>
                     ) : (
                         <div className="space-y-4">
@@ -142,18 +139,19 @@ const Orders: React.FC = () => {
                                         productImageAlt={order.firstProductTitle || 'Product'}
                                         productTitle={order.firstProductTitle || 'Sản phẩm'}
                                         productSubtitle={order.totalProductCount > 1 ? `và ${order.totalProductCount - 1} sản phẩm khác` : 'Sản phẩm đơn lẻ'}
-                                        cardExtraClass={order.orderStatus === 5 ? 'opacity-70 hover:opacity-100' : ''}
+                                        cardExtraClass={order.orderStatus === 5 ? 'opacity-60 hover:opacity-100' : ''}
                                     />
                                 );
                             })}
                         </div>
                     )}
 
+                    {/* Load More */}
                     {!isLoading && !isPaginationMode && totalCount > 4 && (
                         <div className="mt-8 flex justify-center">
                             <button 
                                 onClick={handleLoadMore}
-                                className="px-6 py-2.5 border border-slate-200 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:border-slate-300 transition-colors" 
+                                className="px-6 py-2.5 border border-outline-variant/40 rounded-lg text-[13px] font-medium text-on-surface-variant hover:bg-surface-container-low hover:border-outline-variant transition-colors duration-200" 
                                 type="button"
                             >
                                 Tải thêm đơn hàng
@@ -161,16 +159,17 @@ const Orders: React.FC = () => {
                         </div>
                     )}
 
+                    {/* Pagination */}
                     {!isLoading && isPaginationMode && Math.ceil(totalCount / 10) > 1 && (
                         <div className="mt-8 flex justify-center gap-2">
                             {Array.from({ length: Math.ceil(totalCount / 10) }).map((_, i) => (
                                 <button
                                     key={i}
                                     onClick={() => setPageIndex(i + 1)}
-                                    className={`w-10 h-10 flex items-center justify-center rounded-xl text-sm font-medium transition-colors ${
+                                    className={`w-8 h-8 flex items-center justify-center rounded-lg text-[13px] font-medium transition-colors duration-200 ${
                                         pageIndex === i + 1 
-                                        ? 'bg-primary text-white shadow-sm' 
-                                        : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
+                                        ? 'bg-primary text-on-primary' 
+                                        : 'bg-surface-container-lowest border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container-low'
                                     }`}
                                 >
                                     {i + 1}

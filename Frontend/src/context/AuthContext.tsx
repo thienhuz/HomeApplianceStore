@@ -13,14 +13,7 @@ interface AuthContextValue {
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 export const AuthProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const [user, setUser] = useState<AuthUser | null>(null);
-
-  useEffect(() => {
-    const storedUser = authService.getStoredUser();
-    if (storedUser) {
-      setUser(storedUser);
-    }
-  }, []);
+  const [user, setUser] = useState<AuthUser | null>(() => authService.getStoredUser());
 
   const login = async (payload: LoginRequest) => {
     const auth = await authService.login(payload);

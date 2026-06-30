@@ -25,3 +25,28 @@ export interface PagedResult<T> {
     pageSize: number;
     totalPages: number;
 }
+
+export interface OrderDetailItem {
+    productId: number;
+    productName: string;
+    imageUrl: string;
+    quantity: number;
+    unitPrice: number;
+    totalPrice: number;
+}
+
+export interface OrderDto {
+    orderId: number;
+    orderDate: string;
+    orderStatus: number;
+    paymentMethod: number;
+    paymentStatus: number;
+    shippingName: string;
+    shippingPhone: string;
+    shippingAddress: string;
+    note?: string;
+    totalAmount: number;
+    discountAmount?: number;
+    finalAmount: number;
+    items: OrderDetailItem[];
+}

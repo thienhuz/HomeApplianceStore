@@ -15,4 +15,12 @@ export const orderApi = {
         }
         return request<import('../types/order').PagedResult<import('../types/order').OrderHistory>>(url);
     },
+    getOrderById: async (id: number): Promise<import('../types/order').OrderDto> => {
+        return request<import('../types/order').OrderDto>(`/orders/${id}`);
+    },
+    cancelOrder: async (id: number): Promise<{ success: boolean; message: string }> => {
+        return request<{ success: boolean; message: string }>(`/orders/${id}/cancel`, {
+            method: 'PUT',
+        });
+    },
 };
