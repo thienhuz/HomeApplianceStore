@@ -6,7 +6,7 @@ interface OrderCardProps {
     date: string;
     status: string;
     statusStyle: string;
-    totalAmount: string;
+    finalAmount: string;
     productImage: string;
     productImageAlt: string;
     productTitle: string;
@@ -19,7 +19,7 @@ const OrderCard: React.FC<OrderCardProps> = ({
     date,
     status,
     statusStyle,
-    totalAmount,
+    finalAmount,
     productImage,
     productImageAlt,
     productTitle,
@@ -37,8 +37,8 @@ const OrderCard: React.FC<OrderCardProps> = ({
                     <span className={`px-2.5 py-0.5 rounded-md text-[11px] font-medium leading-relaxed ${statusStyle}`}>{status}</span>
                 </div>
                 <div className="flex items-baseline gap-1.5">
-                    <span className="text-on-surface-variant text-[12px]">Tổng:</span>
-                    <span className="text-[14px] font-semibold text-primary tabular-nums">{totalAmount}</span>
+                    <span className="text-on-surface-variant text-[12px]">Thanh toán:</span>
+                    <span className="text-[14px] font-semibold text-primary tabular-nums">{finalAmount}</span>
                 </div>
             </div>
 

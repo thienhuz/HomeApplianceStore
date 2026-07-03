@@ -33,7 +33,8 @@ public class OrderRepository : GenericRepository<Order>, IOrderRepository
             SELECT 
                 O.OrderId, 
                 O.OrderDate, 
-                O.TotalAmount, 
+                O.TotalAmount,
+                O.FinalAmount,
                 O.OrderStatus, 
                 O.PaymentMethod, 
                 O.PaymentStatus,

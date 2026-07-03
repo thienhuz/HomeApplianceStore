@@ -134,7 +134,7 @@ const Orders: React.FC = () => {
                                         date={new Intl.DateTimeFormat('vi-VN', { dateStyle: 'short' }).format(new Date(order.orderDate))}
                                         status={statusInfo.text}
                                         statusStyle={statusInfo.style}
-                                        totalAmount={`${order.totalAmount.toLocaleString('vi-VN')}₫`}
+                                        finalAmount={`${order.finalAmount.toLocaleString('vi-VN')}₫`}
                                         productImage={order.firstProductImageUrl || '/placeholder-image.png'}
                                         productImageAlt={order.firstProductTitle || 'Product'}
                                         productTitle={order.firstProductTitle || 'Sản phẩm'}

@@ -1,24 +1,41 @@
 import React from 'react';
 import { useCart } from '../../../../context/CartContext';
+import VoucherPicker from './VoucherPicker';
+import type { VoucherDto } from '../../../../types';
 
 interface OrderSummaryProps {
     onCheckout: () => void;
     isProcessing: boolean;
+    selectedVoucher: VoucherDto | null;
+    onVoucherChange: (voucher: VoucherDto | null) => void;
 }
 
-const OrderSummary: React.FC<OrderSummaryProps> = ({ onCheckout, isProcessing }) => {
+const OrderSummary: React.FC<OrderSummaryProps> = ({ onCheckout, isProcessing, selectedVoucher, onVoucherChange }) => {
     const { cart } = useCart();
     
     const totalQuantity = cart.items.reduce((sum, item) => sum + item.quantity, 0);
     const SHIPPING_FEE = 30000;
     const freeShipping = totalQuantity >= 2;
     const shippingAmount = freeShipping || totalQuantity === 0 ? 0 : SHIPPING_FEE;
-    const finalTotal = cart.subtotal + shippingAmount;
+
+    // Tính giảm giá voucher
+    const computeDiscount = (): number => {
+        if (!selectedVoucher) return 0;
+        if (selectedVoucher.discountType === 'percent') {
+            const raw = cart.subtotal * selectedVoucher.discountAmount / 100;
+            return selectedVoucher.maxDiscount ? Math.min(raw, selectedVoucher.maxDiscount) : raw;
+        }
+        return selectedVoucher.discountAmount;
+    };
+
+    const discountAmount = computeDiscount();
+    const finalTotal = Math.max(0, cart.subtotal + shippingAmount - discountAmount);
 
     return (
         <div className="sticky top-8 flex flex-col gap-6">
             <section className="bg-white p-6 md:p-8 rounded-2xl shadow-sm ring-1 ring-slate-100">
                 <h2 className="text-lg font-semibold text-slate-800 mb-6">Tóm tắt đơn hàng</h2>
+
                 {/* Product List */}
                 <div className="flex flex-col gap-6 mb-8 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
                     {cart.items.map(item => (
@@ -38,22 +55,18 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ onCheckout, isProcessing })
                         </div>
                     ))}
                 </div>
-                {/* Voucher Section */}
+
+                {/* Voucher Picker */}
                 <div className="mb-8">
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Mã giảm giá</label>
-                    <div className="flex gap-2">
-                        <input 
-                            className="flex-grow rounded-xl border-0 ring-1 ring-slate-200 focus:ring-2 focus:ring-primary px-4 py-3 text-sm outline-none transition-all" 
-                            placeholder="Nhập mã voucher" 
-                            type="text"
-                        />
-                        <button type="button" className="bg-slate-100 text-slate-700 px-6 py-3 rounded-xl text-sm font-semibold hover:bg-slate-200 transition-colors">
-                            Áp dụng
-                        </button>
-                    </div>
+                    <VoucherPicker
+                        subtotal={cart.subtotal}
+                        selectedVoucher={selectedVoucher}
+                        onSelect={onVoucherChange}
+                    />
                 </div>
+
                 {/* Pricing Details */}
-                <div className="flex flex-col gap-4 border-t border-slate-100 pt-6">
+                <div className="flex flex-col gap-3 border-t border-slate-100 pt-6">
                     <div className="flex justify-between text-sm text-slate-600">
                         <span>Tạm tính</span>
                         <span className="font-medium text-slate-800">{cart.subtotal.toLocaleString('vi-VN')}₫</span>
@@ -68,13 +81,16 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ onCheckout, isProcessing })
                     </div>
                     <div className="flex justify-between text-sm text-slate-600">
                         <span>Giảm giá voucher</span>
-                        <span className="font-medium text-slate-800">-0₫</span>
+                        <span className={`font-medium ${discountAmount > 0 ? 'text-emerald-600' : 'text-slate-800'}`}>
+                            {discountAmount > 0 ? `-${discountAmount.toLocaleString('vi-VN')}₫` : '0₫'}
+                        </span>
                     </div>
-                    <div className="flex justify-between items-center border-t border-slate-100 pt-6 mt-2">
+                    <div className="flex justify-between items-center border-t border-slate-100 pt-4 mt-1">
                         <span className="text-lg font-bold text-slate-900">Tổng cộng</span>
                         <span className="text-xl font-bold text-primary">{finalTotal.toLocaleString('vi-VN')}₫</span>
                     </div>
                 </div>
+
                 {/* Checkout Button */}
                 <button 
                     type="button"

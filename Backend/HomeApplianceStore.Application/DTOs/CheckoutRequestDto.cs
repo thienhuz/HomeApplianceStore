@@ -17,4 +17,7 @@ public class CheckoutRequestDto
     public byte PaymentMethod { get; set; } = 1; // 1: COD, 2: Bank, 3: VNPay, 4: Momo
 
     public string? Note { get; set; }
+
+    /// <summary>Mã voucher người dùng chọn (tuỳ chọn).</summary>
+    public string? VoucherCode { get; set; }
 }

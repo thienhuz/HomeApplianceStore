@@ -5,6 +5,7 @@ public class OrderHistoryDto
     public int OrderId { get; set; }
     public DateTime OrderDate { get; set; }
     public decimal TotalAmount { get; set; }
+    public decimal FinalAmount { get; set; }
     public byte OrderStatus { get; set; }
     public byte PaymentMethod { get; set; }
     public byte PaymentStatus { get; set; }

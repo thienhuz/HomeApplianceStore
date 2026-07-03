@@ -3,15 +3,14 @@ import DeliveryAddress from './components/DeliveryAddress';
 import PaymentMethod from './components/PaymentMethod';
 import OrderNote from './components/OrderNote';
 import OrderSummary from './components/OrderSummary';
+import CheckoutSuccessModal from './components/CheckoutSuccessModal';
 import { getMyAddresses } from '../../../services/addressService';
 import { orderApi } from '../../../services/orderApi';
-import type { UserAddress } from '../../../types';
+import type { UserAddress, VoucherDto } from '../../../types';
 import { useCart } from '../../../context/CartContext';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 
 const CheckoutPage: React.FC = () => {
-    const navigate = useNavigate();
     const { cart, refresh } = useCart();
     
     const [addresses, setAddresses] = useState<UserAddress[]>([]);
@@ -19,6 +18,8 @@ const CheckoutPage: React.FC = () => {
     const [paymentMethod, setPaymentMethod] = useState<number>(1); // 1 = COD
     const [note, setNote] = useState<string>('');
     const [isProcessing, setIsProcessing] = useState(false);
+    const [selectedVoucher, setSelectedVoucher] = useState<VoucherDto | null>(null);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
 
     useEffect(() => {
         getMyAddresses().then(data => {
@@ -57,11 +58,11 @@ const CheckoutPage: React.FC = () => {
                 shippingPhone: addr.phone,
                 shippingAddress: fullAddress,
                 paymentMethod: paymentMethod,
-                note: note
+                note: note,
+                voucherCode: selectedVoucher?.voucherCode,
             });
-            await refresh(); // Clear cart in UI Context
-            toast.success('Đặt hàng thành công!');
-            navigate('/orders');
+            await refresh(); // Clear cart in UI
+            setShowSuccessModal(true); // Hiện modal thay vì navigate ngay
         } catch (err: any) {
             toast.error(err.message || 'Có lỗi xảy ra khi đặt hàng');
         } finally {
@@ -92,11 +93,19 @@ const CheckoutPage: React.FC = () => {
                     <div className="lg:col-span-4">
                         <OrderSummary 
                             onCheckout={handleCheckout} 
-                            isProcessing={isProcessing} 
+                            isProcessing={isProcessing}
+                            selectedVoucher={selectedVoucher}
+                            onVoucherChange={setSelectedVoucher}
                         />
                     </div>
                 </div>
             </main>
+
+            {/* Modal thành công */}
+            <CheckoutSuccessModal
+                isOpen={showSuccessModal}
+                onClose={() => setShowSuccessModal(false)}
+            />
         </div>
     );
 };
